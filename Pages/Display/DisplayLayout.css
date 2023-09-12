@@ -1,0 +1,220 @@
+#display-main {
+  width: 100%;
+  height: 100%;
+  background-image: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/theme-background/zma.svg);
+  display: flex;
+}
+
+.right-container {
+  width: calc(100% - 220px);
+  height: 100vh;
+  overflow-y: auto;
+  padding: 16px 2% 60px;
+}
+/* container-right-content */
+.content-container {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+}
+
+.content-container .content-container-left .avt-disk-play {
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+.content-container .content-container-left .avt-disk-play img {
+  border-radius: 5px;
+  width: 100%;
+}
+.media-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0;
+}
+.content-top {
+  text-align: center;
+  width: 100%;
+}
+.content-top .title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 0px;
+  text-transform: none;
+}
+.title,
+.release,
+.artists a,
+.artists span,
+.like {
+  font-size: 12px;
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.content-top .artists {
+  margin: 5px;
+}
+.actions {
+  margin-top: 16px;
+}
+.actions .btn-play-all {
+  background-color: #ed2b91;
+  border-color: #ed2b91;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+}
+.media-content .actions .fa-play {
+  margin-right: 5px;
+}
+.media_right {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+}
+.media_right-btn {
+  padding: 10px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+.media_right-btn:hover {
+  background-color: hsla(0, 0%, 100%, 0.3);
+}
+
+/* danh sach bai hat */
+
+.content-container-right {
+  color: #fff;
+  flex: 1;
+  margin-left: 30px;
+}
+.content-container-right .description {
+  margin: 0 0 15px;
+}
+.content-container-right span {
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.zing-recommend--item {
+  margin-left: 10px;
+  align-items: center;
+  background: none;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover {
+  background-color: hsla(0, 0%, 100%, 0.5);
+}
+.zing-recommend--item-left,
+.zing-recommend--item-center,
+.zing-recommend--item-right {
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.zing-recommend--item-left {
+  flex: 3;
+  display: flex;
+  align-items: center;
+}
+.zing-recommend--item-center {
+  font-size: 12px;
+  flex: 2;
+  text-align: start;
+}
+.zing-recommend--item-right {
+  font-size: 14px;
+  flex: 1;
+  text-align: end;
+}
+
+.zing-recommend--item-text {
+  height: 40px;
+}
+.img-avt-infor {
+  border-radius: 3px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.img-avt-infor img {
+  width: 100%;
+}
+.name-song {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.name-single {
+  font-size: 12px;
+}
+
+/* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
+@media (max-width: 1024px) {
+  /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
+  .zing-recommend--item.zing-recommend--title {
+    height: 50px;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .right-container {
+    width: 100%;
+  }
+
+  .content-container .content-container-left {
+    width: 100%;
+    position: sticky;
+    height: 100%;
+  }
+
+  .content-container-right .description {
+    margin: 25px 0 15px;
+  }
+
+  .content-container-left {
+    width: 100%;
+    display: flex;
+  }
+
+  .media-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
+
+  .media-content .actions {
+    margin-top: 25px;
+  }
+  .content-top .artists {
+    margin: 5px 5px 5px 0;
+  }
+
+  .content-top {
+    text-align: left;
+  }
+
+  .content-container-right {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .zing-recommend--item {
+    height: 100px;
+    margin: 0;
+  }
+}

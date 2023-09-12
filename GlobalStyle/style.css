@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+/* Reset CSS  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+div{
+  font-family: 'Inter', sans-serif;
+  color: inherit;
+}
+
+
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+*::-webkit-scrollbar-track
+{
+	background-color: #37075D;
+}
+
+*::-webkit-scrollbar
+{
+	width: 7px;
+}
+
+*::-webkit-scrollbar-thumb
+{
+	background-color: #411465;
+	border: 2px solid #464343;
+}
+
