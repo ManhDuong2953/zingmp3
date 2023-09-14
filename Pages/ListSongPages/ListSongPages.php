@@ -11,7 +11,7 @@
   <!-- import css file component  -->
   <link rel="stylesheet" href="../../Component/AlbumHot/AlbumHot.css">
   <link rel="stylesheet" href="../../GlobalStyle/style.css">
-  <link rel="stylesheet" href="./DisplayLayout.css" />
+  <link rel="stylesheet" href="./ListSongPages.css" />
   <link rel="stylesheet" href="../../Component/Navbar/Navbar.css">
   <link rel="stylesheet" href="../../Component/Header/HeaderLayout.css">
   <link rel="stylesheet" href="../../Component/PlayingBar/PlayingBar.css">
@@ -20,9 +20,9 @@
 
 <body>
   <div id="display-main">
-    <?php require '../../Component/Navbar/Navbar.html' ?>
+    <?php require '../../Component/Navbar/Navbar.php' ?>
     <div class="right-container">
-      <?php require '../../Component/Header/HeaderLayout.html' ?>
+      <?php require '../../Component/Header/HeaderLayout.php' ?>
       <div class="content-container">
         <div class="content-container-left">
           <div class="avt-disk-play">
@@ -273,7 +273,7 @@
     </div>
   </div>
 
-  <?php require '../../Component/PlayingBar/PlayingBar.html' ?>
+  <?php require '../../Component/PlayingBar/PlayingBar.php' ?>
 </body>
 
 </html>

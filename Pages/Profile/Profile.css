@@ -15,7 +15,7 @@
 }
 
 #profile-main .profile-right .container-profile {
-  padding: 40px 0;
+  padding: 40px 0 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 
 #profile-main .profile-navbar {
-  margin: 40px 0 20px;
+  margin: 40px 0 0;
   display: flex;
   align-items: center;
   background-color: hsla(0, 0%, 100%, 0.1);

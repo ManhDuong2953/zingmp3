@@ -1,15 +1,24 @@
 <div id="navbar-main">
     <div class="logo-main">
-        <img src="../../Component/assets/Logo.png" alt="">
-    </div>
+        <img id="myImage" src="../../Component/assets/Logo.png" alt="">
 
+        <script>
+            function replaceImage() {
+                var img = document.getElementById("myImage");
+                img.src = "../../../Component/assets/Logo.png"; // Thay thế đường dẫn nếu hình ảnh gốc bị lỗi
+            }
+
+            document.getElementById("myImage").addEventListener("error", replaceImage);
+        </script>
+
+    </div>
     <ul class="list-menu">
-        <a href="">
+        <a href="http://localhost:8081/zingmp3/Pages/Profile/MyHeart/MyHeart.php">
             <li><i class="fa-solid fa-book-open-reader"></i>
                 <p>Cá nhân</p>
             </li>
         </a>
-        <a href="">
+        <a href="http://localhost:8081/zingmp3/Pages/Home/HomeLayOut.php">
             <li class="active"><i class="fa-solid fa-compact-disc"></i></i>
                 <p>Khám phá</p>
             </li>

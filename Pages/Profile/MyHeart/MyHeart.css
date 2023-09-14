@@ -1,7 +1,7 @@
 /* My_heart  */
 
 .profile-content ul.list-my--heart a li.item-my--heart {
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;

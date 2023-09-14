@@ -1,4 +1,4 @@
-#add-album--main {
+#add-song--main {
   width: 100vw;
   height: fit-content;
   min-height: 100vh;
@@ -6,7 +6,7 @@
   display: flex;
 }
 
-#add-album--main .add-album--right {
+#add-song--main .add-song--right {
   width: calc(100vw - 220px);
   height: 100vh;
   overflow-y: auto;
@@ -14,30 +14,41 @@
   color: #ffffff;
 }
 
-#add-album--main .add-album--container {
+#add-song--main .add-song--container {
   background-color: hsla(0, 0%, 100%, 0.2);
-  max-width: 500px;
+  max-width: 1000px;
   margin: 10px auto 0;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#add-album--main h1 {
+#add-song--main h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 15px;
 }
 
-#add-album--main .form-group {
+#add-song--main .form-group {
   margin-bottom: 15px;
   font-size: 13px;
+
 }
 
+#add-song--main label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-
-
-#add-album--main button.turn-back{
+#add-song--main input[type="text"],
+#add-song--main input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+#add-song--main button.turn-back{
   background-color: #138c25;
   color: #fff;
   padding: 10px 20px;
@@ -46,21 +57,7 @@
   cursor: pointer;
 }
 
-#add-album--main label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-#add-album--main input[type="text"],
-#add-album--main input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-#add-album--main .img-preview {
+#add-song--main .img-preview {
   width: fit-content;
   height: 200px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -69,13 +66,13 @@
   
 }
 
-#add-album--main .img-preview img {
+#add-song--main .img-preview img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-#add-album--main input[type="submit"] {
+#add-song--main input[type="submit"] {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -84,12 +81,12 @@
   cursor: pointer;
 }
 
-#add-album--main input[type="submit"]:hover {
+#add-song--main input[type="submit"]:hover {
   background-color: #0056b3;
 }
 
 @media (max-width: 1024px) {
-  #add-album--main .add-album--right {
+  #add-song--main .add-song--right {
     margin: 20px auto;
     width: -webkit-fill-available;
   }

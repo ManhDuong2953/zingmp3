@@ -31,11 +31,11 @@
 <body>
     <div id="home-main">
         <!-- NavBar  -->
-        <?php require '../../Component/Navbar/Navbar.html' ?>
+        <?php require '../../Component/Navbar/Navbar.php' ?>
         <div class="home-right">
 
             <!-- Header  -->
-            <?php require "../../Component/Header/HeaderLayout.html" ?>
+            <?php require "../../Component/Header/HeaderLayout.php" ?>
 
             <!-- Slider  -->
             <?php require "../../Component/Slider/Slider.php" ?>
@@ -55,7 +55,7 @@
         </div>
     </div>
     <!-- PlayingBar -->
-    <?php require "../../Component/PlayingBar/PlayingBar.html" ?>
+    <?php require "../../Component/PlayingBar/PlayingBar.php" ?>
 </body>
 
 </html>
