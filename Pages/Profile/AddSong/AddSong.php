@@ -11,16 +11,12 @@
     <link rel="shortcut icon" href="../../../Component/assets/logo_mobile.png" type="image/x-icon">
     <title>Khám phá - Nhóm Phát Triển Ứng Dụng Web</title>
     <!-- import link css file component  -->
-    <link rel="stylesheet" href="../../../Component/Navbar/Navbar.css">
     <link rel="stylesheet" href="../../../GlobalStyle/style.css">
     <link rel="stylesheet" href="./AddSong.css">
-    <title>Document</title>
 </head>
 
 <body>
     <div id="add-song--main">
-        <?php require_once("../../../Config/configHyperLink.php");
-        echo ROOT_PATH;?>
         <?php require "../../../Component/Navbar/Navbar.php" ?>
         <div class="add-song--right">
             <div class="add-song--container">

@@ -1,3 +1,3 @@
 <?php
-define('ROOT_PATH', '/your/root/path');
+define('ROOT_PATH', 'localhost:8081/zingmp3');
 ?>

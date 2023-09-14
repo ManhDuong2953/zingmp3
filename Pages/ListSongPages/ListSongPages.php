@@ -9,12 +9,8 @@
   <link rel="shortcut icon" href="../../Component/assets/logo_mobile.png" type="image/x-icon">
   <title>Khám phá - Nhóm Phát Triển Ứng Dụng Web</title>
   <!-- import css file component  -->
-  <link rel="stylesheet" href="../../Component/AlbumHot/AlbumHot.css">
   <link rel="stylesheet" href="../../GlobalStyle/style.css">
   <link rel="stylesheet" href="./ListSongPages.css" />
-  <link rel="stylesheet" href="../../Component/Navbar/Navbar.css">
-  <link rel="stylesheet" href="../../Component/Header/HeaderLayout.css">
-  <link rel="stylesheet" href="../../Component/PlayingBar/PlayingBar.css">
 
 </head>
 
