@@ -5,6 +5,11 @@
   display: flex;
 }
 
+
+#display-main #navbar-main .login-vip--container{
+  bottom: 100px;
+}
+
 .right-container {
   width: calc(100% - 220px);
   height: 100vh;
