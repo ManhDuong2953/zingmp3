@@ -24,17 +24,17 @@
 
         <ul class="list-menu">
             <a href="/ZingMp3/Pages/Profile/MyHeart/MyHeart.php">
-                <li class=<?php echo $urlParts === "Profile" ? 'active' : 'no' ?>><i class="fa-solid fa-book-open-reader"></i>
+                <li class=<?php echo $urlParts === "Profile" ? 'active' : '' ?>><i class="fa-solid fa-book-open-reader"></i>
                     <p>Cá nhân</p>
                 </li>
             </a>
             <a href="/ZingMp3/Pages/Home/HomeLayOut.php">
-                <li class=<?php echo $urlParts === "Home" ? 'active' : 'no' ?>><i class="fa-solid fa-compact-disc"></i></i>
+                <li class=<?php echo $urlParts === "Home" ? 'active' : '' ?>><i class="fa-solid fa-compact-disc"></i></i>
                     <p>Khám phá</p>
                 </li>
             </a>
-            <a href="">
-                <li><i class="fa-solid fa-music"></i>
+            <a href="/Zingmp3/Pages/NewSongs/NewSongs.php">
+                <li class=<?php echo $urlParts === "NewSongs" ? 'active' : '' ?>><i class="fa-solid fa-music"></i>
                     <p>Nhạc mới</p>
                 </li>
             </a>
