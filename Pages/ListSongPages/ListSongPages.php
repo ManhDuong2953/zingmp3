@@ -267,9 +267,9 @@
       </div>
       <?php require "../../Component/AlbumHot/AlbumHot.php" ?>
     </div>
+    <?php require '../../Component/PlayingBar/PlayingBar.php' ?>
   </div>
 
-  <?php require '../../Component/PlayingBar/PlayingBar.php' ?>
 </body>
 
 </html>

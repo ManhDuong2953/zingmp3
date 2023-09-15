@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- PlayingBar -->
-    <?php require "../../Component/PlayingBar/PlayingBar.php" ?>
+    
 </body>
 
 </html>
