@@ -20,7 +20,7 @@
       <?php require '../../Component/Header/HeaderLayout.php' ?>
       <div class="newsongs-container">
       <h1 class="title-item--home">
-          Nhạc mới
+      <i class="fa-solid fa-music"></i> Nhạc mới
       </h1>
       <ul class="newsongs-list">
           <a href="">

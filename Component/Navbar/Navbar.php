@@ -38,8 +38,8 @@
                     <p>Nhạc mới</p>
                 </li>
             </a>
-            <a href="">
-                <li><i class="fa-solid fa-ranking-star"></i>
+            <a href="/Zingmp3/Pages/TopSong/TopSong.php">
+                <li class=<?php echo $urlParts === "TopSong" ? 'active' : '' ?>><i class="fa-solid fa-ranking-star"></i>
                     <p>Top 100</p>
                 </li>
             </a>

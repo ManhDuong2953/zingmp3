@@ -10,7 +10,7 @@
   width: calc(100vw - 220px);
   height: 100vh;
   overflow-y: auto;
-  padding: 16px 2% 60px;
+  padding: 16px 2%;
   color: #ffffff;
 }
 

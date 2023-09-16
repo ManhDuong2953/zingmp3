@@ -17,7 +17,7 @@
           <button>
             <i class="fa-solid fa-arrow-right icon-btn-next"></i>
           </button>
-          <form class="search-form-header" action="">
+          <form class="search-form-header" action="/ZingMP3/Pages/ResultSearch/ResultSearch.php">
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
             <input type="text" class="header-search" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..." />
           </form>
