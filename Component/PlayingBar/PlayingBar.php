@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ZingMP3/Component/PlayingBar/PlayingBar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
   </head>
 
   <body>
@@ -64,7 +66,7 @@
           <div class="player_volume playing_volume">
             <div class="player_btn"><i class="fa-solid fa-volume-low"></i></div>
             <div class="playing_volume-input">
-              <input class="transition-all" id="inputVolume" type="range" min="0" max="100" value="100" />
+              <input class="transition-all" id="inputVolume" type="range" min="0" max="100" value="30" />
             </div>
           </div>
           <div class="player_device-column"></div>
@@ -78,18 +80,21 @@
     </div>
     <audio id="SongPlaying" hidden controls src="../../Component/assets/y2mate.com - Grow Up  Guhancci Remix  Exclusive Team  Nhạc Nền Gậy Nghiện Hot Tik Tok Việt Nam .mp3"></audio>
 
-    <script>
-      // Khai báo để gọi các thẻ 
+    <!-- <script>
+   
+    </script> -->
+      <script>
+           // Khai báo để gọi các thẻ 
       const btnPlay = document.querySelector(".player_btn.relative i");
       const songPlaying = document.querySelector("#SongPlaying");
       const btnVolume = document.querySelector("#inputVolume")
-      const iconVolume = document.querySelector(".playing_volume .player_btn");
-      console.log(songPlaying);
+      const volumeIcon = document.querySelector(".fa-volume-low");
+      console.log(volumeIcon);
       // Add a variable to track the paused state of the audio element
 
       // Thao tác:
 
-      //play
+      // play
       let isPaused = true;
       btnPlay.addEventListener("click", function() {
         btnPlay.classList.toggle("pause")
@@ -101,19 +106,34 @@
         isPaused = !isPaused;
       });
 
-
+      
 
       //volume
       btnVolume.addEventListener("input", function(e) {
         let volume = parseFloat(e.target.value)
+        console.log(volume);
         btnVolume.style.background = `linear-gradient(90deg, #fff ${volume - 1}%, hsla(0, 0%, 100%, 0.3) ${volume -1}%)`
         songPlaying.volume = volume / 100;
         if (volume == 0) {
-
+          volumeIcon.classList.remove("fa-volume-low")
+          volumeIcon.classList.add("fa-volume-xmark")
+          volumeIcon.classList.remove("max-volume")
+          volumeIcon.onclick = () => {
+             volumeIcon.classList.remove("fa-volume-xmark")
+             volumeIcon.classList.add("fa-volume-low")
+             btnVolume.value = 10;
+          }
+        } 
+        else if(volume > 50) {
+          volumeIcon.classList.add("max-volume")
+        }
+        else if(volume > 0 && volume <= 50) {
+          volumeIcon.classList.remove("max-volume")
+          volumeIcon.classList.add("fa-volume-low")
+          volumeIcon.classList.remove("fa-volume-xmark")
         }
       })
-    </script>
-
+      </script>
   </body>
 
   </html>
