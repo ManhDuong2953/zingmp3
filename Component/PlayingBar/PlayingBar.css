@@ -76,11 +76,20 @@
   padding: 6px;
   text-align: center;
 }
+
+
+.playing-bar .player_controls-center .player_top .player_btn i.fa-play.pause::before{
+  content: "\f04c" !important;
+}
 .playing-bar .player_controls-center .player_top .player_btn i {
   border-radius: 50%;
   font-size: 16px;
   margin-right: 0;
   padding: 5px;
+}
+
+.playing-bar .player_controls-center .player_top .player_btn:hover i {
+  color: blueviolet;
 }
 .playing-bar .player_controls-center .player_bottom {
   align-items: center;
@@ -183,7 +192,7 @@
 .playing-bar .player_controls-right .playing_volume input {
   -webkit-appearance: none;
   appearance: none;
-  background: linear-gradient(90deg, #fff 45%, hsla(0, 0%, 100%, 0.3) 45%);
+  background: linear-gradient(90deg, #fff 99%, hsla(0, 0%, 100%, 0.3) 99%);
   border: none;
   border-radius: 15px;
   cursor: pointer;

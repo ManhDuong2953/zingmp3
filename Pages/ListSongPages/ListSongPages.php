@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  <audio controls src="../../Component/assets/y2mate.com - Grow Up  Guhancci Remix  Exclusive Team  Nhạc Nền Gậy Nghiện Hot Tik Tok Việt Nam .mp3"></audio>
   <div id="display-main">
     <?php require '../../Component/Navbar/Navbar.php' ?>
     <div class="right-container">
@@ -48,8 +47,9 @@
               </div>
             </div>
           </div>
-
         </div>
+
+
         <div class="content-container-right">
           <div class="description">
             <span>Lời tựa</span> Thả mình vào những giai điệu Lofi Chill nghe

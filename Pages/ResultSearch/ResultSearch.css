@@ -52,6 +52,10 @@ h1.title-item--home {
   background-color: rgba(255, 255, 255, 0.06);
 }
 
+.search-container ul.search-list a li.search-list--item span{
+  display: flex;
+  align-items: center;
+}
 .search-container ul.search-list a:hover li.search-list--item {
   background-color: hsla(0, 0%, 100%, 0.2);
 }
@@ -70,21 +74,11 @@ h1.title-item--home {
   left: calc(22% - (25px / 2));
 }
 
-.search-container
-  ul.search-list
-  a:hover
-  li.search-list--item
-  .song-info
-  i {
+.search-container ul.search-list a:hover li.search-list--item .song-info i {
   display: block;
 }
 
-.search-container
-  ul.search-list
-  a:hover
-  li.search-list--item
-  .song-info
-  img {
+.search-container ul.search-list a:hover li.search-list--item .song-info img {
   filter: brightness(0.5);
 }
 
@@ -120,7 +114,7 @@ h1.title-item--home {
   color: #8f8b95;
   font-size: 11px;
   font-weight: 500;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 
 @media (max-width: 1024px) {
@@ -128,6 +122,6 @@ h1.title-item--home {
     width: 100%;
   }
   .right-search {
-    width: 100% ;
-}
+    width: 100%;
+  }
 }

@@ -27,7 +27,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -44,7 +47,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -61,7 +67,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -78,7 +87,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -95,7 +107,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -112,7 +127,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -129,7 +147,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -148,7 +169,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -168,7 +192,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 
@@ -189,7 +216,10 @@
                               <div class="heart-quantity">36.8M</div>
                           </div>
                       </div>
-                      <p class="song-duration">5:22</p>
+                      <span>
+                          <i class="fa-regular fa-heart"></i>
+                          <p class="song-duration">5:22</p>
+                      </span>
                   </li>
               </a>
 

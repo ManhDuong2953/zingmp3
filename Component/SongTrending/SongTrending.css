@@ -37,6 +37,12 @@ h3.title-item--home {
   border-radius: 4px;
 }
 
+.trending-container ul.trending-list a li.trending-list--item span {
+  display: flex;
+  align-items: center;
+
+}
+
 .trending-container ul.trending-list a:hover li.trending-list--item {
   background-color: hsla(0, 0%, 100%, 0.2);
 }
@@ -105,7 +111,7 @@ h3.title-item--home {
   color: #8f8b95;
   font-size: 11px;
   font-weight: 500;
-  margin-right: 10px;
+  margin:0 10px;
 }
 
 @media (max-width: 600px) {

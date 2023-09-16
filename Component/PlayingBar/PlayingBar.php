@@ -9,7 +9,6 @@
 
   <body>
     <div class="playing-bar">
-      <audio src=""></audio>
       <div class="player_controls-main">
         <div class="player_controls-left">
           <div class="player_controls-media">
@@ -41,7 +40,7 @@
               <i class="fa-solid fa-backward-step"></i>
             </div>
             <div class="player_playing-input player_btn relative">
-              <i class="fa-solid fa-pause"></i>
+              <i class="fa-solid fa-play"></i>
             </div>
             <div id="nextMusic" class="player_btn playing_next">
               <i class="fa-solid fa-forward-step"></i>
@@ -77,7 +76,43 @@
         </div>
       </div>
     </div>
+    <audio id="SongPlaying" hidden controls src="../../Component/assets/y2mate.com - Grow Up  Guhancci Remix  Exclusive Team  Nhạc Nền Gậy Nghiện Hot Tik Tok Việt Nam .mp3"></audio>
 
+    <script>
+      // Khai báo để gọi các thẻ 
+      const btnPlay = document.querySelector(".player_btn.relative i");
+      const songPlaying = document.querySelector("#SongPlaying");
+      const btnVolume = document.querySelector("#inputVolume")
+      const iconVolume = document.querySelector(".playing_volume .player_btn");
+      console.log(songPlaying);
+      // Add a variable to track the paused state of the audio element
+
+      // Thao tác:
+
+      //play
+      let isPaused = true;
+      btnPlay.addEventListener("click", function() {
+        btnPlay.classList.toggle("pause")
+        if (isPaused) {
+          songPlaying.play(); // If it's paused, play the audio
+        } else {
+          songPlaying.pause(); // If it's playing, pause the audio
+        }
+        isPaused = !isPaused;
+      });
+
+
+
+      //volume
+      btnVolume.addEventListener("input", function(e) {
+        let volume = parseFloat(e.target.value)
+        btnVolume.style.background = `linear-gradient(90deg, #fff ${volume - 1}%, hsla(0, 0%, 100%, 0.3) ${volume -1}%)`
+        songPlaying.volume = volume / 100;
+        if (volume == 0) {
+
+        }
+      })
+    </script>
 
   </body>
 
