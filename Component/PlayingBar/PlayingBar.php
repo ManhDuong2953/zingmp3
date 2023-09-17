@@ -53,14 +53,14 @@
             </div>
           </div>
           <div class="player_bottom">
-            <p class="playing_time-left">1:09</p>
+            <p class="playing_time-left">0:00</p>
             <div class="playing_time-up2 progress-area">
-              <div class="progress-bar" style="width: 25.2853%"></div>
+              <div class="progress-bar" style="width:0 %"></div>
               <div style="width: 0px; height: 0px">
                 <audio src="http://api.mp3.zing.vn/api/streaming/audio/ZUBEFEU7/320" preload="auto" style="width: 100%; height: 100%"></audio>
               </div>
             </div>
-            <p class="playing_time-right">4:36</p>
+            <p class="playing_time-right">0:00</p>
           </div>
         </div>
         <div class="player_controls-right">
@@ -79,13 +79,15 @@
         </div>
       </div>
     </div>
-    <audio id="SongPlaying" hidden controls src="../../Component/assets/y2mate.com - Grow Up  Guhancci Remix  Exclusive Team  Nhạc Nền Gậy Nghiện Hot Tik Tok Việt Nam .mp3"></audio>
+    <audio id="SongPlaying" hidden controls src="../../Component/assets/phequa.mp3"></audio>
 
     <!-- <script>
    
     </script> -->
       <script>
            // Khai báo để gọi các thẻ 
+      const timeLeft = document.querySelector(".playing_time-left");
+      const timeRight = document.querySelector(".playing_time-right");
       const btnHeart = document.querySelector(".no-hearted")
       const btnHearted = document.querySelector(".hearted")
       const btnPlay = document.querySelector(".player_btn.relative i");
@@ -103,18 +105,46 @@
         });
 
       // play
-      let isPaused = true;
-      btnPlay.addEventListener("click", function() {
-        btnPlay.classList.toggle("pause")
-        if (isPaused) {
-          songPlaying.play(); // If it's paused, play the audio
-        } else {
-          songPlaying.pause(); // If it's playing, pause the audio
-        }
-        isPaused = !isPaused;
-      });
-
+      // let isPaused = true;
+      // btnPlay.addEventListener("click", function() {
+      //   btnPlay.classList.toggle("pause")
+      //   if (isPaused) {
+      //     songPlaying.play(); // If it's paused, play the audio
+      //   } else {
+      //     songPlaying.pause(); // If it's playing, pause the audio
+      //   }
+      //   isPaused = !isPaused;
+      // });
       
+      
+      let isPaused = true;
+// Bắt sự kiện click trên nút phát/pause
+btnPlay.addEventListener("click", function() {
+  btnPlay.classList.toggle("pause");
+  if (isPaused) {
+    songPlaying.play();
+  } else {
+    songPlaying.pause();
+  }
+  isPaused = !isPaused;
+});
+
+// Bắt sự kiện timeupdate của audio để cập nhật progress-bar
+songPlaying.addEventListener("timeupdate", function() {
+  const currentTime = songPlaying.currentTime;
+  const duration = songPlaying.duration;
+  const progressPercentage = (currentTime / duration) * 100;
+  progressBar.style.width = `${progressPercentage}%`;
+
+  const minutesLeft = Math.floor(currentTime / 60);
+  const secondsLeft = Math.floor(currentTime % 60);
+  const minutesRight = Math.floor(duration / 60);
+  const secondsRight = Math.floor(duration % 60);
+
+  // Định dạng thời gian bắt đầu và kết thúc theo dạng mm:ss
+  timeLeft.textContent = `${minutesLeft}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
+  timeRight.textContent = `${minutesRight}:${secondsRight < 10 ? '0' : ''}${secondsRight}`;
+});
 
       //volume
       btnVolume.addEventListener("input", function(e) {
@@ -177,12 +207,17 @@
 
     function updateProgressBar(event) {
       const mouseX = event.clientX - progressArea.getBoundingClientRect().left;
-      const progressBarWidth = progressArea.clientWidth;
-      const percentage = (mouseX / progressBarWidth) * 100;
+  const progressBarWidth = progressArea.clientWidth;
+  const percentage = (mouseX / progressBarWidth) * 100;
 
-      if (percentage >= 0 && percentage <= 100) {
-        progressBar.style.width = `${percentage}%`;
-      }
+  if (percentage >= 0 && percentage <= 100) {
+    progressBar.style.width = `${percentage}%`;
+
+    // Cập nhật thời gian phát bài hát tương ứng với vị trí
+    const duration = songPlaying.duration;
+    const seekTime = (percentage / 100) * duration;
+    songPlaying.currentTime = seekTime;
+  }
     }
       </script>
   </body>
