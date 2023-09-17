@@ -4,9 +4,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/ZingMP3/Component/PlayingBar/PlayingBar.css">
+    <link rel="stylesheet" href="/ZingMP3/Component/PlayingBar/PlayingBar.css?v=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
   <body>
@@ -25,7 +25,8 @@
             </div>
             <div class="media_right">
               <div class="media_right-btn player_btn">
-                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart no-hearted"></i>
+                <i class="fa-solid fa-heart hearted"></i>
               </div>
               <div class="media_right-btn player_btn">
                 <i class="fa-solid fa-ellipsis"></i>
@@ -85,14 +86,21 @@
     </script> -->
       <script>
            // Khai báo để gọi các thẻ 
+      const btnHeart = document.querySelector(".no-hearted")
+      const btnHearted = document.querySelector(".hearted")
       const btnPlay = document.querySelector(".player_btn.relative i");
       const songPlaying = document.querySelector("#SongPlaying");
       const btnVolume = document.querySelector("#inputVolume")
       const volumeIcon = document.querySelector(".fa-volume-low");
-      console.log(volumeIcon);
       // Add a variable to track the paused state of the audio element
 
-      // Thao tác:
+      // Thả tim
+      $(document).ready(function() {
+            $(".media_right-btn.player_btn").click(function() {
+                $(".fa-regular.fa-heart").toggle();
+                $(".fa-solid.fa-heart").toggle();
+            });
+        });
 
       // play
       let isPaused = true;
@@ -118,14 +126,16 @@
           volumeIcon.classList.remove("fa-volume-low")
           volumeIcon.classList.add("fa-volume-xmark")
           volumeIcon.classList.remove("max-volume")
-          volumeIcon.onclick = () => {
-             volumeIcon.classList.remove("fa-volume-xmark")
-             volumeIcon.classList.add("fa-volume-low")
-             btnVolume.value = 10;
-          }
+          // volumeIcon.onclick = () => {
+          //    volumeIcon.classList.remove("fa-volume-xmark")
+          //    volumeIcon.classList.add("fa-volume-low")
+          //    btnVolume.value = 10;
+          //    btnVolume.style.background = `linear-gradient(90deg, #fff ${volume}%, hsla(0, 0%, 100%, 0.3) ${volume}%)`
+          // }
         } 
         else if(volume > 50) {
           volumeIcon.classList.add("max-volume")
+          volumeIcon.classList.remove("fa-volume-xmark")
         }
         else if(volume > 0 && volume <= 50) {
           volumeIcon.classList.remove("max-volume")
@@ -133,6 +143,47 @@
           volumeIcon.classList.remove("fa-volume-xmark")
         }
       })
+
+
+
+
+
+   const progressArea = document.querySelector(".progress-area");
+    const progressBar = document.querySelector(".progress-bar");
+    let isDragging = false;
+
+    progressArea.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      updateProgressBar(event);
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      if (isDragging) {
+        requestAnimationFrame(() => {
+          updateProgressBar(event);
+        });
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    progressArea.addEventListener("click", (event) => {
+      if (!isDragging) {
+        updateProgressBar(event);
+      }
+    });
+
+    function updateProgressBar(event) {
+      const mouseX = event.clientX - progressArea.getBoundingClientRect().left;
+      const progressBarWidth = progressArea.clientWidth;
+      const percentage = (mouseX / progressBarWidth) * 100;
+
+      if (percentage >= 0 && percentage <= 100) {
+        progressBar.style.width = `${percentage}%`;
+      }
+    }
       </script>
   </body>
 

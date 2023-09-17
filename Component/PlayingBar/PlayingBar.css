@@ -236,6 +236,10 @@
   border-radius: 50%;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+.fa-solid.fa-heart {
+  display: none; 
 }
 .playing-bar .media_right-btn:hover {
   background-color: hsla(0, 0%, 100%, 0.3);
@@ -249,3 +253,10 @@
     display: none;
   }
 }
+
+
+
+
+
+
+
