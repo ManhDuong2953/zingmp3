@@ -65,7 +65,7 @@
       </div>
       <div class="player_controls-right">
         <div class="player_volume playing_volume">
-          <div class="player_btn"><i class="fa-solid fa-volume-low"></i></div>
+          <div class="player_btn volume-icon"><i class="fa-solid fa-volume-high"></i></div>
           <div class="playing_volume-input">
             <input class="transition-all" id="inputVolume" type="range" min="0" max="100" value="100" />
           </div>
@@ -93,7 +93,7 @@
     const btnPlay = document.querySelector(".player_btn.relative i");
     const songPlaying = document.querySelector("#SongPlaying");
     const btnVolume = document.querySelector("#inputVolume");
-    const volumeIcon = document.querySelector(".fa-volume-low");
+    const volumeIcon = document.querySelector(".player_btn.volume-icon");
     // Add a variable to track the paused state of the audio element
 
     // Thả tim
@@ -117,47 +117,42 @@
       isPaused = !isPaused;
     });
 
+    function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    }
     // Bắt sự kiện timeupdate của audio để cập nhật progress-bar
     songPlaying.addEventListener("timeupdate", function() {
       const currentTime = songPlaying.currentTime;
       const duration = songPlaying.duration;
-      const progressPercentage = (currentTime / duration) * 100;
+
+      const progressPercentage = (currentTime / duration) * 100; // chia progress bar theo % 
       progressBar.style.width = `${progressPercentage}%`;
 
-      const minutesLeft = Math.floor(currentTime / 60);
-      const secondsLeft = Math.floor(currentTime % 60);
 
-      const minutesRight = Math.floor(duration / 60);
-      const secondsRight = Math.floor(duration % 60);
 
-      // Định dạng thời gian bắt đầu và kết thúc theo dạng mm:ss
-      timeLeft.textContent = `${minutesLeft}:${
-          secondsLeft < 10 ? "0" : ""
-        }${secondsLeft}`;
-      timeRight.textContent = `${minutesRight}:${
-          secondsRight < 10 ? "0" : ""
-        }${secondsRight}`;
+      const minutesLeft = formatTime(currentTime);
+      const minutesRight = formatTime(duration);
+
+      timeLeft.innerHTML = minutesLeft;
+      timeRight.innerHTML = minutesRight;
+
     });
 
     //volume
     btnVolume.addEventListener("input", function(e) {
       let volume = parseFloat(e.target.value);
-      console.log(volume);
       btnVolume.style.background = `linear-gradient(90deg, #fff ${
           volume - 1
         }%, hsla(0, 0%, 100%, 0.3) ${volume - 1}%)`;
       songPlaying.volume = volume / 100;
       if (volume == 0) {
-        volumeIcon.classList.remove("fa-volume-low");
-        volumeIcon.classList.add("fa-volume-xmark");
-        volumeIcon.classList.remove("max-volume");
-      } else if (volume > 50) {
-        volumeIcon.classList.add("max-volume");
-        volumeIcon.classList.remove("fa-volume-xmark");
-      } else if (volume > 0 && volume <= 50) {
-        volumeIcon.classList.remove("max-volume");
-        volumeIcon.classList.add("fa-volume-low");
-        volumeIcon.classList.remove("fa-volume-xmark");
+        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-xmark"></i>'
+      } else if (volume > 0 && volume <= 70) {
+        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-low"></i>'
+      } else if (volume > 70) {
+        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-high"></i>'
       }
     });
 
@@ -171,6 +166,8 @@
     const progressBar = document.querySelector(".progress-bar");
     let isDragging = false;
 
+
+    // sự kiện click chuột sẽ gọi
     progressArea.addEventListener("mousedown", (event) => {
       isDragging = true;
       updateProgressBar(event);
@@ -178,9 +175,7 @@
 
     document.addEventListener("mousemove", (event) => {
       if (isDragging) {
-        requestAnimationFrame(() => {
-          updateProgressBar(event);
-        });
+        updateProgressBar(event);
       }
     });
 
@@ -195,8 +190,7 @@
     });
 
     function updateProgressBar(event) {
-      const mouseX =
-        event.clientX - progressArea.getBoundingClientRect().left;
+      const mouseX = event.clientX - progressArea.getBoundingClientRect().left;
       const progressBarWidth = progressArea.clientWidth;
       const percentage = (mouseX / progressBarWidth) * 100;
 

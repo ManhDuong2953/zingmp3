@@ -76,6 +76,7 @@
   cursor: pointer;
   border: none;
   z-index: 51;
+  padding: 2px 0 0 2px;
 }
 
 .icon-play .fa-play {

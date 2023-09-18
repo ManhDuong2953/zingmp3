@@ -175,12 +175,12 @@
   padding: 6px;
   text-align: center;
 }
-.player_volume.playing_volume .fa-volume-low.max-volume:before {
+/* .player_volume.playing_volume .fa-volume-low.max-volume:before {
   content: '\f028'; 
 }
 /* .player_volume.playing_volume .fa-volume-low.no-volume:before {
   content: '\f026'; 
-} */
+} */ */
 .playing-bar .player_controls-right .player_btn i {
   align-items: center;
   border-radius: 50%;
