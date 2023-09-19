@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +14,15 @@
 
 <body>
     <div class="login-container">
-        <form method="post" action="#?account_name='<?php echo $_POST["account_name"]?>'">
+        <form method="post" action="./ProcessLogin.php">
             <img src="../../Component/assets/Logo.png" alt="">
 			<a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
             <label for="username">Tên tài khoản</label>
-            <input type="text" placeholder="Email or Phone" name="account_name" id="username">
+            <input type="text" name="account_name" placeholder="Email or Phone" id="username">
 
             <label for="password">Mật khẩu</label>
-            <input type="password" placeholder="Password" id="password">
+            <input type="password" name="password" placeholder="Password" id="password">
 
             <button type="submit">Đăng nhập</button>
             <div class="direct-signup">
