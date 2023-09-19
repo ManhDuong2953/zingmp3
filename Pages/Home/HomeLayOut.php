@@ -18,7 +18,7 @@
 <body>
     <div id="home-main">
         <?php include("../../Config/configConnectDB.php") ?>
-        <?php include("../../Config/Cloudinary/configCloudinary.php") ?>
+        
         <!-- NavBar  -->
         <?php require '../../Component/Navbar/Navbar.php' ?>
         <div class="home-right">
