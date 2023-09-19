@@ -17,6 +17,7 @@
 
 <body>
     <div id="home-main">
+        <?php include("../../Config/configConnectDB.php") ?>
         <!-- NavBar  -->
         <?php require '../../Component/Navbar/Navbar.php' ?>
         <div class="home-right">
@@ -42,7 +43,7 @@
         </div>
     </div>
     <!-- PlayingBar -->
-    
+
 </body>
 
 </html>
