@@ -13,12 +13,12 @@
 
 <body>
     <div class="login-container">
-        <form>
+        <form method="post" action="#?account_name='<?php echo $_POST["account_name"]?>'">
             <img src="../../Component/assets/Logo.png" alt="">
 			<a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
 
             <label for="username">Tên tài khoản</label>
-            <input type="text" placeholder="Email or Phone" id="username">
+            <input type="text" placeholder="Email or Phone" name="account_name" id="username">
 
             <label for="password">Mật khẩu</label>
             <input type="password" placeholder="Password" id="password">
@@ -30,6 +30,11 @@
         </form>
     </div>
 </body>
+
+<?php 
+echo "<pre>";
+print_r($_REQUEST);
+?>
 
 </html>
 
