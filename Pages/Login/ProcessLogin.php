@@ -17,14 +17,14 @@ if(!empty($_POST['account_name']) && !empty($_POST['password'])) {
         $id_user = $user['id_user'];
         $_SESSION['account_name_user'] = "$account_name_user";
         $_SESSION['id_user'] = $id_user;
-        echo "đăng nhập thành công";
+        echo "Đăng nhập thành công";
         header('Location: ../Home/HomeLayOut.php');
         exit();
     } else {
-        echo "tên đăng nhập hoặc mật khẩu không chính xác";
+        echo "Tên đăng nhập hoặc mật khẩu không chính xác";
     } 
 } else { 
-    echo " vui lòng nhập tên người dùng và mật khẩu";
+    echo "Vui lòng nhập tên người dùng và mật khẩu";
 
 }
 ?>

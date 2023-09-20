@@ -1,6 +1,6 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,15 +20,26 @@
 
 <body>
   <div id="profile-main">
-    <?php require "../../../Component/Navbar/Navbar.php" ?>
+    <?php require_once "../../../Component/Navbar/Navbar.php" ?>
+    <?php require_once "../../../Config/configConnectDB.php" ?>
+ 
+    <?php 
+    // Hiện thông tin người dùng 
+    $id_user = $_SESSION["id_user"];
+    $statement = $pdo->prepare("SELECT * FROM user WHERE id_user = '$id_user'");
+    $statement->execute();
+    $info_user = $statement->fetch(PDO::FETCH_ASSOC);
+    // print_r($info_user);
+    
+    ?>
     <div class="profile-right">
       <?php require "../../../Component/Header/HeaderLayout.php" ?>
       <div class="container-profile">
         <div class="profile-header">
           <div class="img-container">
-            <img src="https://avatar-nct.nixcdn.com/playlist/2018/09/07/6/0/e/e/1536301824724_500.jpg" alt="" />
+            <img src="<?php echo $info_user["avatar_link"]?>" alt="" />
           </div>
-          <div class="profile-name">Dương Văn Mạnh</div>
+          <div class="profile-name"><?php echo $info_user["user_name"]?></div>
         </div>
 
         <ul class="profile-navbar">
@@ -45,17 +56,17 @@
       </div>
       <div class="profile-content">
         <h2 class="update-infor-title">Chỉnh sửa thông tin cá nhân</h2>
-        <form>
+        <form action="./ProcessUpdateInfoUser.php" method="post" enctype="multipart/form-data">
           <div class="infor-user-content">
             <div class="infor-text">
               <div class="infor-text-detail">
-                <label for="name_account">Tên tài khoản</label><input name="name_account" type="text" class="form-control name_account" placeholder="Tên tài khoản..." />
+                <label for="account_name">Tên tài khoản</label><input id="account_name" name="account_name" type="text" class="form-control account_name" value='<?php echo $info_user["account_name"]?>' placeholder="Tên tài khoản..." />
               </div>
               <div class="infor-text-detail">
-                <label for="name_user">Tên người dùng</label><input name="name_user" type="text" class="form-control name_user" placeholder="Tên người dùng..." />
+                <label for="user_name">Tên người dùng</label><input id="user_name" name="user_name" type="text" class="form-control user_name" value='<?php echo $info_user["user_name"]?>' placeholder="Tên người dùng..." />
               </div>
               <div class="infor-text-detail">
-                <label for="password">Mật khẩu</label><input name="password" type="password" class="form-control password" placeholder="Mật khẩu..." />
+                <label for="password">Mật khẩu</label><input id="password" name="password" type="text" class="form-control password" value='<?php echo $info_user["password"]?>' placeholder="Mật khẩu..." />
               </div>
             </div>
             <div class="infor-avt">
@@ -66,7 +77,7 @@
                     <img src="../../../Component/assets/upload_icon.png" alt="">
                   </div>
                 </label>
-                <input accept="image/*" hidden="" type="file" id="anh_album" name="anh_album" required="">
+                <input accept="image/*" hidden="" type="file" id="anh_album" name="avatar_link" required="">
               </div>
             </div>
           </div>

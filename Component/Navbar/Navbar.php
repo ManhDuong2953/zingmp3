@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ZingMP3/Component/Navbar/Navbar.css">
-
 </head>
 
 <body>
@@ -23,7 +22,7 @@
         ?>
 
         <ul class="list-menu">
-            <a href="/ZingMp3/Pages/Profile/MyHeart/MyHeart.php">
+            <a href=<?php echo (isset($_SESSION["id_user"]) ? "/ZingMp3/Pages/Profile/MyHeart/MyHeart.php" :  "/ZingMP3/Pages/Login/Login.php") ?>>
                 <li class=<?php echo $urlParts === "Profile" ? 'active' : '' ?>><i class="fa-solid fa-book-open-reader"></i>
                     <p>Cá nhân</p>
                 </li>
@@ -45,13 +44,18 @@
             </a>
         </ul>
 
-        <div class="login-vip--container">
-            <div class="login-update--vip">
-                <p>Đăng nhập để khám phá playlist dành riêng cho bạn</p>
-                <a href="/ZingMP3/Pages/Login/Login.php"><button>Đăng Nhập</button></a>
-                <i class="fa-solid fa-crown"></i>
+        <?php
+        if (!isset($_SESSION["id_user"])) {
+        ?>
+            <div class="login-vip--container">
+                <div class="login-update--vip">
+                    <p>Đăng nhập để khám phá playlist dành riêng cho bạn</p>
+                    <a href="/ZingMP3/Pages/Login/Login.php"><button>Đăng Nhập</button></a>
+                    <i class="fa-solid fa-crown"></i>
+                </div>
             </div>
-        </div>
+
+        <?php } ?>
     </div>
 
 

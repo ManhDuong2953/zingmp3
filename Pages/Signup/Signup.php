@@ -1,4 +1,3 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +27,7 @@
             <input type="password" name="password_hash" placeholder="Password" id="password">
 
 			<label for="confirm_password">Nhập lại mật khẩu</label>
-            <input type="confirm_password" name="confirm_password" placeholder="Confirm_Password" id="confirm_password">
+            <input type="password" name="confirm_password" placeholder="Confirm_Password" id="confirm_password">
 
             <button type="submit">Đăng kí</button>
             <div class="direct-login">
