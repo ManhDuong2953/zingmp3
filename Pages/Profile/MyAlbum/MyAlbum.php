@@ -19,7 +19,7 @@
 <body>
     <div id="profile-main">
         <?php require "../../../Component/Navbar/Navbar.php";
-        require '../../../Config/configHyperLink.php' ?>
+?>
         <div class="profile-right">
             <?php require "../../../Component/Header/HeaderLayout.php" ?>
             <div class="container-profile">
