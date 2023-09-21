@@ -54,11 +54,12 @@
 .header .header-content .header-content-right {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .header .header-content .header-content-right .setting-btn,
 .btn-user {
   background-color: transparent;
-  border: none;
+  border: 3px solid #7F0978;
   outline: none;
   border-radius: 50%;
   font-size: 20px;
@@ -70,11 +71,47 @@
 .header .header-content .header-content-right .btn-user img {
   width: 100%;
   height: 100%;
+  cursor: pointer;
   object-fit: cover;
 }
 .header .header-content .header-content-right .setting-btn {
   margin-right: 10px;
   background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.header .header-content .header-content-right .log_out {
+  cursor: pointer;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: max-content;
+  padding: 10px 11px;
+  border-radius: 4px;
+  background-color: blueviolet;
+  color: #fff;
+  display: none;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 100;
+}
+
+.header .header-content .header-content-right .log_out::after {
+  content: "";
+  top: -22px;
+  right: 9px;
+  position: absolute;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid blueviolet;
+}
+
+.header .header-content .header-content-right .log_out.show {
+  display: block;
+}
+
+.header .header-content .header-content-right .log_out:hover {
+  filter: brightness(1.2);
 }
 
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */

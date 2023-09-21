@@ -8,12 +8,10 @@
 </head>
 
 <body>
-
     <div id="navbar-main">
         <div class="logo-main">
             <img id="myImage" src="/ZingMP3/Component/assets/Logo.png" alt="">
         </div>
-
         <?php
         // Lấy đường dẫn hiện tại
         $currentUrl = $_SERVER['REQUEST_URI'];

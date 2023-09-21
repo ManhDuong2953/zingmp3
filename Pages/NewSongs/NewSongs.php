@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,8 @@
 <body>
     <div id="newsongs-main">
         <?php require '../../Component/Navbar/Navbar.php' ?>
+<?php require_once "../../Config/configConnectDB.php"?>
+
         <div class="right-newsongs">
             <?php require '../../Component/Header/HeaderLayout.php' ?>
             <div class="newsongs-container">

@@ -1,3 +1,5 @@
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,30 +22,30 @@
         <div class="add-album--right">
             <div class="add-album--container">
                 <h1>Tạo Album Mới</h1>
-                <form action="process_album.php" method="POST" enctype="multipart/form-data">
+                <form action="./ProcessAddAlbum.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="ten_album">Tên Album:</label>
-                        <input type="text" id="ten_album" name="ten_album" required>
+                        <input type="text" id="ten_album" name="title_album" required>
                     </div>
 
                     <div class="form-group">
                         <label for="the_loai">Thể Loại:</label>
-                        <input type="text" id="the_loai" name="the_loai" required>
+                        <input type="text" id="the_loai" name="kindof" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="anh_album">Ảnh Album:</label>
-                        <label for="anh_album">
+                        <label for="thumbnail_album">Ảnh Album:</label>
+                        <label for="thumbnail_album">
                             <div class="img-preview">
                                 <img src="../../../Component/assets/upload_icon.png" alt="">
                             </div>
                         </label>
-                        <input accept="image/*" hidden type="file" id="anh_album" name="anh_album" accept="image/*" required>
+                        <input accept="image/*" hidden type="file" id="thumbnail_album" name="thumbnail_album" accept="image/*" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="ten_nghe_si">Tên Nghệ Sĩ:</label>
-                        <input type="text" id="ten_nghe_si" name="ten_nghe_si" required>
+                        <label for="name_artist">Tên Nghệ Sĩ:</label>
+                        <input type="text" id="name_artist" name="name_artist" required>
                     </div>
 
                     <div class="form-group btn">

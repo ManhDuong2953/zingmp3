@@ -1,3 +1,5 @@
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +19,7 @@
   <body>
     <div class="topsong-main">
       <?php require "../../Component/Navbar/Navbar.php"?>
+      <?php require_once "../../Config/configConnectDB.php"?>
 
       <div class="topsong-container">
         <?php require "../../Component/Header/HeaderLayout.php"?>

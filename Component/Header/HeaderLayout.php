@@ -23,6 +23,7 @@
         </form>
       </div>
       <div class="header-content-right">
+        <a href="/ZingMP3/Component/Header/ProcessLogout.php" class="log_out">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
         <button class="setting-btn">
           <i class="fa-solid fa-cog"></i>
         </button>
@@ -43,5 +44,12 @@
     </div>
   </div>
 </body>
+<script>
+  const avtArea = document.querySelector('.btn-user');
+  const btnLogout = document.querySelector('.log_out');
+  avtArea.addEventListener('click', function(){
+    btnLogout.classList.toggle("show");
+  })
+</script>
 
 </html>

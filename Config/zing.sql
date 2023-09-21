@@ -17,7 +17,9 @@ CREATE TABLE album (
     album_id INT AUTO_INCREMENT PRIMARY KEY,
     artist_id INT,
     title_album VARCHAR(255),
-    thumbnail_album VARCHAR(255)
+    thumbnail_album VARCHAR(255),
+    kindof varchar(255) not null default "Tự do",
+    name_artist varchar(255) -- phần này viết lên tiêu đề thôi
 );
 
 -- Tạo bảng song

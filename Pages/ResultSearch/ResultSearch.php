@@ -1,3 +1,5 @@
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +18,8 @@
 <body>
     <div id="search-main">
         <?php require '../../Component/Navbar/Navbar.php' ?>
+        <?php require_once "../../Config/configConnectDB.php"?>
+
         <div class="right-search">
             <?php require '../../Component/Header/HeaderLayout.php' ?>
             <div class="search-container">

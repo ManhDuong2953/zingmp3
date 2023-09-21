@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,7 @@
 <body>
   <div id="display-main">
     <?php require '../../Component/Navbar/Navbar.php' ?>
+    <?php require_once "../../Config/configConnectDB.php" ?>
     <div class="right-container">
       <?php require '../../Component/Header/HeaderLayout.php' ?>
       <div class="content-container">
