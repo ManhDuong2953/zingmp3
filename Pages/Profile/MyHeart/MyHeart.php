@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,19 +21,26 @@
 
 <body>
     <div id="profile-main">
-        <?php require "../../../Component/Navbar/Navbar.php" ?>
-        <?php require_once "../../../Config/configConnectDB.php"?>
+        <?php require_once "../../../Component/Navbar/Navbar.php" ?>
+        <?php require_once "../../../Config/configConnectDB.php" ?>
 
+        <?php
+        // Hiện thông tin người dùng 
+        $id_user = $_SESSION["id_user"];
+        $statement = $pdo->prepare("SELECT * FROM user WHERE id_user = '$id_user'");
+        $statement->execute();
+        $info_user = $statement->fetch(PDO::FETCH_ASSOC);
+        // print_r($info_user);
+
+        ?>
         <div class="profile-right">
             <?php require "../../../Component/Header/HeaderLayout.php" ?>
             <div class="container-profile">
                 <div class="profile-header">
                     <div class="img-container">
-                        <img src="https://avatar-nct.nixcdn.com/playlist/2018/09/07/6/0/e/e/1536301824724_500.jpg" alt="">
+                        <img src="<?php echo $info_user["avatar_link"] ?>" alt="" />
                     </div>
-                    <div class="profile-name">
-                        Dương Văn Mạnh
-                    </div>
+                    <div class="profile-name"><?php echo $info_user["user_name"] ?></div>
                 </div>
 
                 <ul class="profile-navbar">
@@ -49,7 +56,7 @@
                 </ul>
             </div>
             <div class="profile-content">
-            <h3>Danh sách yêu thích</h3>
+                <h3>Danh sách yêu thích</h3>
                 <ul class="list-my--heart">
                     <a href="">
                         <li class="item-my--heart">

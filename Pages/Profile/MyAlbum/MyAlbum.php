@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,19 +20,26 @@
 
 <body>
     <div id="profile-main">
-        <?php require "../../../Component/Navbar/Navbar.php"; ?>
-        <?php require_once "../../../Config/configConnectDB.php"?>
+        <?php require_once "../../../Component/Navbar/Navbar.php" ?>
+        <?php require_once "../../../Config/configConnectDB.php" ?>
 
+        <?php
+        // Hiện thông tin người dùng 
+        $id_user = $_SESSION["id_user"];
+        $statement = $pdo->prepare("SELECT * FROM user WHERE id_user = '$id_user'");
+        $statement->execute();
+        $info_user = $statement->fetch(PDO::FETCH_ASSOC);
+        // print_r($info_user);
+
+        ?>
         <div class="profile-right">
             <?php require "../../../Component/Header/HeaderLayout.php" ?>
             <div class="container-profile">
                 <div class="profile-header">
                     <div class="img-container">
-                        <img src="https://avatar-nct.nixcdn.com/playlist/2018/09/07/6/0/e/e/1536301824724_500.jpg" alt="">
+                        <img src="<?php echo $info_user["avatar_link"] ?>" alt="" />
                     </div>
-                    <div class="profile-name">
-                        Dương Văn Mạnh
-                    </div>
+                    <div class="profile-name"><?php echo $info_user["user_name"] ?></div>
                 </div>
 
                 <ul class="profile-navbar">
@@ -50,115 +57,25 @@
             <div class="profile-content">
                 <h3>Album của bạn</h3>
                 <ul class="list-my--album">
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
 
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
+                    <?php
+                    $sql_my_album = $pdo->prepare("SELECT * FROM album");
+                    $sql_my_album->execute();
+                    $my_album = $sql_my_album->fetchAll(PDO::FETCH_ASSOC);
+                    ?>
 
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
-
-                    <a href="../../ListSongPages/ListSongPages.php">
-                        <li class="item-my--album">
-                            <i class="fa-regular fa-circle-play"></i><img src="https://static.qobuz.com/images/covers/sb/gd/wzfqga94kgdsb_600.jpg" alt="">
-                        </li>
-                        <p class="title-author">Những Bài Hát Hay Nhất Của G5R
-                        </p>
-                        <p class="name-author">
-                            Sơn Tùng MTP
-                        </p>
-                    </a>
+                    <?php for ($i = 0; $i < count($my_album); $i++) { ?>
+                        <a href="../../UpdateListSong/UpdateListSong.php?album_id=<?php echo $my_album[$i]["album_id"]?>">
+                            <li class="item-my--album">
+                                <i class="fa-regular fa-circle-play"></i><img src="<?php echo $my_album[$i]["thumbnail_album"]?>" alt="Ảnh thumbnail Album">
+                            </li>
+                            <p class="title-author"><?php echo $my_album[$i]["title_album"]?>
+                            </p>
+                            <p class="name-author">
+                            <?php echo $my_album[$i]["name_artist"]?>
+                            </p>
+                        </a>
+                    <?php } ?>
 
                     <a href="../AddAlbum/AddAlbum.php" class="add-album">
                         <i class="fa-solid fa-circle-plus"></i>

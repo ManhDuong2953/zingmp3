@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,32 +23,31 @@
         <div class="add-song--right">
             <div class="add-song--container">
                 <h1>Đăng Bài Hát</h1>
-                <form action="process_album.php" method="POST" enctype="multipart/form-data">
+                <form action="./ProcessAddSong.php" method="POST" enctype="multipart/form-data">
+                    <input type="text" id="album_id" hidden name="album_id" value="<?php echo $_REQUEST['album_id']?>">
                     <div class="form-group">
-                        <label for="ten_album">Tên Bài Hát:</label>
-                        <input type="text" id="ten_album" name="ten_album" required>
+                        <label for="title_song">Tên Bài Hát:</label>
+                        <input type="text" id="title_song" name="title_song" required>
                     </div>
                     <div class="form-group">
-                        <label for="the_loai">Thể Loại:</label>
-                        <input type="text" id="the_loai" name="the_loai" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="the_loai">Album:</label>
-                        <input type="text" id="the_loai" name="the_loai" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="ten_nghe_si">Tên Nghệ Sĩ:</label>
-                        <input type="text" id="ten_nghe_si" name="ten_nghe_si" required>
+                        <label for="title_artist">Tên Nghệ Sĩ:</label>
+                        <input type="text" id="title_artist" name="title_artist" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="anh_album">Ảnh Bìa:</label>
-                        <label for="anh_album">
+                        <label for="mp3_link">Đăng bài hát:</label>
+                        <input type="file" accept=".mp3" id="mp3_link" name="mp3_link" required>
+                        <input type="text" id="duration" name="duration" hidden>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="song_thumbnail">Ảnh Bìa:</label>
+                        <label for="song_thumbnail">
                             <div class="img-preview">
                                 <img src="../../../Component/assets/upload_icon.png" alt="">
                             </div>
                         </label>
-                        <input accept="image/*" hidden type="file" id="anh_album" name="anh_album" accept="image/*" required>
+                        <input accept="image/*" hidden type="file" id="song_thumbnail" name="song_thumbnail" accept="image/*" required>
                     </div>
 
 
@@ -62,7 +61,31 @@
 
     </div>
     <script>
-        const selectImageInput = document.querySelector("#anh_album");
+        //xác định thời lượng bài hát
+        const fileMp3 = document.getElementById('mp3_link');
+
+        function getAudioDuration() {
+            const audioFile = fileMp3.files[0];
+
+            if (audioFile) {
+                const audio = new Audio();
+                audio.src = URL.createObjectURL(audioFile);
+
+                audio.onloadedmetadata = function() {
+                    const duration = audio.duration;
+                    const minutes = Math.floor(duration / 60);
+                    const seconds = Math.floor(duration % 60);
+                    document.getElementById('duration').value = `${minutes}:${seconds}`;
+                };
+            } 
+        }
+        fileMp3.addEventListener("change", () => {
+            getAudioDuration();
+        })
+
+
+        //Chọn và hiện ảnh review
+        const selectImageInput = document.querySelector("#song_thumbnail");
         const displayImage = document.querySelector(".img-preview > img");
 
         selectImageInput.addEventListener("change", function() {

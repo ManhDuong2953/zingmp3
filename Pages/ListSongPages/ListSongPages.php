@@ -29,11 +29,13 @@
           <div class="media-content">
             <div class="content-top">
               <h3 class="title">Nhạc Lofi Chill Gây Nghiện</h3>
-              <div class="release">Cập nhật: 09/09/2023</div>
               <div class="artists">
-                <span><a class="is-ghost" href="/nghe-si/Phong-Max/">Phong Max</a>, </span><span><a class="is-ghost" href="/nghe-si/Thanh-Dat/">Thành Đạt</a>, </span><span><a class="is-ghost" href="/nghe-si/Khai-Dang/">Khải Đăng</a>, </span><span><a class="is-ghost" href="/nghe-si/Phat-Huy-T4/">Phát Huy T4</a></span>
+                <div class="like">
+                  <p><i class="fa-regular fa-heart"></i> 659 người yêu thích</p>
+                  <p><i class="fa-solid fa-headphones-simple"></i> 659 lượt nghe</p>
+                </div>
+                <span>Phong Max</span>
               </div>
-              <div class="like">659 người yêu thích</div>
             </div>
             <div class="actions">
               <button class="btn-play-all" tabindex="0">

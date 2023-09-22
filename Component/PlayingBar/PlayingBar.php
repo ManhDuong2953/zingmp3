@@ -97,12 +97,12 @@
     // Add a variable to track the paused state of the audio element
 
     // Thả tim
-    $(document).ready(function() {
-      $(".media_right-btn.player_btn").click(function() {
-        $(".fa-regular.fa-heart").toggle();
-        $(".fa-solid.fa-heart").toggle();
-      });
-    });
+    // $(document).ready(function() {
+    //   $(".media_right-btn.player_btn").click(function() {
+    //     $(".fa-regular.fa-heart").toggle();
+    //     $(".fa-solid.fa-heart").toggle();
+    //   });
+    // });
 
 
     let isPaused = true;

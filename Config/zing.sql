@@ -25,11 +25,14 @@ CREATE TABLE album (
 -- Tạo bảng song
 CREATE TABLE song (
     song_id INT AUTO_INCREMENT PRIMARY KEY,
-    album_id INT,
-    artist_id INT,
-    song_thumbnail VARCHAR(255),
-    mp3_link VARCHAR(255),
-    release_date DATETIME,
+    album_id INT not null,
+    artist_id INT not null,
+    title_artist varchar(255) not null,
+    title_song varchar(255) not null,
+    song_thumbnail VARCHAR(255) not null,
+    mp3_link VARCHAR(255) not null,
+    release_date DATETIME not null,
+    duration varchar(20),
     listen_count INT DEFAULT 0,
     like_count INT DEFAULT 0
 );
@@ -41,9 +44,14 @@ CREATE TABLE favorite_list (
 );
 
 -- Thêm ràng buộc ngoại cho bảng song
+
 ALTER TABLE song
-ADD FOREIGN KEY (album_id) REFERENCES album(album_id),
-ADD FOREIGN KEY (artist_id) REFERENCES user(id_user);
+ADD FOREIGN KEY (album_id) REFERENCES album(album_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+ADD FOREIGN KEY (artist_id) REFERENCES user(id_user)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
 
 -- Thêm ràng buộc khóa ngoại cho bảng user
 ALTER TABLE user

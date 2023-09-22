@@ -21,7 +21,7 @@
   margin-top: 50px;
   display: flex;
 }
-.content-container-left{
+.content-container-left {
   flex: 3;
 }
 .content-container .content-container-left .avt-disk-play {
@@ -30,6 +30,7 @@
   width: 100%;
 }
 .content-container .content-container-left .avt-disk-play img {
+  object-fit: contain;
   border-radius: 5px;
   width: 100%;
 }
@@ -52,17 +53,6 @@
   margin-bottom: 0px;
   text-transform: capitalize;
 }
-
-
-.like {
-  display: flex;
-  justify-content: center;
-  margin: 0 -10px;
-}
-.like p {
-  padding: 5px 10px;
-}
-
 .title,
 .release,
 .artists a,
@@ -76,6 +66,15 @@
 }
 .actions {
   margin-top: 16px;
+}
+
+.like {
+  display: flex;
+  justify-content: center;
+  margin: 0 -10px;
+}
+.like p {
+  padding: 5px 10px;
 }
 .actions .btn-play-all {
   background-color: #ed2b91;
@@ -108,27 +107,27 @@
 }
 
 /* danh sach bai hat */
-
+.list-song {
+  position: relative;
+}
 .content-container-right {
   color: #fff;
   flex: 7;
   margin-left: 30px;
 }
-.content-container-right .description {
-  margin: 0 0 15px;
-}
+
 .content-container-right span {
   color: hsla(0, 0%, 100%, 0.5);
 }
+
 .zing-recommend--item {
-  margin-left: 10px;
   align-items: center;
   background: none;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 10px 40px;
 }
 
 .zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover {
@@ -151,7 +150,7 @@
 }
 .zing-recommend--item-right {
   font-size: 14px;
-  flex: 1;
+  flex: 2;
   text-align: end;
 }
 
@@ -177,13 +176,60 @@
   font-size: 12px;
 }
 
+a.delete_song {
+  position: absolute;
+  top: calc(50% - 7px);
+}
 
+a.delete_song i.fa-solid.fa-trash.list {
+  cursor: pointer;
+  display: none;
+  transform: translateX(50%) ;
+}
+
+.list-song:hover a.delete_song i.fa-solid.fa-trash.list {
+  display: block;
+  animation: show_in 0.5s ease-in;
+}
+
+a.delete_song:hover i.fa-solid.fa-trash.list {
+  color: red;
+}
+
+.zing-recommend--item.add_song {
+  border: 3px dotted wheat;
+  color: wheat;
+  width: 80%;
+  height: 60px;
+  font-size: 20px;
+  margin: 20px auto;
+}
+
+.zing-recommend--item.add_song:hover {
+  background-color: rgba(250, 235, 215, 0.6);
+}
+
+@keyframes show_in {
+  from {
+    opacity: 0;
+    transform: translateX(-100%) ;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50%) ;
+  }
+}
 
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
   /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
   .zing-recommend--item.zing-recommend--title {
     height: 50px;
+  }
+  a.delete_song {
+    position: absolute;
+    top: calc(50% - 14px);
+    left: -7px;
   }
   .content-container {
     display: flex;
@@ -198,8 +244,6 @@
     position: sticky;
     height: 100%;
   }
-
-
 
   .content-container-right .description {
     margin: 25px 0 15px;
@@ -238,5 +282,11 @@
   .zing-recommend--item {
     height: 100px;
     margin: 0;
+  }
+
+  a.delete_song {
+    position: absolute;
+    top: calc(50% - 14px);
+    left: -7px;
   }
 }

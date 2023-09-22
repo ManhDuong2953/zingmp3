@@ -58,7 +58,7 @@
 
     </div>
     <script>
-        const selectImageInput = document.querySelector("#anh_album");
+        const selectImageInput = document.querySelector("#thumbnail_album");
         const displayImage = document.querySelector(".img-preview > img");
 
         selectImageInput.addEventListener("change", function() {
