@@ -81,7 +81,7 @@
 
               <?php for ($i = 0; $i < count($list_song); $i++) { ?>
                 <div class="list-song">
-                  <a href="" class="play_song">
+                  <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="play_song">
                     <div class="zing-recommend--item">
                       <div class="zing-recommend--item-left">
                         <div class="img-avt-infor">
