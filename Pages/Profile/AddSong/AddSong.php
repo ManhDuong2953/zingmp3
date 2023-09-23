@@ -24,7 +24,7 @@
             <div class="add-song--container">
                 <h1>Đăng Bài Hát</h1>
                 <form action="./ProcessAddSong.php" method="POST" enctype="multipart/form-data">
-                    <input type="text" id="album_id" hidden name="album_id" value="<?php echo $_REQUEST['album_id']?>">
+                    <input type="text" id="album_id" hidden name="album_id" value="<?php echo $_REQUEST['album_id'] ?>">
                     <div class="form-group">
                         <label for="title_song">Tên Bài Hát:</label>
                         <input type="text" id="title_song" name="title_song" required>
@@ -64,6 +64,12 @@
         //xác định thời lượng bài hát
         const fileMp3 = document.getElementById('mp3_link');
 
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        }
+
         function getAudioDuration() {
             const audioFile = fileMp3.files[0];
 
@@ -73,11 +79,10 @@
 
                 audio.onloadedmetadata = function() {
                     const duration = audio.duration;
-                    const minutes = Math.floor(duration / 60);
-                    const seconds = Math.floor(duration % 60);
-                    document.getElementById('duration').value = `${minutes}:${seconds}`;
+
+                    document.getElementById('duration').value = formatTime(duration);
                 };
-            } 
+            }
         }
         fileMp3.addEventListener("change", () => {
             getAudioDuration();

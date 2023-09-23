@@ -14,6 +14,19 @@
   $sql_get_song  = $pdo->prepare("SELECT * FROM song WHERE song_id = '$song_id'");
   $sql_get_song->execute();
   $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
+  // echo "<pre>";
+  // var_dump($list_song);
+
+
+  // lấy index bài hát hiện tại
+  $currentIndex = 0;
+  for ($i = 0; $i < count($list_song); $i++) {
+    if ($list_song[$i]['song_id'] == $song_id) {
+      $currentIndex = $i;
+    }
+  }
+  echo $currentIndex;
+
   ?>
   <div class="playing-bar">
     <div class="player_controls-main">
@@ -33,9 +46,7 @@
               <i class="fa-regular fa-heart no-hearted"></i>
               <i class="fa-solid fa-heart hearted"></i>
             </div>
-            <div class="media_right-btn player_btn">
-              <i class="fa-solid fa-ellipsis"></i>
-            </div>
+
           </div>
         </div>
       </div>
@@ -44,15 +55,15 @@
           <div id="randomMusic" class="player_btn playing_random">
             <i class="fa-solid fa-shuffle"></i>
           </div>
-          <div id="prevMusic" class="player_btn playing_back">
+          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex - 1]['song_id'] ?>" id="prevMusic" class="player_btn playing_back">
             <i class="fa-solid fa-backward-step"></i>
-          </div>
+          </a>
           <div class="player_playing-input player_btn relative">
-            <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-pause"></i>
           </div>
-          <div id="nextMusic" class="player_btn playing_next">
+          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex + 1]['song_id'] ?>" id="nextMusic" class="player_btn playing_next">
             <i class="fa-solid fa-forward-step"></i>
-          </div>
+          </a>
           <div id="loopMusic" class="player_btn playing_replay">
             <i class="fa-solid fa-repeat"></i>
           </div>
@@ -81,95 +92,81 @@
       </div>
     </div>
   </div>
-  <audio id="SongPlaying" hidden controls src="<?php echo $info_song['mp3_link'] ?>"></audio>
+  <audio id="SongPlaying" hidden autoplay src="<?php echo $info_song['mp3_link'] ?>"></audio>
 
   <!-- <script>
    
     </script> -->
   <script>
-    // Khai báo để gọi các thẻ
+    // Lấy các thẻ HTML cần thao tác với
     const timeLeft = document.querySelector(".playing_time-left");
     const timeRight = document.querySelector(".playing_time-right");
-    const btnHeart = document.querySelector(".no-hearted");
-    const btnHearted = document.querySelector(".hearted");
     const btnPlay = document.querySelector(".player_btn.relative i");
     const songPlaying = document.querySelector("#SongPlaying");
     const btnVolume = document.querySelector("#inputVolume");
     const volumeIcon = document.querySelector(".player_btn.volume-icon");
-    // Add a variable to track the paused state of the audio element
-
-    // Thả tim
-    // $(document).ready(function() {
-    //   $(".media_right-btn.player_btn").click(function() {
-    //     $(".fa-regular.fa-heart").toggle();
-    //     $(".fa-solid.fa-heart").toggle();
-    //   });
-    // });
+    const progressArea = document.querySelector(".progress-area");
+    const progressBar = document.querySelector(".progress-bar");
 
 
-    let isPaused = true;
+    // Biến để theo dõi trạng thái kéo thanh progress bar
+    let isDragging = false;
+
     // Bắt sự kiện click trên nút phát/pause
+    let isPlaying = true; // Thêm biến để theo dõi trạng thái phát/nghỉ
     btnPlay.addEventListener("click", function() {
-      btnPlay.classList.toggle("pause");
-      if (isPaused) {
+      if (!isPlaying) {
+        // Nếu đang nghỉ, bắt đầu phát nhạc
         songPlaying.play();
+        isPlaying = true;
+        btnPlay.classList.remove("pause");
       } else {
+        // Nếu đang phát, dừng nhạc
         songPlaying.pause();
+        isPlaying = false;
+        btnPlay.classList.add("pause");
       }
-      isPaused = !isPaused;
     });
 
+    // Bắt sự kiện "ended" để khi nhạc kết thúc, nút chuyển thành "pause"
+    songPlaying.addEventListener("ended", function() {
+      btnPlay.classList.add("pause");
+      isPlaying = false;
+    });
+
+    // Hàm định dạng thời gian bài hát theo mm:ss
     function formatTime(time) {
       const minutes = Math.floor(time / 60);
       const seconds = Math.floor(time % 60);
       return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     }
-    // Bắt sự kiện timeupdate của audio để cập nhật progress-bar
+
+    // Bắt sự kiện timeupdate của audio để cập nhật progress-bar và thời gian
     songPlaying.addEventListener("timeupdate", function() {
       const currentTime = songPlaying.currentTime;
       const duration = songPlaying.duration;
-
-      const progressPercentage = (currentTime / duration) * 100; // chia progress bar theo % 
+      const progressPercentage = (currentTime / duration) * 100;
       progressBar.style.width = `${progressPercentage}%`;
 
-
-
-      const minutesLeft = formatTime(currentTime);
-      const minutesRight = formatTime(duration);
-
-      timeLeft.innerHTML = minutesLeft;
-      timeRight.innerHTML = minutesRight;
-
+      timeLeft.innerHTML = formatTime(currentTime);
+      timeRight.innerHTML = formatTime(duration);
     });
 
-    //volume
+    // Bắt sự kiện thay đổi âm lượng
     btnVolume.addEventListener("input", function(e) {
       let volume = parseFloat(e.target.value);
-      btnVolume.style.background = `linear-gradient(90deg, #fff ${
-          volume - 1
-        }%, hsla(0, 0%, 100%, 0.3) ${volume - 1}%)`;
+      btnVolume.style.background = `linear-gradient(90deg, #fff ${volume - 1}%, hsla(0, 0%, 100%, 0.3) ${volume - 1}%)`;
       songPlaying.volume = volume / 100;
       if (volume == 0) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
       } else if (volume > 0 && volume <= 70) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-low"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-low"></i>';
       } else if (volume > 70) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-high"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
       }
     });
 
-
-
-
-
-
-    // progress bar
-    const progressArea = document.querySelector(".progress-area");
-    const progressBar = document.querySelector(".progress-bar");
-    let isDragging = false;
-
-
-    // sự kiện click chuột sẽ gọi
+    // Bắt sự kiện chuột khi kéo thanh progress bar
     progressArea.addEventListener("mousedown", (event) => {
       isDragging = true;
       updateProgressBar(event);
@@ -185,12 +182,14 @@
       isDragging = false;
     });
 
+    // Bắt sự kiện click chuột để nhảy đến vị trí cụ thể trên progress bar
     progressArea.addEventListener("click", (event) => {
       if (!isDragging) {
         updateProgressBar(event);
       }
     });
 
+    // Hàm cập nhật thanh progress bar và thời gian khi kéo
     function updateProgressBar(event) {
       const mouseX = event.clientX - progressArea.getBoundingClientRect().left;
       const progressBarWidth = progressArea.clientWidth;
@@ -199,7 +198,6 @@
       if (percentage >= 0 && percentage <= 100) {
         progressBar.style.width = `${percentage}%`;
 
-        // Cập nhật thời gian phát bài hát tương ứng với vị trí
         const duration = songPlaying.duration;
         const seekTime = (percentage / 100) * duration;
         songPlaying.currentTime = seekTime;

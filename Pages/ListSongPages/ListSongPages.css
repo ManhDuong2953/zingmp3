@@ -21,7 +21,7 @@
   margin-top: 50px;
   display: flex;
 }
-.content-container-left{
+.content-container-left {
   flex: 3;
 }
 .content-container .content-container-left .avt-disk-play {
@@ -52,7 +52,6 @@
   margin-bottom: 0px;
   text-transform: capitalize;
 }
-
 
 .like {
   display: flex;
@@ -132,16 +131,16 @@
 }
 
 .zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover,
-.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active
- {
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active {
   background-color: hsla(0, 0%, 100%, 0.5);
 }
 
-.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active .wave_music{
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active
+  .wave_music {
   display: block;
 }
 
-.wave_music{
+.wave_music {
   display: none;
 }
 
@@ -157,7 +156,7 @@
 }
 .zing-recommend--item-center {
   font-size: 13px;
-  flex: 3;
+  flex: 2;
   text-align: start;
 }
 .zing-recommend--item-right {
@@ -168,6 +167,7 @@
 }
 
 .zing-recommend--item-text {
+  align-self: start;
   height: 40px;
 }
 .img-avt-infor {
@@ -191,8 +191,6 @@
   font-size: 12px;
 }
 
-
-
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
   /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
@@ -213,7 +211,12 @@
     height: 100%;
   }
 
-
+  .content-container .content-container-left .avt-disk-play {
+    max-height: 300px;
+  }
+  .like {
+    justify-content: flex-start;
+  }
 
   .content-container-right .description {
     margin: 25px 0 15px;
@@ -253,4 +256,9 @@
     height: 100px;
     margin: 0;
   }
+
+  .like {
+    align-items: flex-start;
+    flex-direction: column;
+}
 }
