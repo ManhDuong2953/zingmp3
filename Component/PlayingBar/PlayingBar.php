@@ -10,17 +10,22 @@
 </head>
 
 <body>
+  <?php
+  $sql_get_song  = $pdo->prepare("SELECT * FROM song WHERE song_id = '$song_id'");
+  $sql_get_song->execute();
+  $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
+  ?>
   <div class="playing-bar">
     <div class="player_controls-main">
       <div class="player_controls-left">
         <div class="player_controls-media">
           <div class="media_left">
-            <img class="media-avatar" src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_jpeg/avatars/5/d/a/9/5da92b54155ac844f9dac366057cbcde.jpg" alt="" />
+            <img class="media-avatar" src="<?php echo $info_song['song_thumbnail'] ?>" alt="" />
           </div>
           <div class="media_center">
-            <div class="media_music">Người Lạ Thoáng Qua (Lofi Version)</div>
+            <div class="media_music"><?php echo $info_song['title_song'] ?></div>
             <div class="media_name">
-              <span><a href="/nghe-si/Dinh-Tung-Huy/">Đinh Tùng Huy</a></span>
+              <span><?php echo $info_song['title_artist'] ?></span>
             </div>
           </div>
           <div class="media_right">
@@ -56,11 +61,8 @@
           <p class="playing_time-left">0:00</p>
           <div class="playing_time-up2 progress-area">
             <div class="progress-bar" style="width: 0%"></div>
-            <div style="width: 0px; height: 0px">
-              <audio src="http://api.mp3.zing.vn/api/streaming/audio/ZUBEFEU7/320" preload="auto" style="width: 100%; height: 100%"></audio>
-            </div>
           </div>
-          <p class="playing_time-right">0:00</p>
+          <p class="playing_time-right"><?php echo $info_song['duration'] ?></p>
         </div>
       </div>
       <div class="player_controls-right">
@@ -79,7 +81,7 @@
       </div>
     </div>
   </div>
-  <audio id="SongPlaying" hidden controls src="../../Component/assets/y2mate.com - Grow Up  Guhancci Remix  Exclusive Team  Nhạc Nền Gậy Nghiện Hot Tik Tok Việt Nam .mp3"></audio>
+  <audio id="SongPlaying" hidden controls src="<?php echo $info_song['mp3_link'] ?>"></audio>
 
   <!-- <script>
    
@@ -148,11 +150,11 @@
         }%, hsla(0, 0%, 100%, 0.3) ${volume - 1}%)`;
       songPlaying.volume = volume / 100;
       if (volume == 0) {
-        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-xmark"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>'
       } else if (volume > 0 && volume <= 70) {
-        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-low"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-low"></i>'
       } else if (volume > 70) {
-        volumeIcon.innerHTML  = '<i class="fa-solid fa-volume-high"></i>'
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-high"></i>'
       }
     });
 

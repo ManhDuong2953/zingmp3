@@ -22,9 +22,9 @@
     <?php
     $id_user = $_SESSION["id_user"];
     $album_id = $_REQUEST["album_id"];
-    $sql_update_album = $pdo->prepare("SELECT * FROM album WHERE album_id='$album_id' AND  artist_id = '$id_user'");
-    $sql_update_album->execute();
-    $album_info = $sql_update_album->fetch(PDO::FETCH_ASSOC);
+    $sql_get_album = $pdo->prepare("SELECT * FROM album WHERE album_id='$album_id' AND  artist_id = '$id_user'");
+    $sql_get_album->execute();
+    $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
     ?>
     <div class="right-container">
 

@@ -131,28 +131,40 @@
   padding: 10px;
 }
 
-.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover {
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover,
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active
+ {
   background-color: hsla(0, 0%, 100%, 0.5);
 }
+
+.zing-recommend--item:not(.zing-recommend--item.zing-recommend--title).active .wave_music{
+  display: block;
+}
+
+.wave_music{
+  display: none;
+}
+
 .zing-recommend--item-left,
 .zing-recommend--item-center,
 .zing-recommend--item-right {
   color: hsla(0, 0%, 100%, 0.5);
 }
 .zing-recommend--item-left {
-  flex: 3;
+  flex: 6;
   display: flex;
   align-items: center;
 }
 .zing-recommend--item-center {
-  font-size: 12px;
-  flex: 2;
+  font-size: 13px;
+  flex: 3;
   text-align: start;
 }
 .zing-recommend--item-right {
-  font-size: 14px;
+  font-size: 12px;
   flex: 1;
   text-align: end;
+  padding-right: 10px;
 }
 
 .zing-recommend--item-text {
@@ -160,13 +172,15 @@
 }
 .img-avt-infor {
   border-radius: 3px;
-  width: 40px;
+  width: 70px;
   height: 40px;
   overflow: hidden;
   margin-right: 10px;
 }
 .img-avt-infor img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .name-song {
   color: #fff;
