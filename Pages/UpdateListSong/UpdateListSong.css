@@ -143,10 +143,16 @@
   display: flex;
 }
 .zing-recommend--item-center {
-  font-size: 12px;
+  font-size: 13px;
   flex: 2;
-  padding: 0 10px;
   text-align: start;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.zing-recommend--item-center i{
+  margin-right: 5px;
+  font-size: 18px;
 }
 .zing-recommend--item-right {
   font-size: 14px;

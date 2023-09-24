@@ -14,9 +14,6 @@
   $sql_get_song  = $pdo->prepare("SELECT * FROM song WHERE song_id = '$song_id'");
   $sql_get_song->execute();
   $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
-  // echo "<pre>";
-  // var_dump($list_song);
-
 
   // lấy index bài hát hiện tại
   $currentIndex = 0;
@@ -25,8 +22,6 @@
       $currentIndex = $i;
     }
   }
-  echo $_SESSION["isRandom"];
-
   ?>
   <div class="playing-bar">
     <div class="player_controls-main">
@@ -42,7 +37,7 @@
             </div>
           </div>
           <div class="media_right">
-            <div class="media_right-btn player_btn">
+            <div class="media_right-btn player_btn" title="Thêm vào mục Yêu thích">
               <i class="fa-regular fa-heart no-hearted"></i>
               <i class="fa-solid fa-heart hearted"></i>
             </div>
@@ -89,6 +84,8 @@
   <audio id="SongPlaying" hidden loop autoplay src="<?php echo $info_song['mp3_link'] ?>"></audio>
 
   <script>
+
+
     // Lấy các thẻ HTML cần thao tác với
     const timeLeft = document.querySelector(".playing_time-left");
     const timeRight = document.querySelector(".playing_time-right");
@@ -135,7 +132,7 @@
       // Lưu giá trị isRandom vào localStorage
       localStorage.setItem("isRandom", JSON.stringify(isRandom));
     });
-    
+
 
 
     // Bắt sự kiện "ended" để khi nhạc kết thúc, nút chuyển thành "pause"

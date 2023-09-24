@@ -11,10 +11,10 @@
   <div class="header">
     <div class="header-content">
       <div class="header_content-left">
-        <button>
+        <button onclick="window.history.back()">
           <i class="fa-solid fa-arrow-left icon-btn-prev"></i>
         </button>
-        <button>
+        <button onclick="window.history.forward()">
           <i class="fa-solid fa-arrow-right icon-btn-next"></i>
         </button>
         <form class="search-form-header" action="/ZingMP3/Pages/ResultSearch/ResultSearch.php">

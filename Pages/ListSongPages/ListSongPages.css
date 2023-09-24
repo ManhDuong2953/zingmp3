@@ -158,6 +158,13 @@
   font-size: 13px;
   flex: 2;
   text-align: start;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.zing-recommend--item-center i{
+  margin-right: 5px;
+  font-size: 18px;
 }
 .zing-recommend--item-right {
   font-size: 12px;

@@ -44,8 +44,8 @@
               <h3 class="title"><?php echo $album_info['title_album'] ?></h3>
               <div class="artists">
                 <div class="like">
-                  <p><i class="fa-regular fa-heart"></i> 659 người yêu thích</p>
-                  <p><i class="fa-solid fa-headphones-simple"></i> 659 lượt nghe</p>
+                  <p><i class="fa-regular fa-heart"></i> <b class="like_count">0</b> người yêu thích</p>
+                  <p><i class="fa-solid fa-headphones-simple"></i> <b class="listen_count">0</b> lượt nghe</p>
                 </div>
                 <span><?php echo $album_info['name_artist'] ?></span>
               </div>
@@ -65,22 +65,26 @@
           </div>
           <div class="zing-recommend--item zing-recommend--title">
             <div class="zing-recommend--item-left">BÀI HÁT</div>
-            <div class="zing-recommend--item-center">ALBUM</div>
+            <div class="zing-recommend--item-center">LƯỢT TƯƠNG TÁC</div>
             <div class="zing-recommend--item-right gap-3">THỜI GIAN</div>
           </div>
 
 
           <?php
           // Lấy list nhạc 
-          $sql_list_song = $pdo->prepare("SELECT song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
+          $sql_list_song = $pdo->prepare("SELECT song.listen_count, song.like_count, song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
                                           FROM song INNER JOIN album ON song.album_id = album.album_id 
                                           WHERE album.album_id = $album_id AND song.artist_id= $id_user");
           $sql_list_song->execute();
           $list_song = $sql_list_song->fetchAll(PDO::FETCH_ASSOC);
-          // var_dump($list_song);
+          $total_count_listener = 0;
+          $total_count_like = 0;
           ?>
 
-          <?php for ($i = 0; $i < count($list_song); $i++) { ?>
+          <?php for ($i = 0; $i < count($list_song); $i++) {
+            $total_count_listener += $list_song[$i]["listen_count"];
+            $total_count_like += $list_song[$i]["like_count"];
+          ?>
             <a href="./ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="zing-recommend--list">
               <!-- active nhạc đang phát -->
               <div class="zing-recommend--item <?php echo ($list_song[$i]["song_id"] == $song_id) ? "active" : "" ?>">
@@ -95,8 +99,8 @@
                   </div>
                 </div>
                 <div class="zing-recommend--item-center">
-                  <?php echo $list_song[$i]['title_album'] ?>
-                  <span></span>
+                  <span><i class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
+                  <span><i class="fa-regular fa-heart"></i><?php echo $list_song[$i]['like_count'] ?></span>
                 </div>
                 <div class="zing-recommend--item-right">
                   <span><?php echo $list_song[$i]['duration'] ?></span>
@@ -112,6 +116,21 @@
     <?php require '../../Component/PlayingBar/PlayingBar.php' ?>
   </div>
 
+  <script>
+    //in ra số lượt nghe và tym
+    document.querySelector(".artists b.like_count").innerHTML = <?php echo $total_count_like ?>;
+    document.querySelector(".artists b.listen_count").innerHTML = <?php echo $total_count_listener ?>;
+    // Hàm để gửi yêu cầu AJAX để cập nhật listen_count
+    function updateListenCount() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "./ProcessIncreListener.php?song_id=<?php echo $song_id  ?>", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send();
+    }
+
+    // Gọi hàm cập nhật listen_count sau 20 giây sau khi trang web được tải
+    setTimeout(updateListenCount, 20000);
+  </script>
 </body>
 
 </html>
