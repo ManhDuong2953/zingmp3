@@ -23,7 +23,7 @@
 }
 .player_controls-left {
   height: 100%;
-  flex: 3;
+  flex: 5;
 }
 .player_controls-media {
   height: 100%;
@@ -53,7 +53,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  flex: 3;
+  flex: 5;
   gap: 8px;
   justify-content: center;
   max-width: 40vw;
@@ -82,8 +82,11 @@
   text-align: center;
 }
 
-
-.playing-bar .player_controls-center .player_top .player_btn i.fa-pause.pause::before{
+.playing-bar
+  .player_controls-center
+  .player_top
+  .player_btn
+  i.fa-pause.pause::before {
   content: "\f04b" !important;
 }
 .playing-bar .player_controls-center .player_top .player_btn i {
@@ -93,7 +96,8 @@
   padding: 5px;
 }
 
-.playing-bar .player_controls-center .player_top .player_btn:hover i {
+.playing-bar .player_controls-center .player_top .player_btn i:hover,
+.playing-bar .player_controls-center .player_top .player_btn i.active {
   color: blueviolet;
 }
 .playing-bar .player_controls-center .player_bottom {
@@ -159,7 +163,7 @@
   gap: 4px;
   justify-content: flex-end;
   width: 30%;
-  flex: 3;
+  flex: 2;
 }
 .playing-bar .player_controls-right .playing_volume {
   align-items: center;
@@ -241,24 +245,31 @@
   cursor: pointer;
 }
 .fa-solid.fa-heart {
-  display: none; 
+  display: none;
 }
 .playing-bar .media_right-btn:hover {
   background-color: hsla(0, 0%, 100%, 0.3);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .playing-bar .player_controls-center {
+    flex: 4;
+  }
+  .playing-bar .player_controls-right{
+    display: none;
+  }
 }
 
 /* CSS cho thiết bị di động (độ rộng màn hình dưới 768px) */
 @media (max-width: 768px) {
   /* Đặt thuộc tính cho các phần tử dành cho mobile ở đây */
   .playing-bar .player_controls-right .playing_volume,
-  .playing-bar .player_controls-center {
-    display: none;
+  .playing-bar .player_controls-center,
+  .player_controls-right {
+    display: none !important;
+  }
+
+  .playing-bar .media_right-btn {
+    margin: 10px;
   }
 }
-
-
-
-
-
-
-

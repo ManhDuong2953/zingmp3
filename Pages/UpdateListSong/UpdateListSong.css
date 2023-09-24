@@ -155,13 +155,14 @@
 }
 
 .zing-recommend--item-text {
-  height: 40px;
   align-self: start;
+  flex: 5;
 }
 .img-avt-infor {
   border-radius: 3px;
-  width: 80px;
+  width: 70px;
   height: 50px;
+  flex: 1;
   margin-right: 10px;
 }
 .img-avt-infor img {

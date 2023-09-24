@@ -25,7 +25,7 @@
       $currentIndex = $i;
     }
   }
-  echo $currentIndex;
+  echo $_SESSION["isRandom"];
 
   ?>
   <div class="playing-bar">
@@ -65,7 +65,7 @@
             <i class="fa-solid fa-forward-step"></i>
           </a>
           <div id="loopMusic" class="player_btn playing_replay">
-            <i class="fa-solid fa-repeat"></i>
+            <i class="fa-solid fa-repeat active"></i>
           </div>
         </div>
         <div class="player_bottom">
@@ -83,34 +83,67 @@
             <input class="transition-all" id="inputVolume" type="range" min="0" max="100" value="100" />
           </div>
         </div>
-        <div class="player_device-column"></div>
-        <div class="toggle-right null">
-          <div class="zm-btn">
-            <i class="fa-solid fa-list"></i>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-  <audio id="SongPlaying" hidden autoplay src="<?php echo $info_song['mp3_link'] ?>"></audio>
+  <audio id="SongPlaying" hidden loop autoplay src="<?php echo $info_song['mp3_link'] ?>"></audio>
 
-  <!-- <script>
-   
-    </script> -->
   <script>
     // Lấy các thẻ HTML cần thao tác với
     const timeLeft = document.querySelector(".playing_time-left");
     const timeRight = document.querySelector(".playing_time-right");
     const btnPlay = document.querySelector(".player_btn.relative i");
+    const btnRandom = document.querySelector(".player_btn.playing_random i");
+    const btnLoop = document.querySelector(".player_btn.playing_replay i");
     const songPlaying = document.querySelector("#SongPlaying");
     const btnVolume = document.querySelector("#inputVolume");
     const volumeIcon = document.querySelector(".player_btn.volume-icon");
     const progressArea = document.querySelector(".progress-area");
     const progressBar = document.querySelector(".progress-bar");
 
-
     // Biến để theo dõi trạng thái kéo thanh progress bar
     let isDragging = false;
+    let isRandom = localStorage.getItem("isRandom") === "true";
+
+    // Hàm cập nhật trạng thái nút Loop và Random
+    function updateButtonState() {
+      if (isRandom) {
+        songPlaying.loop = false;
+        btnLoop.classList.remove("active");
+        btnRandom.classList.add("active");
+      } else {
+        songPlaying.loop = true;
+        btnLoop.classList.add("active");
+        btnRandom.classList.remove("active");
+      }
+    }
+    // Cập nhật trạng thái ban đầu
+    updateButtonState();
+
+    // Bắt sự kiện click trên nút Loop
+    btnLoop.addEventListener("click", function() {
+      isRandom = !isRandom;
+      updateButtonState();
+      // Lưu giá trị isRandom vào localStorage
+      localStorage.setItem("isRandom", JSON.stringify(isRandom));
+    });
+
+    // Bắt sự kiện click trên nút Random
+    btnRandom.addEventListener("click", function() {
+      isRandom = !isRandom;
+      updateButtonState();
+      // Lưu giá trị isRandom vào localStorage
+      localStorage.setItem("isRandom", JSON.stringify(isRandom));
+    });
+    
+
+
+    // Bắt sự kiện "ended" để khi nhạc kết thúc, nút chuyển thành "pause"
+    songPlaying.addEventListener("ended", function() {
+      if (isRandom) {
+        window.location = "/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[rand(0, count($list_song) - 1)]['song_id'] ?>"
+      }
+    });
 
     // Bắt sự kiện click trên nút phát/pause
     let isPlaying = true; // Thêm biến để theo dõi trạng thái phát/nghỉ
@@ -128,11 +161,7 @@
       }
     });
 
-    // Bắt sự kiện "ended" để khi nhạc kết thúc, nút chuyển thành "pause"
-    songPlaying.addEventListener("ended", function() {
-      btnPlay.classList.add("pause");
-      isPlaying = false;
-    });
+
 
     // Hàm định dạng thời gian bài hát theo mm:ss
     function formatTime(time) {
