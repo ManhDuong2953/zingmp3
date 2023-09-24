@@ -1,5 +1,9 @@
 <?php 
 session_start();
+
+
+var_dump($_POST);
+
 require_once("../../Config/configConnectDB.php");
 if(!empty($_POST['account_name']) && !empty($_POST['password'])) {
     $acc_name = $_POST['account_name'];
@@ -9,7 +13,6 @@ if(!empty($_POST['account_name']) && !empty($_POST['password'])) {
     $statement->bindValue(':account_name',$acc_name, PDO::PARAM_STR);
     $statement->bindValue(':password',$password, PDO::PARAM_STR);
     $statement->execute();
-
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     if($user) {
