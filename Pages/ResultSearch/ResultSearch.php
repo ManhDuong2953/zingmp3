@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <!-- favicon  -->
     <link rel="shortcut icon" href="../../Component/assets/logo_mobile.png" type="image/x-icon">
-    <title>Khám phá - Nhóm Phát Triển Ứng Dụng Web</title>
+    <title>Kết quả tìm kiếm - Nhóm Phát Triển Ứng Dụng Web</title>
     <!-- import css file component  -->
     <link rel="stylesheet" href="../../GlobalStyle/style.css">
     <link rel="stylesheet" href="./ResultSearch.css">

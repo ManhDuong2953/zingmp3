@@ -6,7 +6,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <!-- favicon  -->
+  <link rel="shortcut icon" href="../../Component/assets/logo_mobile.png" type="image/x-icon">
+  <title>Bảng xếp hạng bài hát thịnh hành - Nhóm Phát Triển Ứng Dụng Web</title>
   <link rel="stylesheet" href="./TopSong.css" />
   <link rel="stylesheet" href="../../GlobalStyle/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />

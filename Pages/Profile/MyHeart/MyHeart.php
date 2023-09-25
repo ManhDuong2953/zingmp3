@@ -10,13 +10,11 @@
 
     <!-- favicon  -->
     <link rel="shortcut icon" href="../../../Component/assets/logo_mobile.png" type="image/x-icon">
-    <title>Khám phá - Nhóm Phát Triển Ứng Dụng Web</title>
+    <title>Bài hát yêu thích - Nhóm Phát Triển Ứng Dụng Web</title>
     <!-- import link css file component  -->
     <link rel="stylesheet" href="../../../GlobalStyle/style.css">
     <link rel="stylesheet" href="../Profile.css">
     <link rel="stylesheet" href="./MyHeart.css">
-
-    <title>Document</title>
 </head>
 
 <body>
