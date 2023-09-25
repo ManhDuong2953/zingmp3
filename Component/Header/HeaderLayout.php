@@ -17,9 +17,9 @@
         <button onclick="window.history.forward()">
           <i class="fa-solid fa-arrow-right icon-btn-next"></i>
         </button>
-        <form class="search-form-header" action="/ZingMP3/Pages/ResultSearch/ResultSearch.php">
+        <form class="search-form-header" action="/ZingMP3/Pages/ResultSearch/ResultSearch.php" method="get">
           <button><i class="fa-solid fa-magnifying-glass"></i></button>
-          <input type="text" class="header-search" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..." />
+          <input type="text" class="header-search" name="keyword" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..." />
         </form>
       </div>
       <div class="header-content-right">

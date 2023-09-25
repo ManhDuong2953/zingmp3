@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,195 +18,63 @@
 <body>
     <div id="search-main">
         <?php require '../../Component/Navbar/Navbar.php' ?>
-        <?php require_once "../../Config/configConnectDB.php"?>
+        <?php require_once "../../Config/configConnectDB.php" ?>
 
         <div class="right-search">
             <?php require '../../Component/Header/HeaderLayout.php' ?>
             <div class="search-container">
+
+
+                <?php
+                $keyword = $_GET["keyword"];
+
+                // Sử dụng PDO để thực hiện truy vấn SQL
+                $sql_search = $pdo->prepare("SELECT s.*
+                                            FROM song s
+                                            INNER JOIN album a ON s.album_id = a.album_id
+                                            INNER JOIN user u ON s.artist_id = u.id_user
+                                            WHERE 
+                                                s.title_song LIKE :keyword OR
+                                                a.title_album LIKE :keyword OR
+                                                a.kindof LIKE :keyword OR
+                                                s.title_artist LIKE :keyword OR
+                                                u.user_name LIKE :keyword");
+                $sql_search->bindValue(':keyword', "%$keyword%", PDO::PARAM_STR);
+                $sql_search->execute();
+
+                // Lấy kết quả tìm kiếm
+                $results_search = $sql_search->fetchAll(PDO::FETCH_ASSOC);
+                ?>
                 <h1 class="title-item--home">
-                    <i class="fa-solid fa-magnifying-glass"></i> Kết quả tìm kiếm cho: "Hãy chao cho anh"
+                    <i class="fa-solid fa-magnifying-glass"></i>Có <?php echo count($results_search) ?> kết quả tìm kiếm cho: "<?php echo $keyword ?>"
                 </h1>
                 <ul class="search-list">
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
+                    <?php
+                    for ($i = 0; $i < count($results_search); $i++) {
+                    ?>
+                        <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $results_search[$i]['album_id'] ?>&song_id=<?php echo $results_search[$i]['song_id'] ?>">
+                            <li class="search-list--item">
+                                <div class="song-info">
+                                    <div class="img-thumbnail">
+                                        <img src="<?php echo $results_search[$i]['song_thumbnail'] ?>" alt="">
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </div>
+                                    <div class="info-song">
+                                        <div class="name-song"><?php echo $results_search[$i]['title_song'] ?></div>
+                                        <div class="author-song"><?php echo $results_search[$i]['title_artist'] ?></div>
+                                        <div class="heart-quantity">
+                                            <p><i class="fa-solid fa-headphones-simple"></i><?php echo $results_search[$i]['listen_count'] ?> <i class="fa-solid fa-heart"></i><?php echo $results_search[$i]['like_count'] ?></p>
 
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
+                                <span>
+                                    <p class="song-duration">5:22</p>
 
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-
-                    <a href="">
-                        <li class="search-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <i class="fa-regular fa-heart"></i>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
+                                </span>
+                            </li>
+                        </a>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
