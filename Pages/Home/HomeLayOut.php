@@ -20,9 +20,6 @@
 <body>
     <?php require_once "../../Config/configConnectDB.php"?>
     <div id="home-main">
-
-  
-        
         <!-- NavBar  -->
         <?php require '../../Component/Navbar/Navbar.php' ?>
         <div class="home-right">

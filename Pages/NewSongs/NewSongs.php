@@ -32,21 +32,25 @@
                     $list_new_song = $sql_new_song->fetchAll(PDO::FETCH_ASSOC);
                     for ($i = 0; $i < count($list_new_song); $i++) {
                     ?>
-                        <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id']?>&song_id=<?php echo $list_new_song[$i]['song_id']?>">
+                        <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id'] ?>&song_id=<?php echo $list_new_song[$i]['song_id'] ?>">
                             <li class="newsongs-list--item">
                                 <div class="song-info">
                                     <div class="img-thumbnail">
-                                        <img src="<?php echo $list_new_song[$i]["song_thumbnail"]?>" alt="">
+                                        <img src="<?php echo $list_new_song[$i]["song_thumbnail"] ?>" alt="">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>
                                     <div class="info-song">
-                                        <div class="name-song"><?php echo $list_new_song[$i]["title_song"]?></div>
-                                        <div class="author-song"><?php echo $list_new_song[$i]["title_artist"]?></div>
-                                        <div class="heart-quantity"><?php echo $list_new_song[$i]["listen_count"]?></div>
+                                        <div class="name-song"><?php echo $list_new_song[$i]["title_song"] ?></div>
+                                        <div class="author-song"><?php echo $list_new_song[$i]["title_artist"] ?></div>
+                                        <div class="heart-quantity">
+                                            <i class="fa-solid fa-headphones-simple"></i> <?php echo $list_new_song[$i]["listen_count"] ?>
+                                            <!-- đổi chuỗi sang timestamp rồi format date   -->
+                                            <p><?php echo date("d/m/Y", strtotime($list_new_song[$i]['release_date']))?></p> 
+                                        </div>
                                     </div>
                                 </div>
                                 <span>
-                                    <p class="song-duration"><?php echo $list_new_song[$i]["duration"]?></p>
+                                    <p class="song-duration"><?php echo $list_new_song[$i]["duration"] ?></p>
                                 </span>
                             </li>
                         </a>

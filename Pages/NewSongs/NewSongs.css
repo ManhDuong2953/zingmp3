@@ -65,7 +65,7 @@ h1.title-item--home {
   align-items: center;
 }
 
-.song-info i {
+.song-info i.fa-circle-play {
   display: none;
   position: absolute;
   font-size: 25px;
@@ -78,7 +78,7 @@ h1.title-item--home {
   a:hover
   li.newsongs-list--item
   .song-info
-  i {
+  i.fa-circle-play {
   display: block;
 }
 
@@ -103,6 +103,7 @@ h1.title-item--home {
 
 .song-info .img-thumbnail img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

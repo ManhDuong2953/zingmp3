@@ -59,7 +59,7 @@
                 <ul class="list-my--album">
 
                     <?php
-                    $sql_my_album = $pdo->prepare("SELECT * FROM album");
+                    $sql_my_album = $pdo->prepare("SELECT * FROM album WHERE artist_id = $id_user");
                     $sql_my_album->execute();
                     $my_album = $sql_my_album->fetchAll(PDO::FETCH_ASSOC);
                     ?>

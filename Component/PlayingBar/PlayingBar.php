@@ -15,7 +15,7 @@
   $sql_get_song->execute();
   $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
 
-  $sql_check_hearted  = $pdo->prepare("SELECT * FROM favorite_list WHERE song_id = '$song_id' AND user_id = '$id_user'");
+  $sql_check_hearted  = $pdo->prepare("SELECT * FROM favorite_list WHERE song_id = '$song_id'");
   $sql_check_hearted->execute();
   $check_hearted = $sql_check_hearted->fetch(PDO::FETCH_ASSOC);
 

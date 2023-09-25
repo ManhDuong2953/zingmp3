@@ -28,7 +28,7 @@
         <div class="wrapper-layout">
           <div class="header-titlepage">
             <div class="text-titlepage">
-              <h3>Top 100 thịnh hành</h3>
+              <h3>Top 10 thịnh hành</h3>
             </div>
 
             <div class="control">
@@ -38,446 +38,58 @@
             </div>
           </div>
           <div class="content-selecter">
-            <div class="playListSong-item" data-index="0">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span" style="-webkit-text-stroke-color: #4a90e2;">
-                    1
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
+            <?php
+            $sql_top_song = $pdo->prepare("SELECT * FROM song ORDER BY listen_count DESC, like_count DESC LIMIT 10;");
+            $sql_top_song->execute();
+            $list_top_song = $sql_top_song->fetchAll(PDO::FETCH_ASSOC);
+            for ($i = 0; $i < count($list_top_song); $i++) {
+            ?>
+              <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_top_song[$i]['album_id'] ?>&song_id=<?php echo $list_top_song[$i]['song_id'] ?>" class="playListSong-item">
+                <div class="playListSong-numbersong">
+                  <div class="playListSong-numbersong-number">
+                    <span class="playListSong-numbersong-number-span">
+                      <?php echo $i + 1 ?>
                     </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
+                  </div>
+                  <div class="playListSong-numbersong-dash">
+                    <span class="playListSong-numbersong-dash-span">
+                      <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
+                    </span>
                   </div>
                 </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="1">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span" style="-webkit-text-stroke-color:#50e3c2">
-                    2
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
+                <div class="playListSong-container">
+                  <div class="playListSong-container-left">
+                    <figure class="playListSong-item-img">
+                      <img src="<?php echo $list_top_song[$i]['song_thumbnail'] ?>" alt="">
+                      <span class="playListSong-item-img-icon">
+                        <i class="fa-solid fa-play" style="color: #fff;"></i>
                       </span>
+                    </figure>
+                    <div class="playListSong-item-title">
+                      <div class="playListSong-item-title-namesong">
+                        <h4 class="title-namesong"><?php echo $list_top_song[$i]['title_song'] ?></h4>
+                        <span class="playListSong-item-title-nameartist">
+                          <p><?php echo $list_top_song[$i]['title_artist'] ?></p>
+                          <p><i class="fa-solid fa-headphones-simple"></i><?php echo $list_top_song[$i]['listen_count'] ?> <i class="fa-solid fa-heart"></i><?php echo $list_top_song[$i]['like_count'] ?></p>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
+                  <div class="playListSong-container-right">
+                    <div class="playListSong-item-runtime"><?php echo $list_top_song[$i]['duration'] ?></div>
+                  </div>
 
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="2">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span" style="-webkit-text-stroke-color: #e35050;">
-                    3
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
+                  <div class="playListSong-item-utilities">
+                    <span class="playListSong-item-utilities-icon-ellipsis">
+                      <i class="fa-solid fa-ellipsis"></i>
+                      <span class="icon-ellipsis-text">
+                        Khác
                       </span>
-                    </div>
+                    </span>
                   </div>
                 </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="3">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    4
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="4">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    5
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="5">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    6
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="6">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    7
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="7">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    8
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="8">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    9
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="playListSong-item" data-index="9">
-              <div class="playListSong-numbersong">
-                <div class="playListSong-numbersong-number">
-                  <span class="playListSong-numbersong-number-span">
-                    10
-                  </span>
-                </div>
-                <div class="playListSong-numbersong-dash">
-                  <span class="playListSong-numbersong-dash-span">
-                    <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                  </span>
-                </div>
-              </div>
-              <div class="playListSong-container">
-                <div class="playListSong-container-left">
-                  <figure class="playListSong-item-img">
-                    <img src="https://i1.sndcdn.com/artworks-000217888294-kfmj6g-t500x500.jpg" alt="">
-                    <span class="playListSong-item-img-icon">
-                      <i class="fa-solid fa-play" style="color: #fff;"></i>
-                    </span>
-                  </figure>
-                  <div class="playListSong-item-title">
-                    <div class="playListSong-item-title-namesong">
-                      <h4 class="title-namesong">À Lôi</h4>
-                      <span class="playListSong-item-title-nameartist">
-                        <a href="">Double2T x Masew</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="playListSong-container-right">
-                  <div class="playListSong-item-runtime">3:13</div>
-                </div>
-
-                <div class="playListSong-item-utilities">
-                  <span class="playListSong-item-utilities-icon-ellipsis">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <span class="icon-ellipsis-text">
-                      Khác
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
+              </a>
+            <?php } ?>
           </div>
         </div>
       </div>

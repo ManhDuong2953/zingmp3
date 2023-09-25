@@ -25,13 +25,22 @@
         <div class="content-container-left">
           <?php
           $album_id = $_REQUEST["album_id"];
-          $song_id = $_REQUEST["song_id"];
+          $song_id = isset($_REQUEST["song_id"]) ? $_REQUEST["song_id"] : null;
           //Lấy album và list nhạc
-          $sql_get_album = $pdo->prepare("SELECT * FROM album INNER JOIN song on album.album_id = song.album_id WHERE album.album_id = '$album_id' AND song.song_id = '$song_id'");
-          $sql_get_album->execute();
-          $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
-          // echo "<pre>";
-          // var_dump($album_info);
+          $sql_get_album = null;
+
+
+          if($song_id) {
+            $sql_get_album = $pdo->prepare("SELECT * FROM album INNER JOIN song on album.album_id = song.album_id WHERE album.album_id = '$album_id' AND song.song_id = '$song_id'");
+            $sql_get_album->execute();
+            $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
+          }
+          else{
+            $sql_get_album = $pdo->prepare("SELECT * FROM album INNER JOIN song on album.album_id = song.album_id WHERE album.album_id = '$album_id' LIMIT 1");
+            $sql_get_album->execute();
+            $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
+            $song_id = $album_info["song_id"];
+          }
           ?>
 
 

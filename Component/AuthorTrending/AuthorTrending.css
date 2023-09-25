@@ -9,15 +9,17 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 0 -10px;
+
 }
 
 .trending-author .trending-author--list a {
+  text-align: center;
   position: relative;
   width: calc(100% / 5);
   overflow: hidden;
   padding: 10px;
 }
-.trending-author .trending-author--list i {
+.trending-author .trending-author--list i.fa-circle-play {
   display: none;
   font-size: 50px;
   position: absolute;
@@ -36,11 +38,12 @@
 
 .trending-author .trending-author--list a li img {
   width: 100%;
+  height: 220px;
   object-fit: cover;
 }
 
-.trending-author .trending-author--list a:hover i {
-  display: inline;
+.trending-author .trending-author--list a:hover i.fa-circle-play {
+  display: inline !important;
 }
 .trending-author .trending-author--list a:hover li img {
   transform: scale(1.2);
@@ -50,6 +53,10 @@
 
 .trending-author .trending-author--list a p {
   font-size: 14px;
+  margin: -4px;
+}
+.trending-author .trending-author--list a p i{
+  padding:0 4px;
 }
 
 .trending-author .trending-author--list a p.title-author {
