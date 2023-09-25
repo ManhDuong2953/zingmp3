@@ -69,8 +69,8 @@ h1.title-item--home {
   display: none;
   position: absolute;
   font-size: 25px;
-  top: calc(50% - (25px / 2));
-  left: calc(22% - (25px / 2));
+  top: calc(50% - (24px / 2));
+  left: calc(50% - (25px / 2));
 }
 
 .newsongs-container
@@ -94,14 +94,16 @@ h1.title-item--home {
 .song-info .img-thumbnail {
   cursor: pointer;
   height: 60px;
-  width: 60px;
+  width: 90px;
+  overflow: hidden;
   margin-right: 6px;
+  border-radius: 4px;
+  position: relative;
 }
 
 .song-info .img-thumbnail img {
   width: 100%;
   object-fit: cover;
-  border-radius: 4px;
 }
 
 .song-info .name-song {

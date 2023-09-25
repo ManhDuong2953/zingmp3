@@ -15,6 +15,10 @@
   $sql_get_song->execute();
   $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
 
+  $sql_check_hearted  = $pdo->prepare("SELECT * FROM favorite_list WHERE song_id = '$song_id' AND user_id = '$id_user'");
+  $sql_check_hearted->execute();
+  $check_hearted = $sql_check_hearted->fetch(PDO::FETCH_ASSOC);
+
   // lấy index bài hát hiện tại
   $currentIndex = 0;
   for ($i = 0; $i < count($list_song); $i++) {
@@ -38,8 +42,12 @@
           </div>
           <div class="media_right">
             <div class="media_right-btn player_btn" title="Thêm vào mục Yêu thích">
-              <i class="fa-regular fa-heart no-hearted"></i>
-              <i class="fa-solid fa-heart hearted"></i>
+              <?php if ($check_hearted) {
+                echo '<i class="fa-solid fa-heart "></i>';
+              } else {
+                echo '<i class="fa-regular fa-heart"></i>';
+              }
+              ?>
             </div>
 
           </div>
@@ -84,8 +92,6 @@
   <audio id="SongPlaying" hidden loop autoplay src="<?php echo $info_song['mp3_link'] ?>"></audio>
 
   <script>
-
-
     // Lấy các thẻ HTML cần thao tác với
     const timeLeft = document.querySelector(".playing_time-left");
     const timeRight = document.querySelector(".playing_time-right");
@@ -97,7 +103,7 @@
     const volumeIcon = document.querySelector(".player_btn.volume-icon");
     const progressArea = document.querySelector(".progress-area");
     const progressBar = document.querySelector(".progress-bar");
-
+    const diskAvtAlbum = document.querySelector(".avt-disk-play");
     // Biến để theo dõi trạng thái kéo thanh progress bar
     let isDragging = false;
     let isRandom = localStorage.getItem("isRandom") === "true";
@@ -150,11 +156,13 @@
         songPlaying.play();
         isPlaying = true;
         btnPlay.classList.remove("pause");
+        diskAvtAlbum.classList.add("spin");
       } else {
         // Nếu đang phát, dừng nhạc
         songPlaying.pause();
         isPlaying = false;
         btnPlay.classList.add("pause");
+        diskAvtAlbum.classList.remove("spin");
       }
     });
 

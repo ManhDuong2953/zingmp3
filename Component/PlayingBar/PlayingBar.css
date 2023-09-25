@@ -28,6 +28,7 @@
 .player_controls-media {
   height: 100%;
   display: flex;
+
 }
 .media_left img {
   height: 100%;
@@ -35,6 +36,7 @@
   border-radius: 10px;
   object-fit: cover;
 }
+
 .media_center {
   display: flex;
   flex-direction: column;
@@ -118,7 +120,7 @@
   background: hsla(0, 0%, 100%, 0.3);
   border-radius: 4px;
   cursor: pointer;
-  height: 3px;
+  height: 4px;
   margin: 0 1rem;
   transition: 0.1s ease-in;
   width: 100%;
@@ -131,7 +133,7 @@
   background: #fff;
   border-radius: inherit;
   height: inherit;
-  height: 3px;
+  height: 4px;
   position: relative;
   transition: 0.1s ease-in;
   width: 0;
@@ -244,9 +246,10 @@
   justify-content: center;
   cursor: pointer;
 }
-.fa-solid.fa-heart {
-  display: none;
-}
+
+
+
+
 .playing-bar .media_right-btn:hover {
   background-color: hsla(0, 0%, 100%, 0.3);
 }

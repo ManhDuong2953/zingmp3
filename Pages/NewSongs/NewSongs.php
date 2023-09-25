@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +17,7 @@
 <body>
     <div id="newsongs-main">
         <?php require '../../Component/Navbar/Navbar.php' ?>
-<?php require_once "../../Config/configConnectDB.php"?>
+        <?php require_once "../../Config/configConnectDB.php" ?>
 
         <div class="right-newsongs">
             <?php require '../../Component/Header/HeaderLayout.php' ?>
@@ -26,177 +26,32 @@
                     <i class="fa-solid fa-music"></i> Nhạc mới
                 </h1>
                 <ul class="newsongs-list">
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
+                    <?php
+                    $sql_new_song = $pdo->prepare("SELECT * FROM song ORDER BY release_date DESC LIMIT 8");
+                    $sql_new_song->execute();
+                    $list_new_song = $sql_new_song->fetchAll(PDO::FETCH_ASSOC);
+                    for ($i = 0; $i < count($list_new_song); $i++) {
+                    ?>
+                        <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id']?>&song_id=<?php echo $list_new_song[$i]['song_id']?>">
+                            <li class="newsongs-list--item">
+                                <div class="song-info">
+                                    <div class="img-thumbnail">
+                                        <img src="<?php echo $list_new_song[$i]["song_thumbnail"]?>" alt="">
+                                        <i class="fa-solid fa-circle-play"></i>
+                                    </div>
+                                    <div class="info-song">
+                                        <div class="name-song"><?php echo $list_new_song[$i]["title_song"]?></div>
+                                        <div class="author-song"><?php echo $list_new_song[$i]["title_artist"]?></div>
+                                        <div class="heart-quantity"><?php echo $list_new_song[$i]["listen_count"]?></div>
+                                    </div>
                                 </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
+                                <span>
+                                    <p class="song-duration"><?php echo $list_new_song[$i]["duration"]?></p>
+                                </span>
+                            </li>
+                        </a>
+                    <?php } ?>
 
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
-
-
-                    <a href="">
-                        <li class="newsongs-list--item">
-                            <div class="song-info">
-                                <div class="img-thumbnail">
-                                    <img src="https://res.cloudinary.com/phuockaito/image/upload/v1664959880/image_music/gjrwl4fwkqrahec97px7.jpg" alt="">
-                                    <i class="fa-solid fa-circle-play"></i>
-                                </div>
-                                <div class="info-song">
-                                    <div class="name-song">Dynamite</div>
-                                    <div class="author-song">BTS</div>
-                                    <div class="heart-quantity">36.8M</div>
-                                </div>
-                            </div>
-                            <span>
-                                <p class="song-duration">5:22</p>
-                            </span>
-                        </li>
-                    </a>
                 </ul>
             </div>
         </div>

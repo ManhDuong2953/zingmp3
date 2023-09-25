@@ -23,15 +23,50 @@
 }
 .content-container-left {
   flex: 3;
+  display: flex;
+  flex-direction: column;
 }
 .content-container .content-container-left .avt-disk-play {
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  position: relative;
+  border: 4px solid white;
+  flex: 3;
+  box-shadow: 0 0 20px #000;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.content-container .content-container-left .avt-disk-play.spin {
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+
 .content-container .content-container-left .avt-disk-play img {
+  animation: blur 4s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
   border-radius: 5px;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .media-content {
   display: flex;
@@ -39,6 +74,7 @@
   flex-direction: column;
   width: 100%;
   padding: 10px 0;
+  flex: 1;
 }
 .content-top {
   text-align: center;
@@ -119,14 +155,21 @@
 .content-container-right span {
   color: hsla(0, 0%, 100%, 0.5);
 }
+
+.list-recommend {
+  width: 100%;
+  height: calc(70.8px * 5);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .zing-recommend--item {
+  width: 100%;
   margin-left: 10px;
   align-items: center;
   background: none;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
   display: flex;
   justify-content: center;
-  width: 100%;
   padding: 10px;
 }
 
@@ -162,7 +205,7 @@
   justify-content: space-evenly;
 }
 
-.zing-recommend--item-center i{
+.zing-recommend--item-center i {
   margin-right: 5px;
   font-size: 18px;
 }
@@ -205,23 +248,16 @@
   .zing-recommend--item.zing-recommend--title {
     height: 50px;
   }
-  .content-container {
-    display: flex;
-    flex-direction: column;
-  }
+
   .right-container {
     width: 100%;
   }
 
   .content-container .content-container-left {
     width: 100%;
-    position: sticky;
     height: 100%;
   }
 
-  .content-container .content-container-left .avt-disk-play {
-    max-height: 300px;
-  }
   .like {
     justify-content: flex-start;
   }
@@ -259,14 +295,29 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+  }
   .zing-recommend--item {
     height: 100px;
     margin: 0;
   }
+  .content-container-left {
+    flex-direction: row;
+  }
 
+  .content-container .content-container-left .avt-disk-play {
+    flex: 2;
+  }
   .like {
     align-items: flex-start;
     flex-direction: column;
-}
+  }
+
+  .list-recommend {
+    width: 100%;
+    height: 100%;
+  }
 }
