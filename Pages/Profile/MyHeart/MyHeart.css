@@ -26,7 +26,7 @@
   position: absolute;
   font-size: 25px;
   top: calc(50% - (25px / 2));
-  left: calc(11% - (25px / 2));
+  left: calc(50% - (25px / 2));
 }
 
 .profile-content ul.list-my--heart a:hover li.item-my--heart .song-info i.btn-play {
@@ -42,6 +42,7 @@
   height: 60px;
   width: 90px;
   margin-right: 6px;
+  position: relative;
 }
 
 .song-info .img-thumbnail img {
@@ -59,9 +60,6 @@
   
 }
 
-.song-info .info-song{
-  max-width: 400px;
-}
 
 .song-info .author-song,
 .song-info .heart-quantity {
