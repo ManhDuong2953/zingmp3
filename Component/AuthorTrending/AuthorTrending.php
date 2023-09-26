@@ -25,7 +25,7 @@
             $list_author_trending = $sql_get_author->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($list_author_trending); $i++) {
             ?>
-                <a href="">
+                <a href="../ResultSearch/ResultSearch.php?keyword=<?php echo $list_author_trending[$i]['user_name'] ?>">
                     <li><i class="fa-regular fa-circle-play"></i><img src="<?php echo $list_author_trending[$i]['avatar_link'] ?>" alt=""></li>
 
                     <p class="title-author"><?php echo $list_author_trending[$i]['user_name'] ?>

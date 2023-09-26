@@ -1,3 +1,4 @@
+create database zingmusic;
 
 use zingmusic;
 
