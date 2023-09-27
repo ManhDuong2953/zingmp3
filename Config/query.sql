@@ -8,7 +8,7 @@ CREATE TABLE user (
     user_name VARCHAR(255) NOT NULL,
     account_name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    avatar_link VARCHAR(255) DEFAULT "https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg",
+    avatar_link VARCHAR(1000) DEFAULT "https://static2.yan.vn/YanNews/2167221/202003/dan-mang-du-trend-thiet-ke-avatar-du-kieu-day-mau-sac-tu-anh-mac-dinh-b0de2bad.jpg",
     favorite_list_id int
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE song (
     artist_id INT not null,
     title_artist varchar(255) not null,
     title_song varchar(255) not null,
-    song_thumbnail VARCHAR(255) not null,
+    song_thumbnail VARCHAR(1000) not null,
     mp3_link VARCHAR(1000) not null,
     release_date DATETIME not null,
     duration varchar(20),
