@@ -24,11 +24,6 @@
       </div>
       <div class="header-content-right">
         <a href="/ZingMP3/Component/Header/ProcessLogout.php" class="log_out">Đăng xuất <i class="fa-solid fa-right-from-bracket"></i></a>
-        <button class="setting-btn">
-          <i class="fa-solid fa-cog"></i>
-        </button>
-
-
         <?php
         // Hiện thông tin người dùng 
         if (isset($_SESSION["id_user"])) {

@@ -55,6 +55,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  padding: 0 10px;
 }
 .header .header-content .header-content-right .setting-btn,
 .btn-user {

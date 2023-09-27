@@ -7,7 +7,7 @@
   user-select: none;
   width: 100%;
   z-index: 112;
-  height: 90px;
+  max-height: 100px;
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -26,9 +26,12 @@
   flex: 3;
 }
 .player_controls-media {
-  height: 100%;
   display: flex;
+  justify-content: space-between;
+}
 
+.media_left {
+  display: flex;
 }
 .media_left img {
   height: 100%;
@@ -75,7 +78,6 @@
   color: #fff;
   cursor: pointer;
   display: flex;
-  display: inline-block;
   font-weight: 400;
   justify-content: center;
   line-height: normal;
@@ -157,6 +159,13 @@
   transition: opacity 0.2s ease;
   width: 12px;
   z-index: 2;
+}
+
+.playing-bar .playing_time-left,
+.playing-bar .playing_time-right,
+.playing-bar .playing_time-left,
+.playing-bar .playing_time-left {
+  min-width: 30px;
 }
 
 .playing-bar .player_controls-right {
@@ -247,9 +256,6 @@
   cursor: pointer;
 }
 
-
-
-
 .playing-bar .media_right-btn:hover {
   background-color: hsla(0, 0%, 100%, 0.3);
 }
@@ -258,7 +264,7 @@
   .playing-bar .player_controls-center {
     flex: 4;
   }
-  .playing-bar .player_controls-right{
+  .playing-bar .player_controls-right {
     display: none;
   }
 }
@@ -267,11 +273,25 @@
 @media (max-width: 768px) {
   /* Đặt thuộc tính cho các phần tử dành cho mobile ở đây */
   .playing-bar .player_controls-right .playing_volume,
-  .playing-bar .player_controls-center,
-  .player_controls-right {
+  .player_controls-right,
+  #randomMusic, #loopMusic {
     display: none !important;
   }
+  .player_controls-main {
+    padding: 10px 0 30px 0 !important;
+  }
+  .playing-bar .player_controls-center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
+  .media_left img {
+    display: none;
+  }
   .playing-bar .media_right-btn {
     margin: 10px;
   }

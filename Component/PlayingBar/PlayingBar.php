@@ -33,11 +33,11 @@
         <div class="player_controls-media">
           <div class="media_left">
             <img class="media-avatar" src="<?php echo $info_song['song_thumbnail'] ?>" alt="" />
-          </div>
-          <div class="media_center">
-            <div class="media_music"><?php echo $info_song['title_song'] ?></div>
-            <div class="media_name">
-              <span><?php echo $info_song['title_artist'] ?></span>
+            <div class="media_center">
+              <div class="media_music"><?php echo $info_song['title_song'] ?></div>
+              <div class="media_name">
+                <span><?php echo $info_song['title_artist'] ?></span>
+              </div>
             </div>
           </div>
           <div class="media_right">

@@ -15,85 +15,60 @@
 </head>
 
 <body>
-  <div class="topsong-main">
+  <div id="topsong-main">
     <?php require "../../Component/Navbar/Navbar.php" ?>
     <?php require_once "../../Config/configConnectDB.php" ?>
 
-    <div class="topsong-container">
+    <div id="topsong-right">
       <?php require "../../Component/Header/HeaderLayout.php" ?>
 
-      <div>
-        <div class="header-container"></div>
-      </div>
-
       <div class="content-layout">
-        <div class="wrapper-layout">
-          <div class="header-titlepage">
-            <div class="text-titlepage">
-              <h3>Top 10 thịnh hành</h3>
-            </div>
-
-            <div class="control">
-              <button class="icon-play">
-                <i class="fa-solid fa-play"></i>
-              </button>
-            </div>
+        <div class="header-titlepage">
+          <div class="text-titlepage">
+            <h1>Top 10 thịnh hành</h1>
           </div>
-          <div class="content-selecter">
-            <?php
-            $sql_top_song = $pdo->prepare("SELECT * FROM song ORDER BY listen_count DESC, like_count DESC LIMIT 10;");
-            $sql_top_song->execute();
-            $list_top_song = $sql_top_song->fetchAll(PDO::FETCH_ASSOC);
-            for ($i = 0; $i < count($list_top_song); $i++) {
-            ?>
-              <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_top_song[$i]['album_id'] ?>&song_id=<?php echo $list_top_song[$i]['song_id'] ?>" class="playListSong-item">
-                <div class="playListSong-numbersong">
-                  <div class="playListSong-numbersong-number">
-                    <span class="playListSong-numbersong-number-span">
-                      <?php echo $i + 1 ?>
-                    </span>
-                  </div>
-                  <div class="playListSong-numbersong-dash">
-                    <span class="playListSong-numbersong-dash-span">
-                      <i class="fa-solid fa-minus" style="color: #a7a1a9;"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="playListSong-container">
-                  <div class="playListSong-container-left">
-                    <figure class="playListSong-item-img">
-                      <img src="<?php echo $list_top_song[$i]['song_thumbnail'] ?>" alt="">
-                      <span class="playListSong-item-img-icon">
-                        <i class="fa-solid fa-play" style="color: #fff;"></i>
-                      </span>
-                    </figure>
-                    <div class="playListSong-item-title">
-                      <div class="playListSong-item-title-namesong">
-                        <h4 class="title-namesong"><?php echo $list_top_song[$i]['title_song'] ?></h4>
-                        <span class="playListSong-item-title-nameartist">
-                          <p><?php echo $list_top_song[$i]['title_artist'] ?></p>
-                          <p><i class="fa-solid fa-headphones-simple"></i><?php echo $list_top_song[$i]['listen_count'] ?> <i class="fa-solid fa-heart"></i><?php echo $list_top_song[$i]['like_count'] ?></p>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="playListSong-container-right">
-                    <div class="playListSong-item-runtime"><?php echo $list_top_song[$i]['duration'] ?></div>
-                  </div>
-
-                  <div class="playListSong-item-utilities">
-                    <span class="playListSong-item-utilities-icon-ellipsis">
-                      <i class="fa-solid fa-ellipsis"></i>
-                      <span class="icon-ellipsis-text">
-                        Khác
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </a>
-            <?php } ?>
+          <div class="control">
+            <button class="icon-play">
+              <i class="fa-solid fa-play"></i>
+            </button>
           </div>
         </div>
+        <ul class="topsong-list">
+          <?php
+          $sql_top_song = $pdo->prepare("SELECT * FROM song ORDER BY listen_count DESC, like_count DESC LIMIT 10;");
+          $sql_top_song->execute();
+          $list_top_song = $sql_top_song->fetchAll(PDO::FETCH_ASSOC);
+          for ($i = 0; $i < count($list_top_song); $i++) {
+          ?>
+
+            <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_top_song[$i]['album_id'] ?>&song_id=<?php echo $list_top_song[$i]['song_id'] ?>">
+              <li class="topsong-list--item">
+                <div class="song-info">
+                  <div class="playListSong-numbersong-dash">
+                    <span><?php echo $i + 1 ?></span>
+                  </div>
+                  <div class="img-thumbnail">
+                    <img src="<?php echo $list_top_song[$i]["song_thumbnail"] ?>" alt="">
+                    <i class="fa-solid fa-circle-play"></i>
+                  </div>
+                  <div class="info-song">
+                    <div class="name-song"><?php echo $list_top_song[$i]["title_song"] ?></div>
+                    <div class="author-song"><?php echo $list_top_song[$i]["title_artist"] ?></div>
+                    <div class="heart-quantity">
+                      <i class="fa-solid fa-headphones-simple"></i> <?php echo $list_top_song[$i]["listen_count"] ?>
+                      <!-- đổi chuỗi sang timestamp rồi format date   -->
+                      <p><?php echo date("d/m/Y", strtotime($list_top_song[$i]['release_date'])) ?></p>
+                    </div>
+                  </div>
+                </div>
+                <span>
+                  <p class="song-duration"><?php echo $list_top_song[$i]["duration"] ?></p>
+                </span>
+              </li>
+            </a>
+
+          <?php } ?>
+        </ul>
       </div>
     </div>
   </div>

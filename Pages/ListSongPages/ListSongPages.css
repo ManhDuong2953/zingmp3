@@ -304,12 +304,10 @@
     height: 100px;
     margin: 0;
   }
-  .content-container-left {
-    flex-direction: row;
-  }
 
   .content-container .content-container-left .avt-disk-play {
-    flex: 2;
+    width: 75vw;
+    align-self: center;
   }
   .like {
     align-items: flex-start;

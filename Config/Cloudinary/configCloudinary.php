@@ -24,7 +24,7 @@ function getLinkMedia($cloudinary, $link, $folder, $nameFile)
       "public_id" => $nameFile, // Đặt public_id của tệp âm thanh
       "resource_type" => "auto", // Xác định loại tài nguyên (auto tự động phát hiện)
       "folder" => $folder, // Đặt thư mục lưu trữ
-      "overwrite" => true // Ghi đè lên tệp nếu đã tồn tại
+      "overwrite" => false // Ghi đè lên tệp nếu đã tồn tại
     ]
   );
 

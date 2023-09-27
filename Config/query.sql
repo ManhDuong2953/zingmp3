@@ -16,8 +16,8 @@ CREATE TABLE user (
 CREATE TABLE album (
     album_id INT AUTO_INCREMENT PRIMARY KEY,
     artist_id INT,
-    title_album VARCHAR(255),
-    thumbnail_album VARCHAR(255),
+    title_album VARCHAR(1000),
+    thumbnail_album VARCHAR(1000),
     kindof varchar(255) not null default "Tự do",
     name_artist varchar(255) -- phần này viết lên tiêu đề thôi
 );
@@ -30,7 +30,7 @@ CREATE TABLE song (
     title_artist varchar(255) not null,
     title_song varchar(255) not null,
     song_thumbnail VARCHAR(255) not null,
-    mp3_link VARCHAR(255) not null,
+    mp3_link VARCHAR(1000) not null,
     release_date DATETIME not null,
     duration varchar(20),
     listen_count INT DEFAULT 0,
