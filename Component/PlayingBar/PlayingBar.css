@@ -267,6 +267,10 @@
   .playing-bar .player_controls-right {
     display: none;
   }
+
+  .media_center{
+    max-width: 300px;
+  }
 }
 
 /* CSS cho thiết bị di động (độ rộng màn hình dưới 768px) */
@@ -279,6 +283,10 @@
   }
   .player_controls-main {
     padding: 10px 0 !important;
+  }
+
+  .media_center{
+    max-width: 130px;
   }
   .playing-bar .player_controls-center {
     align-items: center;
