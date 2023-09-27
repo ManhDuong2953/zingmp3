@@ -206,6 +206,10 @@
   justify-content: space-evenly;
 }
 
+.zing-recommend--item-center.mobile {
+  display: none;
+}
+
 .zing-recommend--item-center i {
   margin-right: 5px;
   font-size: 18px;
@@ -245,20 +249,15 @@
 
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
-  /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
-  .zing-recommend--item.zing-recommend--title {
-    height: 50px;
-  }
-
   .right-container {
     width: 100%;
   }
   .like {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .content-container-right .description {
-    margin: 25px 0 15px;
+    margin: 0 15px;
   }
 
   .content-container-left {
@@ -289,6 +288,10 @@
     margin-left: 0;
     flex: 4;
   }
+
+  .zing-recommend--item-center.mobile {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -296,18 +299,44 @@
     display: flex;
     flex-direction: column;
   }
+
   .zing-recommend--item {
-    height: 100px;
     margin: 0;
+  }
+  .zing-recommend--item-center {
+    display: none;
+  }
+
+  .zing-recommend--item-center.mobile {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .zing-recommend--item-center.mobile span {
+    padding: 5px 10px 0 0;
+    font-size: 0.7rem;
+  }
+
+  .zing-recommend--item-center.mobile i {
+    padding-left: 2px;
+  }
+
+  .zing-recommend--item-text {
+    flex: 3;
+    align-self: start;
   }
 
   .content-container .content-container-left .avt-disk-play {
-    width: 65vw;
+    width: 55vw;
     align-self: center;
   }
   .like {
     align-items: center;
     flex-direction: column;
+  }
+
+  .content-container-right .description {
+    margin: 0;
   }
 
   .list-recommend {

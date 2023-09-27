@@ -34,14 +34,14 @@
   width: 100%;
 }
 
-@media (min-width: 600px) and (max-width: 768px) {
+@media (min-width: 769px) and (max-width: 768px) {
   .counterparty ul .wrapper-img {
     width: calc(100% / 4);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .counterparty ul .wrapper-img {
-    width: calc(100% / 2);
+    width: calc(100% / 3);
   }
 }

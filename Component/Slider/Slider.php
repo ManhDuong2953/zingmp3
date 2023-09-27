@@ -38,7 +38,7 @@
                             slidesToScroll: 1,
                             infinite: true,
                             autoplay: true,
-                            autoplaySpeed: 500,
+                            autoplaySpeed: 1000,
                             infinite: true,
                         }
                     },
@@ -48,7 +48,7 @@
                             slidesToShow: 1,
                             slidesToScroll: 1,
                             autoplay: true,
-                            autoplaySpeed: 500,
+                            autoplaySpeed: 1000,
                             infinite: true,
                         }
                     },
@@ -57,9 +57,8 @@
                         settings: {
                             slidesToShow: 1,
                             slidesToScroll: 1,
-                            dots: true,
                             autoplay: true,
-                            autoplaySpeed: 500,
+                            autoplaySpeed: 1000,
                             infinite: true,
                         }
                     }

@@ -177,7 +177,8 @@ h1.title-item--home {
   -webkit-text-stroke: 1.5px #fff;
   color: rgba(74, 144, 226, 0);
   display: flex;
-  font-size: 30px;
+  padding: 0 11px 0 0;
+  font-size: 30px !important;
   font-weight: 600;
   justify-content: center;
   opacity: 0.7;
@@ -207,8 +208,8 @@ h1.title-item--home {
   }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .playListSong-numbersong-dash {
     display: none;
   }
-}
+} */

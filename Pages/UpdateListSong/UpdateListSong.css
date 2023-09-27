@@ -150,7 +150,7 @@
   justify-content: space-evenly;
 }
 
-.zing-recommend--item-center i{
+.zing-recommend--item-center i {
   margin-right: 5px;
   font-size: 18px;
 }
@@ -237,8 +237,16 @@ a.delete_song:hover i.fa-solid.fa-trash.list {
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
   /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
-  .zing-recommend--item.zing-recommend--title {
-    height: 50px;
+  .zing-recommend--item {
+    margin: 0;
+    padding: 10px 0;
+  }
+  a.delete_song i.fa-solid.fa-trash.list {
+    animation: none;
+    transform: translate(0%, -100%);
+    opacity: 1;
+    display: block;
+    padding: 4px;
   }
   a.delete_song {
     position: absolute;
@@ -292,18 +300,14 @@ a.delete_song:hover i.fa-solid.fa-trash.list {
 
   .content-container-right {
     margin-left: 0;
+    margin-top: 30px;
   }
   .like {
     justify-content: flex-start;
   }
 }
 
-@media (max-width: 600px) {
-  .zing-recommend--item {
-    height: 100px;
-    margin: 0;
-  }
-
+@media (max-width: 768px) {
   a.delete_song {
     position: absolute;
     top: calc(50% - 14px);

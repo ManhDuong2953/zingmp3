@@ -17,7 +17,7 @@
 #add-album--main .add-album--container {
   background-color: hsla(0, 0%, 100%, 0.2);
   max-width: 500px;
-  margin: 10px auto 0;
+  margin: 10px auto 20px;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -90,7 +90,7 @@
 
 @media (max-width: 1024px) {
   #add-album--main .add-album--right {
-    margin: 20px auto;
+    margin: auto;
     width: -webkit-fill-available;
   }
 }

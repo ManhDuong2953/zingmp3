@@ -82,9 +82,9 @@
   left: calc(50% - (50px / 2));
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .list-my--album a {
-    width: calc(100% / 2);
+    width: calc(100% / 3);
   }
 
   .list-my--album a.add-album {

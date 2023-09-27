@@ -34,7 +34,7 @@
           <div class="media_left">
             <img class="media-avatar" src="<?php echo $info_song['song_thumbnail'] ?>" alt="" />
             <div class="media_center">
-              <div class="media_music"><?php echo $info_song['title_song'] ?></div>
+              <div class="media_music"><p><?php echo $info_song['title_song'] ?></p></div>
               <div class="media_name">
                 <span><?php echo $info_song['title_artist'] ?></span>
               </div>

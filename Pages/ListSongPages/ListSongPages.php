@@ -30,12 +30,11 @@
           $sql_get_album = null;
 
 
-          if($song_id) {
+          if ($song_id) {
             $sql_get_album = $pdo->prepare("SELECT * FROM album INNER JOIN song on album.album_id = song.album_id WHERE album.album_id = '$album_id' AND song.song_id = '$song_id'");
             $sql_get_album->execute();
             $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
-          }
-          else{
+          } else {
             $sql_get_album = $pdo->prepare("SELECT * FROM album INNER JOIN song on album.album_id = song.album_id WHERE album.album_id = '$album_id' LIMIT 1");
             $sql_get_album->execute();
             $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
@@ -105,7 +104,12 @@
                     </div>
                     <div class="zing-recommend--item-text">
                       <div class="name-song"><?php echo $list_song[$i]['title_song'] ?></div>
-                      <div class="name-single"><?php echo $list_song[$i]['title_artist'] ?></div>
+                      <div class="name-single"><?php echo $list_song[$i]['title_artist'] ?>
+                        <div class="zing-recommend--item-center mobile">
+                          <span><i class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
+                          <span><i class="fa-regular fa-heart"></i><?php echo $list_song[$i]['like_count'] ?></span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="zing-recommend--item-center">

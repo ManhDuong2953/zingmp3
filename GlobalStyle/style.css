@@ -85,17 +85,29 @@ img {
 
   .img-thumbnail,
   .playListSong-item-img {
-    width: 60px !important;
+    width: 70px !important;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span i,
+  div,
+  span {
+    font-size: 0.9rem !important;
   }
 }
 
 @media (max-width: 768px) {
   .song-info .info-song {
-    max-width: 200px;
+    max-width: 150px;
   }
   .img-thumbnail,
   .playListSong-item-img {
-    width: 50px !important;
+    width: 60px !important;
   }
   h2,
   h3,

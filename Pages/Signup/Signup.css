@@ -12,17 +12,17 @@
 }
 
 .icon-home {
-    background-color: #35075b;
-    border-radius: 50%;
-    position: absolute;
-    top: -20px;
-    border: 2px solid;
-    right: -20px;
-    width: 50px;
-    z-index: 1000;
-    height: 50px;
-	padding: 11px;
-    font-size: 22px;
+  background-color: #35075b;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  border: 2px solid;
+  right: 10px;
+  width: 50px;
+  z-index: 1000;
+  height: 50px;
+  padding: 11px;
+  font-size: 22px;
 }
 form {
   display: flex;
