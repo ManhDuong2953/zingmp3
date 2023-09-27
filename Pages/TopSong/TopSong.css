@@ -208,8 +208,8 @@ h1.title-item--home {
   }
 }
 
-/* @media (max-width: 768px) {
-  .playListSong-numbersong-dash {
-    display: none;
+@media (max-width: 768px) {
+  .song-info .info-song {
+    max-width: 110px;
   }
-} */
+}
