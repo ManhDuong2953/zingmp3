@@ -49,7 +49,7 @@
           </div>
           <div class="media-content">
             <div class="content-top">
-              <h3 class="title"><?php echo $album_info['title_album'] ?></h3>
+              <h2 class="title"><?php echo $album_info['title_album'] ?></h2>
               <div class="artists">
                 <div class="like">
                   <p><i class="fa-regular fa-heart"></i> <b class="like_count">0</b> người yêu thích</p>

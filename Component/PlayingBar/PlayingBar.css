@@ -278,7 +278,7 @@
     display: none !important;
   }
   .player_controls-main {
-    padding: 10px 0 30px 0 !important;
+    padding: 10px 0 !important;
   }
   .playing-bar .player_controls-center {
     align-items: center;
@@ -287,6 +287,8 @@
     justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
+    width: auto;
+    max-width: unset;
   }
 
   .media_left img {
