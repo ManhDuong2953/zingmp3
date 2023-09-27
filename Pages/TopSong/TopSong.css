@@ -209,7 +209,7 @@ h1.title-item--home {
 }
 
 @media (max-width: 768px) {
-  .song-info .info-song {
-    max-width: 110px;
+  .topsong-list--item p.song-duration{
+    display: none;
   }
 }
