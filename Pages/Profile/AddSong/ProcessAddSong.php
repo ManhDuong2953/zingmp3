@@ -12,12 +12,12 @@ if(isset($_SESSION["id_user"])){
 
 
     //song thumbnai
-    $thumbnail_file_name = $_FILES["song_thumbnail"]["name"];
+    $thumbnail_file_name = $title_song."in".$album_id."by".$title_artist;
     $thumbnail_file_tmp =  $_FILES["song_thumbnail"]["tmp_name"];
     $song_thumbnail = getLinkMedia($cloudinary, $thumbnail_file_tmp, "song_thumbnail", $thumbnail_file_name);
 
     //song mp3
-    $mp3_link_name = $_FILES["mp3_link"]["name"];
+    $mp3_link_name = $_FILES["mp3_link"]["name"]."by".$title_artist."in".$album_id;
     $mp3_link_tmp =  $_FILES["mp3_link"]["tmp_name"];
     $mp3_link = getLinkMedia($cloudinary, $mp3_link_tmp, "audio", $mp3_link_name);
 

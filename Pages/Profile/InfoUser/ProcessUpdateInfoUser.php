@@ -18,7 +18,7 @@ if (count($_POST) > 0) {
     $sql_info->execute();
     if (count($_FILES) > 0) {
         // lấy thông tin về tệp ảnh
-        $file_name = $_FILES["avatar_link"]["name"];
+        $file_name = $user_name.$account_name;
         $file_size = $_FILES["avatar_link"]["size"];
         $file_tmp = $_FILES["avatar_link"]["tmp_name"];
         $file_type = $_FILES["avatar_link"]["type"];
