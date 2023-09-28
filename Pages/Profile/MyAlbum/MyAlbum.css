@@ -84,7 +84,7 @@
 
 @media (max-width: 768px) {
   .list-my--album a {
-    width: calc(100% / 3);
+    width: calc(100% / 2);
   }
 
   .list-my--album a.add-album {
