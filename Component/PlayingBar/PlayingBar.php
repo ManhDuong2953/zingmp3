@@ -34,7 +34,9 @@
           <div class="media_left">
             <img class="media-avatar" src="<?php echo $info_song['song_thumbnail'] ?>" alt="" />
             <div class="media_center">
-              <div class="media_music"><p><?php echo $info_song['title_song'] ?></p></div>
+              <div class="media_music">
+                <p><?php echo $info_song['title_song'] ?></p>
+              </div>
               <div class="media_name">
                 <span><?php echo $info_song['title_artist'] ?></span>
               </div>
@@ -186,18 +188,30 @@
       timeRight.innerHTML = formatTime(duration);
     });
 
+
+
+    // hàm sử lý khi có nút volume thay đổi
+    function UpdateVolume(volumeValue) {
+      localStorage.setItem("defaultVolume", volumeValue)
+      btnVolume.style.background = `linear-gradient(90deg, #fff ${volumeValue - 1}%, hsla(0, 0%, 100%, 0.3) ${volumeValue - 1}%)`;
+      btnVolume.value = volumeValue;
+      songPlaying.volume = volumeValue / 100;
+      if (volumeValue == 0) {
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+      } else if (volumeValue > 0 && volumeValue <= 70) {
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-low"></i>';
+      } else if (volumeValue > 70) {
+        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+      }
+    }
+
+    
+    let defaultVolume = localStorage.getItem("defaultVolume") || 1;
+    UpdateVolume(defaultVolume);
     // Bắt sự kiện thay đổi âm lượng
     btnVolume.addEventListener("input", function(e) {
       let volume = parseFloat(e.target.value);
-      btnVolume.style.background = `linear-gradient(90deg, #fff ${volume - 1}%, hsla(0, 0%, 100%, 0.3) ${volume - 1}%)`;
-      songPlaying.volume = volume / 100;
-      if (volume == 0) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-      } else if (volume > 0 && volume <= 70) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-low"></i>';
-      } else if (volume > 70) {
-        volumeIcon.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-      }
+      UpdateVolume(volume);
     });
 
     // Bắt sự kiện chuột khi kéo thanh progress bar
