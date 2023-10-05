@@ -44,35 +44,33 @@ CREATE TABLE favorite_list (
     user_id int
 );
 
-
 -- Thêm ràng buộc ngoại cho bảng song
-
-ALTER TABLE song
-ADD FOREIGN KEY (album_id) REFERENCES album(album_id)
-ON DELETE CASCADE
-ON UPDATE CASCADE,
-ADD FOREIGN KEY (artist_id) REFERENCES user(id_user)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
+ALTER TABLE
+    song
+ADD
+    FOREIGN KEY (album_id) REFERENCES album(album_id) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD
+    FOREIGN KEY (artist_id) REFERENCES user(id_user) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Thêm ràng buộc khóa ngoại cho bảng user
-ALTER TABLE user
-ADD FOREIGN KEY (favorite_list_id) REFERENCES favorite_list(favorite_list_id)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
+ALTER TABLE
+    user
+ADD
+    FOREIGN KEY (favorite_list_id) REFERENCES favorite_list(favorite_list_id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Thêm ràng buộc ngoại cho bảng album
-ALTER TABLE album
-ADD FOREIGN KEY (artist_id) REFERENCES user(id_user)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
+ALTER TABLE
+    album
+ADD
+    FOREIGN KEY (artist_id) REFERENCES user(id_user) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Thêm ràng buộc ngoại cho bảng favorite_list
-ALTER TABLE favorite_list
-ADD FOREIGN KEY (song_id) REFERENCES song(song_id)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-ALTER TABLE favorite_list
-ADD FOREIGN KEY (song_id) REFERENCES song(song_id)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
+ALTER TABLE
+    favorite_list
+ADD
+    FOREIGN KEY (song_id) REFERENCES song(song_id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE
+    favorite_list
+ADD
+    FOREIGN KEY (song_id) REFERENCES song(song_id) ON DELETE CASCADE ON UPDATE CASCADE;

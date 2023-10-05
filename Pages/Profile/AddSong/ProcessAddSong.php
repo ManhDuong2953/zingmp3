@@ -6,9 +6,9 @@ echo "<pre>";
 if(isset($_SESSION["id_user"])){
     $artist_id = $_SESSION["id_user"];
     $album_id= $_POST["album_id"];
-    $title_song = $_POST["title_song"];
+    $title_song = trim($_POST["title_song"]);
     $duration = $_POST["duration"];
-    $title_artist = $_POST["title_artist"];
+    $title_artist = trim($_POST["title_artist"]);
 
 
     //song thumbnai

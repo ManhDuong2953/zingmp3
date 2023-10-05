@@ -67,6 +67,7 @@
   border: 2px dotted white;
   position: relative;
   width: calc((100% / 4) - 20px);
+  min-height: 100px;
   margin: 20px 10px;
   background-color: hsla(0, 0%, 100%, 0.2);
 }

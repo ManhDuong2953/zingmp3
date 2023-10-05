@@ -7,9 +7,9 @@ require_once '../../../Config/Cloudinary/configCloudinary.php';
 
 if (count($_POST) > 0) {
     $artist_id = $_SESSION["id_user"];
-    $title_album = $_POST["title_album"];
-    $kindof = $_POST["kindof"];
-    $name_artist = $_POST["name_artist"];
+    $title_album = trim($_POST["title_album"]);
+    $kindof = trim($_POST["kindof"]);
+    $name_artist = trim($_POST["name_artist"]);
 
     $file_name = $_FILES["thumbnail_album"]["name"] . $title_album . $name_artist;
     $file_tmp =  $_FILES["thumbnail_album"]["tmp_name"];
