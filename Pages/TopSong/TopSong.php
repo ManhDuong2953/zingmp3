@@ -25,7 +25,7 @@
       <div class="content-layout">
         <div class="header-titlepage">
           <div class="text-titlepage">
-            <h1>Top 10 thịnh hành</h1>
+            <h1>Top 20 thịnh hành</h1>
           </div>
           <div class="control">
             <button class="icon-play">
@@ -35,7 +35,7 @@
         </div>
         <ul class="topsong-list">
           <?php
-          $sql_top_song = $pdo->prepare("SELECT * FROM song ORDER BY listen_count DESC, like_count DESC LIMIT 10;");
+          $sql_top_song = $pdo->prepare("SELECT * FROM song ORDER BY listen_count DESC, like_count DESC LIMIT 20;");
           $sql_top_song->execute();
           $list_top_song = $sql_top_song->fetchAll(PDO::FETCH_ASSOC);
           for ($i = 0; $i < count($list_top_song); $i++) {

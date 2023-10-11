@@ -37,7 +37,7 @@
             </a>
             <a href="/ZingMP3/Pages/TopSong/TopSong.php">
                 <li class=<?php echo $urlParts === "TopSong" ? 'active' : '' ?>><i class="fa-solid fa-ranking-star"></i>
-                    <p>Top 100</p>
+                    <p>BXH</p>
                 </li>
             </a>
         </ul>

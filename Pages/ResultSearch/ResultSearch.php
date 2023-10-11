@@ -69,8 +69,7 @@
                                     </div>
                                 </div>
                                 <span>
-                                    <p class="song-duration">5:22</p>
-
+                                    <p class="song-duration"><?php echo $results_search[$i]['duration'] ?></p>
                                 </span>
                             </li>
                         </a>

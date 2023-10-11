@@ -33,6 +33,7 @@
     - THÊM XÓA ALBUM, BÀI HÁT
     - THÊM DANH SÁCH YÊU THÍCH
     - TOP THỊNH HÀNH THEO LƯỢT NGHE, LƯỢT LIKE
+    - TĂNG LƯỢT GHE SAU 20s
     - PHÁT NGẪU NHIÊN, PHÁT VÒNG LẶP (SỬ DỤNG LOCALSTORAGE VÀ SESSION)
 
 

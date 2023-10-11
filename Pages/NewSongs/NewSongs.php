@@ -27,7 +27,7 @@
                 </h1>
                 <ul class="newsongs-list">
                     <?php
-                    $sql_new_song = $pdo->prepare("SELECT * FROM song ORDER BY release_date DESC LIMIT 8");
+                    $sql_new_song = $pdo->prepare("SELECT * FROM song ORDER BY release_date DESC LIMIT 15");
                     $sql_new_song->execute();
                     $list_new_song = $sql_new_song->fetchAll(PDO::FETCH_ASSOC);
                     for ($i = 0; $i < count($list_new_song); $i++) {
