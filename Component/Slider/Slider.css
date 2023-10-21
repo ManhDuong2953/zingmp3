@@ -14,7 +14,7 @@
 .slider-container .slider-item {
   overflow: hidden !important;
   position: relative;
-  height: 250px;
+  height: 280px;
 }
 
 .slider-container .slick-prev {

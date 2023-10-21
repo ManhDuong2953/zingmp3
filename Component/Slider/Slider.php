@@ -34,7 +34,7 @@
         // Kích hoạt Slick Slider
         $(document).ready(function() {
             $('.slider').slick({
-                // autoplay: true,
+                autoplay: true,
                 autoplaySpeed: 1000,
                 infinite: true,
                 slidesToShow: 3,
