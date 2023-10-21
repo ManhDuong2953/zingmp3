@@ -7,17 +7,25 @@
     <!-- CDN SLICK -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    
+
     <link rel="stylesheet" href="/ZingMP3/Component/Slider/Slider.css">
 </head>
 
 <body>
     <div class="slider-container">
         <div class="slider">
-            <div class="slider-item"><img src="https://photo-zmp3.zmdcdn.me/banner/c/9/4/6/c946c3573ccd1116a40fe9d82645d75f.jpg" alt=""></div>
-            <div class="slider-item"><img src="https://photo-zmp3.zmdcdn.me/banner/6/7/3/3/6733b2719357bfb52a8c08cd35b15df3.jpg" alt=""></div>
-            <div class="slider-item"><img src="https://photo-zmp3.zmdcdn.me/banner/3/6/3/4/3634ca2bd7a35d808f042ca93f65dd75.jpg" alt=""></div>
-            <div class="slider-item"><img src="https://photo-zmp3.zmdcdn.me/banner/5/d/5/4/5d54c7925b3ae8bff93bb2448e9a696e.jpg" alt=""></div>
+            <?php
+            $sql_album = $pdo->prepare("SELECT * FROM album ORDER BY album_id DESC LIMIT 5");
+            $sql_album->execute();
+            $list_album_suggest = $sql_album->fetchAll(PDO::FETCH_ASSOC);
+            for ($i = 0; $i < count($list_album_suggest); $i++) {
+            ?>
+                <div class="slider-item" title="<?php echo $list_album_suggest[$i]['title_album']?>">
+                    <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $list_album_suggest[$i]['album_id']?>">
+                        <img src="<?php echo $list_album_suggest[$i]['thumbnail_album']?>" alt="">
+                    </a>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -26,7 +34,7 @@
         // Kích hoạt Slick Slider
         $(document).ready(function() {
             $('.slider').slick({
-                autoplay: true,
+                // autoplay: true,
                 autoplaySpeed: 1000,
                 infinite: true,
                 slidesToShow: 3,
