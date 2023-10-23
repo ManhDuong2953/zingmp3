@@ -27,7 +27,7 @@
 
                 <?php
                 $keyword = $_GET["keyword"];
-
+                $text = str_replace(' ', '', $keyword);
                 // Sử dụng PDO để thực hiện truy vấn SQL
                 $sql_search = $pdo->prepare("SELECT s.*
                                             FROM song s
@@ -39,7 +39,7 @@
                                                 a.kindof LIKE :keyword OR
                                                 s.title_artist LIKE :keyword OR
                                                 u.user_name LIKE :keyword");
-                $sql_search->bindValue(':keyword', "%$keyword%", PDO::PARAM_STR);
+                $sql_search->bindValue(':keyword', "%$text%", PDO::PARAM_STR);
                 $sql_search->execute();
 
                 // Lấy kết quả tìm kiếm

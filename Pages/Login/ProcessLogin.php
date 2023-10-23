@@ -2,8 +2,6 @@
 session_start();
 
 
-var_dump($_POST);
-
 require_once("../../Config/configConnectDB.php");
 if(!empty($_POST['account_name']) && !empty($_POST['password'])) {
     $acc_name = $_POST['account_name'];
@@ -28,6 +26,5 @@ if(!empty($_POST['account_name']) && !empty($_POST['password'])) {
     } 
 } else { 
     echo "Vui lòng nhập tên người dùng và mật khẩu";
-
 }
 ?>
