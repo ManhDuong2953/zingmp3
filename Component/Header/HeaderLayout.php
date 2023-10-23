@@ -38,9 +38,13 @@
             box.style.display = "block";
           });
 
-          inputField.addEventListener("blur", function() {
-            box.style.display = "none";
+          inputField.addEventListener("blur", function(e) {
+            // Kiểm tra xem sự kiện có được kích hoạt bởi thẻ a không
+            if (!e.relatedTarget || e.relatedTarget.tagName.toLowerCase() !== 'a') {
+              box.style.display = "none";
+            }
           });
+
 
           function loadData() {
             var inputValue = inputField.value;

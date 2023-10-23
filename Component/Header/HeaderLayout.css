@@ -82,15 +82,15 @@
 }
 
 .header_content-left .search-form-header .box-suggest ul li img {
-  width: 100px;
-  height: 60px;
+  width: 60px;
+  height: 30px;
   object-fit: cover;
   border-radius: 4px;
   margin-right: 10px;
 }
 
 .header_content-left .search-form-header .box-suggest ul li p {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   padding: 4px;
   text-transform: none;
