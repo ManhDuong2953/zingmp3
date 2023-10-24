@@ -132,6 +132,13 @@
   </div>
 
   <script>
+    var activeItem = document.querySelector('.zing-recommend--item.active');
+
+    if (activeItem) {
+      // Cuộn đến thẻ li active
+      document.querySelector('.list-recommend').scrollTop = activeItem.offsetTop - (activeItem.clientHeight*3);
+    }
+
     //in ra số lượt nghe và tym
     document.querySelector(".artists b.like_count").innerHTML = <?php echo $total_count_like ?>;
     document.querySelector(".artists b.listen_count").innerHTML = <?php echo $total_count_listener ?>;
