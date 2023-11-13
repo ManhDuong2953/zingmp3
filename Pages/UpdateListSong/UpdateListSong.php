@@ -40,10 +40,10 @@
               <div class="content-top">
                 <h3 class="title"><?php echo $album_info['title_album'] ?></h3>
                 <div class="artists">
-                <div class="like">
-                  <p><i class="fa-regular fa-heart"></i> <b class="like_count">0</b> người yêu thích</p>
-                  <p><i class="fa-solid fa-headphones-simple"></i> <b class="listen_count">0</b> lượt nghe</p>
-                </div>
+                  <div class="like">
+                    <p><i class="fa-regular fa-heart"></i> <b class="like_count">0</b> người yêu thích</p>
+                    <p><i class="fa-solid fa-headphones-simple"></i> <b class="listen_count">0</b> lượt nghe</p>
+                  </div>
                   <span>Tác giả: <?php echo $album_info['name_artist'] ?> </span>
                 </div>
               </div>
@@ -61,9 +61,9 @@
           <div class="content-container-right">
 
             <div class="zing-recommend--item zing-recommend--title">
-              <div class="zing-recommend--item-left">BÀI HÁT</div>
-              <div class="zing-recommend--item-center">LƯỢT TƯƠNG TÁC</div>
-              <div class="zing-recommend--item-right gap-3">THỜI GIAN</div>
+              <div class="zing-recommend--item-left">Bài hát</div>
+              <div class="zing-recommend--item-center">Lượt tương tác</div>
+              <div class="zing-recommend--item-right">Thời gian</div>
             </div>
 
 
@@ -103,14 +103,16 @@
                       </div>
                     </div>
                   </a>
-                  <a href="./ProcessDeleteSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="delete_song">
-                    <i class="fa-solid fa-trash list" title="Xóa bài hát"></i>
-                  </a>
+                  <div class="action_updateSong">
+                    <a href="./ProcessDeleteSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="delete_song">
+                      <i class="fa-solid fa-trash" title="Xóa bài hát"></i>
+                    </a>
+                    <a href="../UpdateSong/UpdateSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="update_song">
+                      <i class="fa-solid fa-wrench" title="Sửa bài hát"></i>
+                    </a>
+                  </div>
                 </div>
               <?php } ?>
-
-
-
               <a href="../Profile/AddSong/AddSong.php?album_id=<?php echo $album_id ?>" title="Thêm bài hát">
                 <div class="zing-recommend--item add_song">
                   <i class="fa-solid fa-plus"></i>

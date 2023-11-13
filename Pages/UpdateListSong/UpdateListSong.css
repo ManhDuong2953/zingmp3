@@ -109,6 +109,8 @@
 /* danh sach bai hat */
 .list-song {
   position: relative;
+  background-color: #0000008f;
+  margin-bottom: 20px;
 }
 .content-container-right {
   color: #fff;
@@ -127,7 +129,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 10px 10px 10px 40px;
+  padding: 10px;
 }
 
 .zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover {
@@ -139,7 +141,7 @@
   color: hsla(0, 0%, 100%, 0.5);
 }
 .zing-recommend--item-left {
-  flex: 6;
+  flex: 5;
   display: flex;
 }
 .zing-recommend--item-center {
@@ -185,28 +187,24 @@
   font-size: 10px;
 }
 
-a.delete_song {
-  position: absolute;
-  top: calc(50% - 7px);
+.action_updateSong {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background-color: #0000008f;
 }
 
-a.delete_song i.fa-solid.fa-trash.list {
+.action_updateSong a {
   cursor: pointer;
-  display: none;
-  transform: translate(0%, -26%);
-  color: red;
-  background-color: wheat;
   padding: 10px;
 }
 
-.list-song:hover a.delete_song i.fa-solid.fa-trash.list {
-  display: block;
-  animation: show_in 0.5s ease-in;
+.action_updateSong a:hover i.fa-trash {
+  color: red;
 }
 
-a.delete_song:hover i.fa-solid.fa-trash.list {
-  background-color: red;
-  color: wheat;
+.action_updateSong a:hover i.fa-wrench {
+  color: forestgreen;
 }
 
 .zing-recommend--item.add_song {
@@ -223,36 +221,13 @@ a.delete_song:hover i.fa-solid.fa-trash.list {
   background-color: rgba(250, 235, 215, 0.6);
 }
 
-@keyframes show_in {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(0%, -26%);
-  }
-}
-
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
   /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
   .zing-recommend--item {
     margin: 0;
-    padding: 10px 0;
   }
-  a.delete_song i.fa-solid.fa-trash.list {
-    animation: none;
-    transform: translate(0%, -100%);
-    opacity: 1;
-    display: block;
-    padding: 4px;
-  }
-  a.delete_song {
-    position: absolute;
-    top: calc(50% - 14px);
-    left: -7px;
-  }
+
   .content-container {
     display: flex;
     flex-direction: column;
@@ -308,11 +283,9 @@ a.delete_song:hover i.fa-solid.fa-trash.list {
 }
 
 @media (max-width: 768px) {
-  a.delete_song {
-    position: absolute;
-    top: calc(50% - 14px);
-    left: -7px;
-  }
+.list-song a:nth-child(1){
+padding: 0 5px;
+}
   .like {
     align-items: flex-start;
     flex-direction: column;
