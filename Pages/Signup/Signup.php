@@ -1,3 +1,41 @@
+<?php
+session_start();
+require_once("../../Config/configConnectDB.php");
+
+
+if (isset($_POST['submit'])) {
+    $inputs = array(
+        'name_account' => $_POST['name_account'],
+        'name_user' => $_POST['name_user'],
+        'password_hash' => $_POST['password_hash'],
+        'confirm_password' => $_POST['confirm_password'],
+    );
+
+    if (count(array_filter($inputs)) !== count($inputs)) {
+        $message[] = 'Please enter your full details!';
+    } else {
+        if ($inputs["password_hash"] != $inputs['confirm_password']) {
+            $message[] = "Passwords don't match!";
+        } else {
+            $checkUserAccount = $pdo->prepare("SELECT * FROM user where account_name = :name_account");
+            $checkUserAccount->bindParam(':name_account', $inputs['name_account'], PDO::PARAM_STR);
+            $checkUserAccount->execute();
+            $checkResult = $checkUserAccount->fetchAll(PDO::FETCH_ASSOC);
+            if (count($checkResult) === 0) {
+                $sql = $pdo->prepare("INSERT INTO user (user_name, account_name, password) VALUES (:name_user, :name_account, :password_hash);");
+                $sql->bindParam(':name_user', $inputs['name_user'], PDO::PARAM_STR);
+                $sql->bindParam(':name_account', $inputs['name_account'], PDO::PARAM_STR);
+                $sql->bindParam(':password_hash', $inputs['password_hash'], PDO::PARAM_STR);
+                $sql->execute();
+                header('Location: ../Login/Login.php');
+            } else {
+                $message[] = 'The account was in existence!';
+            }
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,34 +53,36 @@
 
 <body>
     <div class="signup-container">
-        <form method="post" action="./ProcessSignup.php">
+        <form method="post">
             <img src="../../Component/assets/Logo.png" alt="">
-            <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+            <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #eee;"></i></a>
 
-            <label for="useraccount">Tên tài khoản</label>
-            <input type="text" name="name_account" placeholder="Nhập tên tài khoản..." id="useraccount">
+            <?php
+            if (isset($message)) {
+                foreach ($message as $singleMessage) {
+                    echo '<div class="singleMessage">' . $singleMessage . '</div>';
+                }
+            }
+            ?>
 
-            <label for="username">Họ và tên</label>
-            <input type="text" name="name_user" placeholder="Nhập tên người dùng" id="username">
+            <label for="AccountName">Account Name</label>
+            <input type="text" name="name_account" placeholder="Nickname..." id="AccountName">
 
-            <label for="password">Mật khẩu</label>
-            <input type="password" name="password_hash" placeholder="Password" id="password">
+            <label for="Fullname">Fullname</label>
+            <input type="text" name="name_user" placeholder="Name..." id="Fullname">
 
-            <label for="confirm_password">Nhập lại mật khẩu</label>
-            <input type="password" name="confirm_password" placeholder="Confirm_Password" id="confirm_password">
+            <label for="Password">Password</label>
+            <input type="Password" name="password_hash" placeholder="Password..." id="Password">
 
-            <button type="submit">Đăng kí</button>
+            <label for="confirm_password">Confirm Password</label>
+            <input type="Password" name="confirm_password" placeholder="Confirm..." id="confirm_password">
+
+            <button type="submit" name="submit">Signup Now</button>
             <div class="direct-login">
-                <p>Quay lại <a href="/ZingMP3/Pages/Login/Login.php">đăng nhập ngay</a></p>
+                <p>Already have an account? <a href="/ZingMP3/Pages/Login/Login.php">Login now</a></p>
             </div>
         </form>
     </div>
-</body>
-
-</html>
-
-
-
 </body>
 
 </html>

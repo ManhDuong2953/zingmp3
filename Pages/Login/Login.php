@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+
+require_once("../../Config/configConnectDB.php");
+
+if (!empty($_POST['account_name']) && !empty($_POST['password'])) {
+    $acc_name = $_POST['account_name'];
+    $password = $_POST['password'];
+    $query = "SELECT * FROM user where account_name = :account_name AND password = :password";
+    $statement = $pdo->prepare($query);
+    $statement->bindValue(':account_name', $acc_name, PDO::PARAM_STR);
+    $statement->bindValue(':password', $password, PDO::PARAM_STR);
+    $statement->execute();
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        $account_name_user = $user['account_name'];
+        $id_user = $user['id_user'];
+        $_SESSION['account_name_user'] = "$account_name_user";
+        $_SESSION['id_user'] = $id_user;
+        header('Location: ../Home/HomeLayOut.php');
+        exit();
+    } else {
+        $message[] = 'Please check your information again!';
+    }
+} else {
+    $message[] = 'Please fill in the information!';
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,21 +47,31 @@
 
 <body>
     <div class="login-container">
-        <form method="post" action="./ProcessLogin.php">
-            <img src="../../Component/assets/Logo.png" alt="">
-            <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+        <div class="border-effect"></div>
+            <form method="post">
+                <img src="../../Component/assets/Logo.png" alt="">
+                <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #eee;"></i></a>
 
-            <label for="username">Tên tài khoản</label>
-            <input type="text" name="account_name" placeholder="Email or Phone" id="username">
+                <?php
+                if (isset($message)) {
+                    foreach ($message as $singleMessage) {
+                        echo '<div class="singleMessage">' . $singleMessage . '</div>';
+                    }
+                }
+                ?>
 
-            <label for="password">Mật khẩu</label>
-            <input type="password" name="password" placeholder="Password" id="password">
+                <label for="AccountName">Account Name</label>
+                <input type="text" name="account_name" placeholder="Account Name..." id="AccountName">
 
-            <button type="submit">Đăng nhập</button>
-            <div class="direct-signup">
-                <p>Nếu không có tài khoản, <a href="/ZingMP3/Pages/Signup/Signup.php">tạo tài khoản mới</a></p>
-            </div>
-        </form>
+                <label for="Password">Password</label>
+                <input type="password" name="password" placeholder="Password..." id="Password">
+
+                <button type="submit"><span>Login Now</span></button>
+                <div class="direct-signup">
+                    <p>Don't have an account? <a href="/ZingMP3/Pages/Signup/Signup.php">Signup now</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

@@ -15,14 +15,14 @@
 </head>
 
 <body>
-    <div id="newsongs-main">
+    <div id="newsongs">
         <?php require '../../Component/Navbar/Navbar.php' ?>
         <?php require_once "../../Config/configConnectDB.php" ?>
 
-        <div class="right-newsongs">
+        <div class="newsongs-main">
             <?php require '../../Component/Header/HeaderLayout.php' ?>
             <div class="newsongs-container">
-                <h1 class="title-item--home">
+                <h1 class="title">
                     <i class="fa-solid fa-music"></i> Nhạc mới
                 </h1>
                 <ul class="newsongs-list">
@@ -33,19 +33,19 @@
                     for ($i = 0; $i < count($list_new_song); $i++) {
                     ?>
                         <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id'] ?>&song_id=<?php echo $list_new_song[$i]['song_id'] ?>">
-                            <li class="newsongs-list--item">
+                            <li class="newsongs-list_item">
                                 <div class="song-info">
-                                    <div class="img-thumbnail">
+                                    <div class="song_thumbnail">
                                         <img src="<?php echo $list_new_song[$i]["song_thumbnail"] ?>" alt="">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>
-                                    <div class="info-song">
-                                        <div class="name-song"><?php echo $list_new_song[$i]["title_song"] ?></div>
-                                        <div class="author-song"><?php echo $list_new_song[$i]["title_artist"] ?></div>
+                                    <div class="song_details">
+                                        <div class="song-name"><?php echo $list_new_song[$i]["title_song"] ?></div>
+                                        <div class="song-author"><?php echo $list_new_song[$i]["title_artist"] ?></div>
                                         <div class="heart-quantity">
                                             <i class="fa-solid fa-headphones-simple"></i> <?php echo $list_new_song[$i]["listen_count"] ?>
                                             <!-- đổi chuỗi sang timestamp rồi format date   -->
-                                            <p><?php echo date("d/m/Y", strtotime($list_new_song[$i]['release_date']))?></p> 
+                                            <p><?php echo date("d/m/y", strtotime($list_new_song[$i]['release_date']))?></p> 
                                         </div>
                                     </div>
                                 </div>

@@ -56,7 +56,7 @@
             <div class="profile-content">
                 <h3>Danh sách yêu thích</h3>
                 <?php
-                $sql_get_my_heart = $pdo->prepare("SELECT * FROM favorite_list INNER JOIN song ON favorite_list.song_id = song.song_id WHERE favorite_list.user_id = '$id_user'");
+                $sql_get_my_heart = $pdo->prepare("SELECT * FROM favorite_list INNER JOIN song ON favorite_list.song_id = song.song_id WHERE favorite_list.user_id = '$id_user' ORDER BY favorite_list_id DESC");
                 $sql_get_my_heart->execute();
                 $list_my_heart = $sql_get_my_heart->fetchAll(PDO::FETCH_ASSOC);
                 ?>
