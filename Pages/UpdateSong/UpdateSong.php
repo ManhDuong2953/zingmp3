@@ -65,7 +65,7 @@
                         <input type="submit" value="Cập nhật bài hát">
                     </div>
                 </form>
-                <a href="../MyAlbum/MyAlbum.php"><button class="turn-back">Quay lại</button></a>
+                <a href="../UpdateListSong/UpdateListSong.php?album_id=<?=$album_id?>"><button class="turn-back">Quay lại</button></a>
             </div>
         </div>
 

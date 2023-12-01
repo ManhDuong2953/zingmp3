@@ -15,9 +15,7 @@ if (!empty($_POST['account_name']) && !empty($_POST['password'])) {
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     if ($user) {
-        $account_name_user = $user['account_name'];
         $id_user = $user['id_user'];
-        $_SESSION['account_name_user'] = "$account_name_user";
         $_SESSION['id_user'] = $id_user;
         header('Location: ../Home/HomeLayOut.php');
         exit();
