@@ -1,8 +1,6 @@
 <?php
 require "../../../zingmp3/Config/configConnectDB.php";
 $keyword = $_GET["keyword"];
-$text = str_replace(' ', '', $keyword);
-// Sử dụng PDO để thực hiện truy vấn SQL
 $sql_search = $pdo->prepare("SELECT s.*
                                             FROM song s
                                             INNER JOIN album a ON s.album_id = a.album_id

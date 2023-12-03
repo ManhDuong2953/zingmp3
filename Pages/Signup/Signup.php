@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
             $checkUserAccount->bindParam(':name_account', $inputs['name_account'], PDO::PARAM_STR);
             $checkUserAccount->execute();
             $checkResult = $checkUserAccount->fetchAll(PDO::FETCH_ASSOC);
-            if (count($checkResult) === 0) {
+            if (count($checkResult) == 0) {
                 $sql = $pdo->prepare("INSERT INTO user (user_name, account_name, password) VALUES (:name_user, :name_account, :password_hash);");
                 $sql->bindParam(':name_user', $inputs['name_user'], PDO::PARAM_STR);
                 $sql->bindParam(':name_account', $inputs['name_account'], PDO::PARAM_STR);

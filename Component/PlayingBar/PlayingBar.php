@@ -205,7 +205,7 @@
       }
     }
 
-    
+
     let defaultVolume = localStorage.getItem("defaultVolume") || 1;
     UpdateVolume(defaultVolume);
     // Bắt sự kiện thay đổi âm lượng
