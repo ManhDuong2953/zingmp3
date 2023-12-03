@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   outline: none;
   border: none;
   text-decoration: none;
@@ -85,8 +85,7 @@ h1.title {
 .newsongs-container
   ul.newsongs-list
   a:hover
-  li.newsongs-list_item
-  .song-info
+  li.newsongs-list_item.song-info
   i.fa-circle-play {
   display: block;
 }
@@ -121,7 +120,6 @@ h1.title {
   font-weight: 600;
   padding: 4px;
   text-transform: none;
-  
 }
 
 .song-info .song-author,
@@ -139,16 +137,11 @@ h1.title {
 }
 
 @media (max-width: 1024px) {
-  .newsongs-container ul.newsongs-list a {
-    width: 100%;
-  }
   .right-newsongs {
     width: 100%;
   }
 
-
-
-  .newsongs-main{
+  .newsongs-main {
     width: 100%;
   }
 }

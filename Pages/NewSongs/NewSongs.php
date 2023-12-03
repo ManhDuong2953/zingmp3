@@ -1,4 +1,3 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +44,7 @@
                                         <div class="heart-quantity">
                                             <i class="fa-solid fa-headphones-simple"></i> <?php echo $list_new_song[$i]["listen_count"] ?>
                                             <!-- đổi chuỗi sang timestamp rồi format date   -->
-                                            <p><?php echo date("d/m/y", strtotime($list_new_song[$i]['release_date']))?></p> 
+                                            <p><?php echo date("d/m/Y", strtotime($list_new_song[$i]['release_date']))?></p>
                                         </div>
                                     </div>
                                 </div>

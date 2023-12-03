@@ -4,26 +4,27 @@ session_start();
 
 require_once("../../Config/configConnectDB.php");
 
-if (!empty($_POST['account_name']) && !empty($_POST['password'])) {
-    $acc_name = $_POST['account_name'];
-    $password = $_POST['password'];
-    $query = "SELECT * FROM user where account_name = :account_name AND password = :password";
-    $statement = $pdo->prepare($query);
-    $statement->bindValue(':account_name', $acc_name, PDO::PARAM_STR);
-    $statement->bindValue(':password', $password, PDO::PARAM_STR);
-    $statement->execute();
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['account_name']) && !empty($_POST['password'])) {
+        $acc_name = $_POST['account_name'];
+        $password = $_POST['password'];
+        $statement = $pdo->prepare("SELECT * FROM user where account_name = :account_name AND password = :password");
+        $statement->bindValue(':account_name', $acc_name, PDO::PARAM_STR);
+        $statement->bindValue(':password', $password, PDO::PARAM_STR);
+        $statement->execute();
 
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
-    if ($user) {
-        $id_user = $user['id_user'];
-        $_SESSION['id_user'] = $id_user;
-        header('Location: ../Home/HomeLayOut.php');
-        exit();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($user) {
+            $id_user = $user['id_user'];
+            $_SESSION['id_user'] = $id_user;
+            header('Location: ../Home/HomeLayOut.php');
+            exit();
+        } else {
+            $message[] = 'Please check your information again!';
+        }
     } else {
-        $message[] = 'Please check your information again!';
+        $message[] = 'Please fill in the information!';
     }
-} else {
-    $message[] = 'Please fill in the information!';
 }
 ?>
 
@@ -45,31 +46,29 @@ if (!empty($_POST['account_name']) && !empty($_POST['password'])) {
 
 <body>
     <div class="login-container">
-        <div class="border-effect"></div>
-            <form method="post">
-                <img src="../../Component/assets/Logo.png" alt="">
-                <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #eee;"></i></a>
+        <form method="post">
+            <img src="../../Component/assets/Logo.png" alt="">
+            <a href="/ZingMP3/Pages/Home/HomeLayOut.php" class="icon-home"><i class="fa-solid fa-house" style="color: #eee;"></i></a>
 
-                <?php
-                if (isset($message)) {
-                    foreach ($message as $singleMessage) {
-                        echo '<div class="singleMessage">' . $singleMessage . '</div>';
-                    }
+            <?php
+            if (isset($message)) {
+                foreach ($message as $singleMessage) {
+                    echo '<div class="singleMessage">' . $singleMessage . '</div>';
                 }
-                ?>
+            }
+            ?>
 
-                <label for="AccountName">Account Name</label>
-                <input type="text" name="account_name" placeholder="Account Name..." id="AccountName">
+            <label for="AccountName">Account Name</label>
+            <input type="text" name="account_name" placeholder="Account Name..." id="AccountName">
 
-                <label for="Password">Password</label>
-                <input type="password" name="password" placeholder="Password..." id="Password">
+            <label for="Password">Password</label>
+            <input type="password" name="password" placeholder="Password..." id="Password">
 
-                <button type="submit"><span>Login Now</span></button>
-                <div class="direct-signup">
-                    <p>Don't have an account? <a href="/ZingMP3/Pages/Signup/Signup.php">Signup now</a></p>
-                </div>
-            </form>
-        </div>
+            <button type="submit" name="submit">Login Now</button>
+            <div class="direct-signup">
+                <p>Don't have an account? <a href="/ZingMP3/Pages/Signup/Signup.php">Signup now</a></p>
+            </div>
+        </form>
     </div>
 </body>
 
