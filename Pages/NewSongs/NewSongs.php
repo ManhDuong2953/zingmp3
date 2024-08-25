@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,21 +31,49 @@
                     $sql_new_song->execute();
                     $list_new_song = $sql_new_song->fetchAll(PDO::FETCH_ASSOC);
                     for ($i = 0; $i < count($list_new_song); $i++) {
-                    ?>
-                        <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id'] ?>&song_id=<?php echo $list_new_song[$i]['song_id'] ?>">
-                            <li class="newsongs-list_item">
+                        ?>
+                        <a 
+                            href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_new_song[$i]['album_id'] ?>&song_id=<?php echo $list_new_song[$i]['song_id'] ?>">
+                            <li
+                            <?php
+                                if ($list_new_song[$i]['type_song'] == 'vip') {
+                                    echo 'style="background: #ffd70021"';
+                                }
+                            ?>
+                                class="newsongs-list_item">
                                 <div class="song-info">
                                     <div class="song_thumbnail">
+                                        <?php
+                                        if ($list_new_song[$i]['type_song'] == 'vip') {
+                                            echo '<i class="fa-solid fa-crown"></i>';
+                                        }
+                                        ?>
                                         <img src="<?php echo $list_new_song[$i]["song_thumbnail"] ?>" alt="">
                                         <i class="fa-solid fa-circle-play"></i>
                                     </div>
                                     <div class="song_details">
-                                        <div class="song-name"><?php echo $list_new_song[$i]["title_song"] ?></div>
-                                        <div class="song-author"><?php echo $list_new_song[$i]["title_artist"] ?></div>
-                                        <div class="heart-quantity">
-                                            <i class="fa-solid fa-headphones-simple"></i> <?php echo $list_new_song[$i]["listen_count"] ?>
+                                        <div class="song-name" <?php
+                                        if ($list_new_song[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>><?php echo $list_new_song[$i]["title_song"] ?>
+                                        </div>
+                                        <div class="song-author" <?php
+                                        if ($list_new_song[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>>
+                                            <?php echo $list_new_song[$i]["title_artist"] ?></div>
+                                        <div class="heart-quantity" <?php
+                                        if ($list_new_song[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>>
+                                            <i class="fa-solid fa-headphones-simple"></i>
+                                            <?php echo $list_new_song[$i]["listen_count"] ?>
                                             <!-- đổi chuỗi sang timestamp rồi format date   -->
-                                            <p><?php echo date("d/m/Y", strtotime($list_new_song[$i]['release_date']))?></p>
+                                            <p><?php echo date("d/m/Y", strtotime($list_new_song[$i]['release_date'])) ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

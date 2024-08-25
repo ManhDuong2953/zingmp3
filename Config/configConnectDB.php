@@ -2,7 +2,7 @@
 $host = "localhost"; // Tên máy chủ cơ sở dữ liệu
 $dbname = "zingmusic"; // Tên cơ sở dữ liệu
 $username = "root"; // Tên người dùng cơ sở dữ liệu
-$password = "manhme2953"; // Mật khẩu cơ sở dữ liệu
+$password = ""; // Mật khẩu cơ sở dữ liệu
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     // Thiết lập chế độ lỗi để hiển thị thông báo lỗi

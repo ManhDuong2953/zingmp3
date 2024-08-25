@@ -7,7 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- cdn fontawesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- favicon  -->
     <link rel="shortcut icon" href="../../../Component/assets/logo_mobile.png" type="image/x-icon">
@@ -35,6 +37,25 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="kindof">Thể loại:</label>
+                        <input type="text" id="kindof" name="kindof" required>
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: center;">
+                        <label style="margin-right: 10px;">Bản quyền:</label>
+                        <span style="display: flex; align-items: center; margin-right: 10px;">
+                            <input type="radio" id="type_song_vip" value="vip" name="type_song"
+                                style="margin-right: 5px;">
+                            <label for="type_song_vip">Bản quyền</label>
+                        </span>
+                        <span style="display: flex; align-items: center;">
+                            <input type="radio" id="type_song_free" value="free" checked name="type_song"
+                                style="margin-right: 5px;">
+                            <label for="type_song_free">Miễn phí</label>
+                        </span>
+                    </div>
+
+                    <div class="form-group">
                         <label for="mp3_link">Đăng bài hát:</label>
                         <input type="file" accept=".mp3" id="mp3_link" name="mp3_link" required>
                         <input type="text" id="duration" name="duration" hidden>
@@ -47,7 +68,8 @@
                                 <img src="../../../Component/assets/upload_icon.png" alt="">
                             </div>
                         </label>
-                        <input accept="image/*" hidden type="file" id="song_thumbnail" name="song_thumbnail" accept="image/*" required>
+                        <input accept="image/*" hidden type="file" id="song_thumbnail" name="song_thumbnail"
+                            accept="image/*" required>
                     </div>
 
 
@@ -77,7 +99,7 @@
                 const audio = new Audio();
                 audio.src = URL.createObjectURL(audioFile);
 
-                audio.onloadedmetadata = function() {
+                audio.onloadedmetadata = function () {
                     const duration = audio.duration;
 
                     document.getElementById('duration').value = formatTime(duration);
@@ -93,11 +115,11 @@
         const selectImageInput = document.querySelector("#song_thumbnail");
         const displayImage = document.querySelector(".img-preview > img");
 
-        selectImageInput.addEventListener("change", function() {
+        selectImageInput.addEventListener("change", function () {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     displayImage.src = e.target.result;
                 };
                 reader.readAsDataURL(file);

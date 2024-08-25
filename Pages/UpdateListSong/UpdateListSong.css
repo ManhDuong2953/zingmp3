@@ -15,25 +15,30 @@
   overflow-y: auto;
   padding: 16px 2% 60px;
 }
+
 /* container-right-content */
 .content-container {
   width: 100%;
   margin-top: 50px;
   display: flex;
 }
+
 .content-container-left {
   flex: 3;
 }
+
 .content-container .content-container-left .avt-disk-play {
   border-radius: 5px;
   overflow: hidden;
   width: 100%;
 }
+
 .content-container .content-container-left .avt-disk-play img {
   object-fit: contain;
   border-radius: 5px;
   width: 100%;
 }
+
 .media-content {
   display: flex;
   align-items: center;
@@ -41,10 +46,12 @@
   width: 100%;
   padding: 10px 0;
 }
+
 .content-top {
   text-align: center;
   width: 100%;
 }
+
 .content-top .title {
   color: #fff;
   font-size: 20px;
@@ -53,6 +60,7 @@
   margin-bottom: 0px;
   text-transform: capitalize;
 }
+
 .title,
 .release,
 .artists a,
@@ -61,9 +69,11 @@
   font-size: 12px;
   color: hsla(0, 0%, 100%, 0.5);
 }
+
 .content-top .artists {
   margin: 5px;
 }
+
 .actions {
   margin-top: 16px;
 }
@@ -73,9 +83,11 @@
   justify-content: center;
   margin: 0 -10px;
 }
+
 .like p {
   padding: 5px 10px;
 }
+
 .actions .btn-play-all {
   background-color: #ed2b91;
   border-color: #ed2b91;
@@ -86,15 +98,18 @@
   outline: none;
   cursor: pointer;
 }
+
 .media-content .actions .fa-play {
   margin-right: 5px;
 }
+
 .media_right {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   color: #fff;
 }
+
 .media_right-btn {
   padding: 10px;
   display: flex;
@@ -102,6 +117,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .media_right-btn:hover {
   background-color: hsla(0, 0%, 100%, 0.3);
 }
@@ -112,6 +128,17 @@
   background-color: #0000008f;
   margin-bottom: 20px;
 }
+
+.list-song i.fa-solid.fa-crown {
+  color: gold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 10;
+}
+
 .content-container-right {
   color: #fff;
   flex: 7;
@@ -135,15 +162,18 @@
 .zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover {
   background-color: hsla(0, 0%, 100%, 0.5);
 }
+
 .zing-recommend--item-left,
 .zing-recommend--item-center,
 .zing-recommend--item-right {
   color: hsla(0, 0%, 100%, 0.5);
 }
+
 .zing-recommend--item-left {
   flex: 5;
   display: flex;
 }
+
 .zing-recommend--item-center {
   font-size: 13px;
   flex: 2;
@@ -156,6 +186,7 @@
   margin-right: 5px;
   font-size: 18px;
 }
+
 .zing-recommend--item-right {
   font-size: 14px;
   flex: 1;
@@ -166,6 +197,7 @@
   align-self: start;
   flex: 5;
 }
+
 .img-avt-infor {
   border-radius: 3px;
   width: 70px;
@@ -173,16 +205,19 @@
   flex: 1;
   margin-right: 10px;
 }
+
 .img-avt-infor img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .name-song {
   color: #fff;
   font-size: 13px;
   margin-bottom: 4px;
 }
+
 .name-single {
   font-size: 10px;
 }
@@ -223,6 +258,7 @@
 
 /* CSS cho tablet (độ rộng màn hình từ 768px đến 1024px) */
 @media (max-width: 1024px) {
+
   /* Đặt thuộc tính cho các phần tử dành cho tablet ở đây */
   .zing-recommend--item {
     margin: 0;
@@ -232,6 +268,7 @@
     display: flex;
     flex-direction: column;
   }
+
   .right-container {
     width: 100%;
   }
@@ -245,6 +282,7 @@
   .content-container .content-container-left .avt-disk-play {
     max-height: 300px;
   }
+
   .content-container-right .description {
     margin: 25px 0 15px;
   }
@@ -265,6 +303,7 @@
   .media-content .actions {
     margin-top: 25px;
   }
+
   .content-top .artists {
     margin: 5px 5px 5px 0;
   }
@@ -277,15 +316,17 @@
     margin-left: 0;
     margin-top: 30px;
   }
+
   .like {
     justify-content: flex-start;
   }
 }
 
 @media (max-width: 768px) {
-.list-song a:nth-child(1){
-padding: 0 5px;
-}
+  .list-song a:nth-child(1) {
+    padding: 0 5px;
+  }
+
   .like {
     align-items: flex-start;
     flex-direction: column;

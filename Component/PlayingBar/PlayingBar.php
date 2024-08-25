@@ -11,11 +11,15 @@
 
 <body>
   <?php
-  $sql_get_song  = $pdo->prepare("SELECT * FROM song WHERE song_id = '$song_id'");
+  $sql_get_song = $pdo->prepare("SELECT * FROM song WHERE song_id = '$song_id'");
   $sql_get_song->execute();
   $info_song = $sql_get_song->fetch(PDO::FETCH_ASSOC);
 
-  $sql_check_hearted  = $pdo->prepare("SELECT * FROM favorite_list WHERE song_id = '$song_id'");
+  $id_user = NULL;
+  if (isset($_SESSION["id_user"])) {
+    $id_user = $_SESSION["id_user"];
+  }
+  $sql_check_hearted = $pdo->prepare("SELECT * FROM favorite_list WHERE song_id = '$song_id' AND user_id = '$id_user' ");
   $sql_check_hearted->execute();
   $check_hearted = $sql_check_hearted->fetch(PDO::FETCH_ASSOC);
 
@@ -60,13 +64,15 @@
           <div id="randomMusic" class="player_btn playing_random">
             <i class="fa-solid fa-shuffle"></i>
           </div>
-          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex - 1]['song_id'] ?>" id="prevMusic" class="player_btn playing_back">
+          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex - 1]['song_id'] ?>"
+            id="prevMusic" class="player_btn playing_back">
             <i class="fa-solid fa-backward-step"></i>
           </a>
           <div class="player_playing-input player_btn relative">
             <i class="fa-solid fa-pause"></i>
           </div>
-          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex + 1]['song_id'] ?>" id="nextMusic" class="player_btn playing_next">
+          <a href="/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[$currentIndex + 1]['song_id'] ?>"
+            id="nextMusic" class="player_btn playing_next">
             <i class="fa-solid fa-forward-step"></i>
           </a>
           <div id="loopMusic" class="player_btn playing_replay">
@@ -126,7 +132,7 @@
     updateButtonState();
 
     // Bắt sự kiện click trên nút Loop
-    btnLoop.addEventListener("click", function() {
+    btnLoop.addEventListener("click", function () {
       isRandom = !isRandom;
       updateButtonState();
       // Lưu giá trị isRandom vào localStorage
@@ -134,7 +140,7 @@
     });
 
     // Bắt sự kiện click trên nút Random
-    btnRandom.addEventListener("click", function() {
+    btnRandom.addEventListener("click", function () {
       isRandom = !isRandom;
       updateButtonState();
       // Lưu giá trị isRandom vào localStorage
@@ -144,7 +150,7 @@
 
 
     // Bắt sự kiện "ended" để khi nhạc kết thúc, nút chuyển thành "pause"
-    songPlaying.addEventListener("ended", function() {
+    songPlaying.addEventListener("ended", function () {
       if (isRandom) {
         window.location = "/ZingMP3/Pages/ListSongPages/ListSongPages.php?album_id=<?php echo $album_id ?>&song_id=<?php echo $list_song[rand(0, count($list_song) - 1)]['song_id'] ?>"
       }
@@ -152,7 +158,7 @@
 
     // Bắt sự kiện click trên nút phát/pause
     let isPlaying = true; // Thêm biến để theo dõi trạng thái phát/nghỉ
-    btnPlay.addEventListener("click", function() {
+    btnPlay.addEventListener("click", function () {
       if (!isPlaying) {
         // Nếu đang nghỉ, bắt đầu phát nhạc
         songPlaying.play();
@@ -178,7 +184,7 @@
     }
 
     // Bắt sự kiện timeupdate của audio để cập nhật progress-bar và thời gian
-    songPlaying.addEventListener("timeupdate", function() {
+    songPlaying.addEventListener("timeupdate", function () {
       const currentTime = songPlaying.currentTime;
       const duration = songPlaying.duration;
       const progressPercentage = (currentTime / duration) * 100;
@@ -209,7 +215,7 @@
     let defaultVolume = localStorage.getItem("defaultVolume") || 1;
     UpdateVolume(defaultVolume);
     // Bắt sự kiện thay đổi âm lượng
-    btnVolume.addEventListener("input", function(e) {
+    btnVolume.addEventListener("input", function (e) {
       let volume = parseFloat(e.target.value);
       UpdateVolume(volume);
     });

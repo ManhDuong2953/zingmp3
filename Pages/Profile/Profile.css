@@ -37,12 +37,7 @@
   overflow: hidden;
 }
 
-#profile-main
-  .profile-right
-  .container-profile
-  .profile-header
-  .img-container
-  img {
+#profile-main .profile-right .container-profile .profile-header .img-container img {
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -55,7 +50,7 @@
 }
 
 #profile-main .profile-navbar {
-  margin: 40px 0 0;
+  margin: 20px 0 0;
   display: flex;
   align-items: center;
   background-color: hsla(0, 0%, 100%, 0.1);
@@ -65,6 +60,7 @@
 #profile-main .profile-navbar a {
   margin: 4px;
 }
+
 #profile-main .profile-navbar a li {
   padding: 7px 25px;
   border-radius: 20px;
@@ -81,7 +77,31 @@
   margin: auto;
 }
 
+.img-container {
+  position: relative;
+}
 
+.img-container i.fa-solid.fa-crown {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  color: gold;
+  font-size: 25px;
+  transform: translateX(-50%);
+}
+
+a .buy-vip {
+  border: 1px solid;
+  padding: 4px 11px;
+  font-size: 12px;
+  border-radius: 10px;
+  margin: 10px 0 0;
+}
+
+a:hover .buy-vip {
+  background-color: white;
+  color: blueviolet;
+}
 
 @media (max-width: 1023px) {
   #profile-main .profile-right {
@@ -96,4 +116,3 @@
     margin: 0;
   }
 }
-

@@ -8,7 +8,10 @@ if(isset($_SESSION["id_user"])){
     $album_id= $_POST["album_id"];
     $title_song = trim($_POST["title_song"]);
     $duration = $_POST["duration"];
-    $title_artist = trim($_POST["title_artist"]);
+    $title_artist = trim($_POST["title_artist"]); 
+    $type_song = $_POST["type_song"]; 
+    $kindof = $_POST["kindof"]; 
+    
 
 
     //song thumbnai
@@ -23,8 +26,8 @@ if(isset($_SESSION["id_user"])){
 
     $release_date = date('Y-m-d H:i:s');
 
-    $sql_up_song = $pdo->prepare("INSERT INTO song (album_id,artist_id, song_thumbnail, mp3_link, release_date,title_song,duration,title_artist) 
-                                            VALUES ('$album_id','$artist_id','$song_thumbnail','$mp3_link','$release_date','$title_song','$duration','$title_artist')");
+    $sql_up_song = $pdo->prepare("INSERT INTO song (album_id,artist_id, song_thumbnail, mp3_link, release_date,title_song,duration,title_artist,type_song,kindof) 
+                                            VALUES ('$album_id','$artist_id','$song_thumbnail','$mp3_link','$release_date','$title_song','$duration','$title_artist','$type_song','$kindof')");
     $sql_up_song->execute();
 
     header("Location:"."../../UpdateListSong/UpdateListSong.php?album_id=".$album_id);

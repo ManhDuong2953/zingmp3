@@ -39,6 +39,16 @@
   box-shadow: 0 0 20px #000;
 }
 
+.zing-recommend--item i.fa-solid.fa-crown {
+  color: gold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 10;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -172,6 +182,26 @@
   display: flex;
   justify-content: center;
   padding: 10px;
+  position: relative;
+  font-size: 14px;
+}
+
+h3.errorAuth{
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: blanchedalmond;
+  text-align: center;
+  font-weight:500;
+}
+
+h3.errorAuth a{
+  color: blue;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 .zing-recommend--item:not(.zing-recommend--item.zing-recommend--title):hover,

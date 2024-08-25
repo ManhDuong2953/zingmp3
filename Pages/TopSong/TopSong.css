@@ -82,6 +82,16 @@ h1.title-item--home {
   min-width: 100%;
 }
 
+.content-layout ul.topsong-list i.fa-solid.fa-crown {
+  color: gold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 10;
+}
+
 .content-layout ul.topsong-list a li.topsong-list--item {
   margin-top: 5px;
   display: flex;
@@ -209,7 +219,7 @@ h1.title-item--home {
 }
 
 @media (max-width: 768px) {
-  .topsong-list--item p.song-duration{
+  .topsong-list--item p.song-duration {
     display: none;
   }
 }

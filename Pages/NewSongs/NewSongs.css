@@ -50,6 +50,16 @@ h1.title {
   min-width: 100%;
 }
 
+.newsongs-container i.fa-solid.fa-crown {
+  color: gold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 10;
+}
+
 .newsongs-container ul.newsongs-list a li.newsongs-list_item {
   margin-top: 5px;
   display: flex;

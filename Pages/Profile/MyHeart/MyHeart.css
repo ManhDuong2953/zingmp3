@@ -15,6 +15,8 @@
   background-color: hsla(0, 0%, 100%, 0.2);
 }
 
+
+
 .profile-content ul.list-my--heart a li.item-my--heart .song-info {
   position: relative;
   display: flex;
@@ -86,6 +88,18 @@
   font-weight: 500;
   margin: 0 10px;
 }
+
+.item-my--heart i.fa-solid.fa-crown {
+  color: gold;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 12px;
+  filter: drop-shadow(2px 4px 6px black);
+  z-index: 10;
+}
+
+
 @media (max-width: 600px) {
   .profile-content ul.list-my--heart a {
     width: calc(100% / 1);

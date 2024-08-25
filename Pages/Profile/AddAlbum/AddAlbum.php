@@ -28,10 +28,7 @@
                         <input type="text" id="ten_album" name="title_album" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="the_loai">Thể Loại:</label>
-                        <input type="text" id="the_loai" name="kindof" required>
-                    </div>
+        
 
                     <div class="form-group">
                         <label for="thumbnail_album">Ảnh Album:</label>

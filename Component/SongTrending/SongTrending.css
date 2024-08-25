@@ -71,6 +71,19 @@ h3.title-item--home {
 
 .trending-container
   ul.trending-list
+  li.trending-list--item
+  i.fa-solid.fa-crown {
+    color: gold;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+    filter: drop-shadow(2px 4px 6px black);
+    z-index: 10;
+}
+
+.trending-container
+  ul.trending-list
   a:hover
   li.trending-list--item
   .song-info
@@ -97,6 +110,9 @@ h3.title-item--home {
   font-weight: 600;
   padding: 4px;
   text-transform: none;
+  white-space: nowrap;       /* Không cho phép xuống dòng */
+  overflow: hidden;          /* Ẩn văn bản tràn ra ngoài */
+  text-overflow: ellipsis;   /* Hiển thị dấu ba chấm khi văn bản bị tràn */
 }
 
 .song-info .author-song,

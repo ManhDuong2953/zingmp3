@@ -24,10 +24,23 @@
       <div class="content-container">
         <div class="content-container-left">
           <?php
+          $Author = true;
+          $user = null;
           $album_id = $_REQUEST["album_id"];
           $song_id = isset($_REQUEST["song_id"]) ? $_REQUEST["song_id"] : null;
           //Lấy album và list nhạc
           $sql_get_album = null;
+
+          if (isset($_SESSION["id_user"])) {
+            $id_user = $_SESSION["id_user"];
+
+            // Sử dụng prepared statement để bảo mật
+            $statement = $pdo->prepare("SELECT type_account FROM user WHERE id_user = :id_user");
+            $statement->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+            $statement->execute();
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+          }
 
 
           if ($song_id) {
@@ -40,6 +53,31 @@
             $album_info = $sql_get_album->fetch(PDO::FETCH_ASSOC);
             $song_id = $album_info["song_id"];
           }
+
+          if ($album_info['type_song'] === 'vip') {
+            if ($user) {
+              if ($user['type_account'] === 'vip') {
+                $Author = true;
+              } else {
+                $Author = false;
+              }
+            } else {
+              $Author = false;
+            }
+          }
+
+
+          ?>
+
+          <?php
+          // Lấy list nhạc 
+          $sql_list_song = $pdo->prepare("SELECT song.listen_count, song.type_song  , song.like_count, song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
+                                          FROM song INNER JOIN album ON song.album_id = album.album_id 
+                                          WHERE album.album_id = $album_id");
+          $sql_list_song->execute();
+          $list_song = $sql_list_song->fetchAll(PDO::FETCH_ASSOC);
+          $total_count_listener = 0;
+          $total_count_like = 0;
           ?>
 
 
@@ -79,34 +117,51 @@
 
 
           <div class="list-recommend">
-            <?php
-            // Lấy list nhạc 
-            $sql_list_song = $pdo->prepare("SELECT song.listen_count, song.like_count, song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
-                                          FROM song INNER JOIN album ON song.album_id = album.album_id 
-                                          WHERE album.album_id = $album_id");
-            $sql_list_song->execute();
-            $list_song = $sql_list_song->fetchAll(PDO::FETCH_ASSOC);
-            $total_count_listener = 0;
-            $total_count_like = 0;
-            ?>
+
 
             <?php for ($i = 0; $i < count($list_song); $i++) {
               $total_count_listener += $list_song[$i]["listen_count"];
               $total_count_like += $list_song[$i]["like_count"];
-            ?>
-              <a href="./ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="zing-recommend--list">
+              ?>
+              <a href="./ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>"
+                class="zing-recommend--list">
                 <!-- active nhạc đang phát -->
-                <div class="zing-recommend--item <?php echo ($list_song[$i]["song_id"] == $song_id) ? "active" : "" ?>">
+                <div class="zing-recommend--item 
+                <?php echo ($list_song[$i]["song_id"] == $song_id) ? "active" : "" ?> "
+                  <?php
+                  if ($list_song[$i]['type_song'] == 'vip') {
+                    echo 'style="background: #ffd70021"';
+                  }
+                  ?>
+                  >
                   <div class="zing-recommend--item-left">
                     <div class="img-avt-infor">
+                      <?php
+                      if ($list_song[$i]['type_song'] == 'vip') {
+                        echo '<i class="fa-solid fa-crown"></i>';
+                      }
+                      ?>
                       <img src="../../Component/assets/wave.gif" class="wave_music " alt="">
                       <img src="<?php echo $list_song[$i]['song_thumbnail'] ?>" alt="" />
                     </div>
                     <div class="zing-recommend--item-text">
-                      <div class="name-song"><?php echo $list_song[$i]['title_song'] ?></div>
-                      <div class="name-single"><?php echo $list_song[$i]['title_artist'] ?>
-                        <div class="zing-recommend--item-center mobile">
-                          <span><i class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
+                      <div class="name-song" <?php
+                      if ($list_song[$i]['type_song'] == 'vip') {
+                        echo 'style="color: gold;"';
+                      }
+                      ?>><?php echo $list_song[$i]['title_song'] ?></div>
+                      <div class="name-single" <?php
+                      if ($list_song[$i]['type_song'] == 'vip') {
+                        echo 'style="color: gold;"';
+                      }
+                      ?>><?php echo $list_song[$i]['title_artist'] ?>
+                        <div class="zing-recommend--item-center mobile" <?php
+                        if ($list_song[$i]['type_song'] == 'vip') {
+                          echo 'style="color: gold;"';
+                        }
+                        ?>>
+                          <span><i
+                              class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
                           <span><i class="fa-regular fa-heart"></i><?php echo $list_song[$i]['like_count'] ?></span>
                         </div>
                       </div>
@@ -128,15 +183,22 @@
       </div>
       <?php require "../../Component/AlbumHot/AlbumHot.php" ?>
     </div>
-    <?php require '../../Component/PlayingBar/PlayingBar.php' ?>
-  </div>
+    <?php
 
+    if ($Author) {
+      require '../../Component/PlayingBar/PlayingBar.php';
+    } else {
+      echo '<h3 class="errorAuth">Nhạc chứa bản quyền sở hữu của tác giả. Vui lòng <a href="/Zingmp3/vnpay_php/vnpay_pay.php">nâng cấp VIP</a> để nghe</h3>';
+    }
+    ?>
+  </div>
+  
   <script>
     var activeItem = document.querySelector('.zing-recommend--item.active');
 
     if (activeItem) {
       // Cuộn đến thẻ li active
-      document.querySelector('.list-recommend').scrollTop = activeItem.offsetTop - (activeItem.clientHeight*3);
+      document.querySelector('.list-recommend').scrollTop = activeItem.offsetTop - (activeItem.clientHeight * 3);
     }
 
     //in ra số lượt nghe và tym
@@ -145,7 +207,7 @@
     // Hàm để gửi yêu cầu AJAX để cập nhật listen_count
     function updateListenCount() {
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "./ProcessIncreListener.php?song_id=<?php echo $song_id  ?>", true);
+      xhr.open("POST", "./ProcessIncreListener.php?song_id=<?php echo $song_id ?>", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.send();
     }
@@ -162,7 +224,7 @@
     let isFavorite = document.querySelector(".media_right-btn i.fa-solid.fa-heart");
 
     // Xử lý sự kiện khi người dùng nhấp vào nút yêu thích
-    favoriteBtn.addEventListener("click", function() {
+    favoriteBtn.addEventListener("click", function () {
       // Đảo ngược trạng thái yêu thích
       isFavorite = !isFavorite;
 

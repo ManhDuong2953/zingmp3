@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- cdn fontawesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- favicon  -->
     <link rel="shortcut icon" href="../../../Component/assets/logo_mobile.png" type="image/x-icon">
@@ -28,19 +30,49 @@
         $statement = $pdo->prepare("SELECT * FROM user WHERE id_user = '$id_user'");
         $statement->execute();
         $info_user = $statement->fetch(PDO::FETCH_ASSOC);
-        // print_r($info_user);
+
+
+        $statementTotal = $pdo->prepare("SELECT 
+                            COUNT(DISTINCT album.album_id) AS total_albums,
+                            COUNT(DISTINCT song.song_id) AS total_songs,
+                            SUM(song.listen_count) AS total_listens,
+                            SUM(song.like_count) AS total_likes
+                            FROM 
+                                user
+                            JOIN 
+                                album ON user.id_user = album.artist_id
+                            JOIN 
+                                song ON album.album_id = song.album_id
+                            WHERE 
+                            id_user = '$id_user'");
+        $statementTotal->execute();
+        $info_analyst = $statementTotal->fetch(PDO::FETCH_ASSOC);
 
         ?>
         <div class="profile-right">
             <?php require "../../../Component/Header/HeaderLayout.php" ?>
             <div class="container-profile">
                 <div class="profile-header">
-                    <div class="img-container">
-                        <img src="<?php echo $info_user["avatar_link"] ?>" alt="" />
-                    </div>
-                    <div class="profile-name"><?php echo $info_user["user_name"] ?></div>
-                </div>
 
+                    <div class="img-container" <?php if ($info_user["type_account"] == "vip") {
+                        echo 'style="border: 5px solid gold;"';
+                    } ?>>
+                        <img src="<?php echo $info_user["avatar_link"] ?>" alt="" />
+                        <?php if ($info_user["type_account"] == "vip") {
+                            echo '<i class="fa-solid fa-crown"></i>';
+                        } ?>
+                    </div>
+                    <?php if ($info_user["type_account"] == "free") {
+                        echo '<a href="/zingmp3/vnpay_php/vnpay_pay.php"><div class="buy-vip">Mua VIP</div></a>';
+                    } ?>
+                    <div class="profile-name"><?php echo $info_user["user_name"] ?></div>
+                    <span style="display: flex;align-items: center;justify-content: center;font-size: 12px;">
+                        <?= $info_analyst["total_likes"] ?> <i class="fa-solid fa-heart" style="margin-left: 3px"></i>
+                        <span style="padding: 0 5px"></span>
+                        <?= $info_analyst["total_listens"] ?> <i class="fa-solid fa-headphones"
+                            style="margin-left: 3px"></i>
+                    </span>
+                </div>
                 <ul class="profile-navbar">
                     <a href="../MyHeart/MyHeart.php">
                         <li class="active">Yêu thích</li>
@@ -62,22 +94,47 @@
                 ?>
                 <ul class="list-my--heart">
                     <?php for ($i = 0; $i < count($list_my_heart); $i++) { ?>
-                        <a href="../../ListSongPages/ListSongPages.php?album_id=<?php echo $list_my_heart[$i]['album_id'] ?>&song_id=<?php echo $list_my_heart[$i]['song_id'] ?>">
-                            <li class="item-my--heart">
+                        <a
+                            href="../../ListSongPages/ListSongPages.php?album_id=<?php echo $list_my_heart[$i]['album_id'] ?>&song_id=<?php echo $list_my_heart[$i]['song_id'] ?>">
+                            <li <?php
+                            if ($list_my_heart[$i]['type_song'] == 'vip') {
+                                echo 'style="background: #ffd70021"';
+                            }
+                            ?> class="item-my--heart">
                                 <div class="song-info">
                                     <div class="img-thumbnail">
-                                        <img src="<?php echo $list_my_heart[$i]["song_thumbnail"]?>" alt="">
+                                        <?php
+                                        if ($list_my_heart[$i]['type_song'] == 'vip') {
+                                            echo '<i class="fa-solid fa-crown"></i>';
+                                        }
+                                        ?>
+                                        <img src="<?php echo $list_my_heart[$i]["song_thumbnail"] ?>" alt="">
                                         <i class="fa-solid fa-circle-play btn-play"></i>
                                     </div>
                                     <div class="info-song">
-                                        <div class="name-song"><?php echo $list_my_heart[$i]["title_song"]?></div>
-                                        <div class="author-song"><?php echo $list_my_heart[$i]["title_artist"]?></div>
-                                        <div class="heart-quantity"><?php echo $list_my_heart[$i]["listen_count"]?>  <i class="fa-solid fa-headphones-simple"></i> </div>
+                                        <div class="name-song" <?php
+                                        if ($list_my_heart[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>><?php echo $list_my_heart[$i]["title_song"] ?>
+                                        </div>
+                                        <div class="author-song" <?php
+                                        if ($list_my_heart[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>><?php echo $list_my_heart[$i]["title_artist"] ?>
+                                        </div>
+                                        <div class="heart-quantity" <?php
+                                        if ($list_my_heart[$i]['type_song'] == 'vip') {
+                                            echo 'style="color: gold;"';
+                                        }
+                                        ?>><?php echo $list_my_heart[$i]["listen_count"] ?> <i
+                                                class="fa-solid fa-headphones-simple"></i> </div>
                                     </div>
                                 </div>
                                 <span>
                                     <i class="fa-solid fa-heart"></i>
-                                    <p class="song-duration"><?php echo $list_my_heart[$i]["duration"]?></p>
+                                    <p class="song-duration"><?php echo $list_my_heart[$i]["duration"] ?></p>
                                 </span>
                             </li>
                         </a>

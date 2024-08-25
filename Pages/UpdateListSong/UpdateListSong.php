@@ -69,7 +69,7 @@
 
             <div class="zing-recommend--list">
               <?php
-              $sql_list_song = $pdo->prepare("SELECT song.like_count, song.listen_count,song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
+              $sql_list_song = $pdo->prepare("SELECT song.like_count, song.type_song, song.listen_count,song.song_id, album.album_id, album.title_album, song.artist_id, song.song_thumbnail, song.title_song, song.duration, song.title_artist 
                                               FROM song INNER JOIN album ON song.album_id = album.album_id 
                                               WHERE album.album_id = $album_id AND song.artist_id= $id_user");
               $sql_list_song->execute();
@@ -81,12 +81,22 @@
               <?php for ($i = 0; $i < count($list_song); $i++) {
                 $total_count_listener += $list_song[$i]["listen_count"];
                 $total_count_like += $list_song[$i]["like_count"];
-              ?>
+                ?>
                 <div class="list-song">
-                  <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="play_song">
-                    <div class="zing-recommend--item">
+                  <a href="../ListSongPages/ListSongPages.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>"
+                    class="play_song">
+                    <div class="zing-recommend--item"   <?php
+                                if ($list_song[$i]['type_song'] == 'vip') {
+                                    echo 'style="background: #ffd70021"';
+                                }
+                            ?>>
                       <div class="zing-recommend--item-left">
                         <div class="img-avt-infor">
+                          <?php
+                          if ($list_song[$i]['type_song'] == 'vip') {
+                            echo '<i class="fa-solid fa-crown"></i>';
+                          }
+                          ?>
                           <img src="<?php echo $list_song[$i]["song_thumbnail"] ?>" alt="Ảnh nền ảnh" />
                         </div>
                         <div class="zing-recommend--item-text">
@@ -95,7 +105,8 @@
                         </div>
                       </div>
                       <div class="zing-recommend--item-center">
-                        <span><i class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
+                        <span><i
+                            class="fa-solid fa-headphones-simple"></i><?php echo $list_song[$i]['listen_count'] ?></span>
                         <span><i class="fa-regular fa-heart"></i><?php echo $list_song[$i]['like_count'] ?></span>
                       </div>
                       <div class="zing-recommend--item-right">
@@ -104,10 +115,12 @@
                     </div>
                   </a>
                   <div class="action_updateSong">
-                    <a href="./ProcessDeleteSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="delete_song">
+                    <a href="./ProcessDeleteSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>"
+                      class="delete_song">
                       <i class="fa-solid fa-trash" title="Xóa bài hát"></i>
                     </a>
-                    <a href="../UpdateSong/UpdateSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>" class="update_song">
+                    <a href="../UpdateSong/UpdateSong.php?album_id=<?php echo $list_song[$i]['album_id'] ?>&song_id=<?php echo $list_song[$i]['song_id'] ?>"
+                      class="update_song">
                       <i class="fa-solid fa-wrench" title="Sửa bài hát"></i>
                     </a>
                   </div>
